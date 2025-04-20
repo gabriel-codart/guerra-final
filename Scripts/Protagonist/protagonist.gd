@@ -1,0 +1,167 @@
+extends CharacterBody2D
+
+var projectile: PackedScene = preload("res://Scenes/Projectiles and Effects/projectile.tscn")
+
+@onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var weapon_marker: Marker2D = $WeaponMarker2D
+@onready var attack_area: Area2D = $AttackArea2D
+# Constantes
+const GRAVITY: float = 1000
+const JUMP: float = -350
+const SPEED: float = 250
+const SCALE: float = 1.5
+# Estados
+enum State { Idle, Run, Jump, Fall, Shot, Fall_Shot, Attack, Hurt, Dead }
+var state_names = {
+	State.Idle: "idle",
+	State.Run: "run",
+	State.Jump: "jump",
+	State.Fall: "fall",
+	State.Shot: "shot",
+	State.Fall_Shot: "fall_shot",
+	State.Attack: "attack",
+	State.Hurt: "hurt",
+	State.Dead: "dead",
+}
+var current_state: State
+# Armas
+enum Weapon { Default, Pistol }
+var weapon_names = {
+	Weapon.Default: "default",
+	Weapon.Pistol: "pistol"
+}
+var current_weapon: Weapon
+# Direção
+enum Direction { Left, Right }
+var current_direction: Direction
+# Verificadores
+var can_walk: bool
+var is_attacking: bool
+var is_getting_hurt: bool
+# Vida
+var maxHealth: int = 10
+var health: int = 10
+
+func _ready() -> void:
+	current_state = State.Idle
+	current_weapon = Weapon.Default
+	current_direction = Direction.Right
+	can_walk = true
+	is_attacking = false
+	is_getting_hurt = false
+
+func _physics_process(delta: float) -> void:
+	player_gravity(delta)
+	player_idle(delta)
+	player_run(delta)
+	player_jump(delta)
+	player_get_weapon()
+	player_action(delta)
+	
+	move_and_slide()
+	player_animate()
+
+func player_gravity(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y += GRAVITY * delta
+		if current_state != State.Jump and current_state != State.Fall_Shot:
+			current_state = State.Fall
+
+func player_idle(_delta: float) -> void:
+	#print(is_attacking)
+	if is_on_floor() and not is_attacking and not is_getting_hurt:
+		current_state = State.Idle
+
+func player_run(_delta: float) -> void:
+	var direction: float = Input.get_axis("move_left","move_right")
+	
+	if direction and not is_attacking and not is_getting_hurt:
+		velocity.x = direction * SPEED
+		# Flipa o Personagem de acordo com a direção
+		transform.x.x = direction * SCALE
+		# Guarda a direção atual
+		current_direction = Direction.Right if direction > 0 else Direction.Left
+		if is_on_floor():
+			current_state = State.Run
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+func player_jump(_delta: float) -> void:
+	if current_state == State.Shot or current_state == State.Attack:
+		return
+	if Input.is_action_just_pressed("jump") and is_on_floor(): # Se remover o is_on_floor() tem-se uma mecânica de vôo
+		velocity.y = JUMP
+		current_state = State.Jump
+
+func player_get_weapon() -> void:
+	if Input.is_action_just_pressed("get_default"):
+		current_weapon = Weapon.Default
+	if Input.is_action_just_pressed("get_pistol"):
+		current_weapon = Weapon.Pistol
+
+func player_action(_delta: float) -> void:
+	if Input.is_action_just_pressed("shoot") and current_weapon != Weapon.Default and not is_getting_hurt and not is_attacking:
+		if not is_on_floor(): # Atirando no ar
+			weapon_marker.set_axis(weapon_names[current_weapon], "in_air")
+			create_projectile()
+			current_state = State.Fall_Shot
+			is_attacking = true
+			return
+		# Atirando no chão
+		weapon_marker.set_axis(weapon_names[current_weapon], "on_floor")
+		create_projectile()
+		current_state = State.Shot
+		is_attacking = true
+	if Input.is_action_just_pressed("attack") and is_on_floor() and not is_getting_hurt and not is_attacking:
+		current_state = State.Attack
+		is_attacking = true
+
+func create_projectile() -> void:
+	var projectile_instance: Area2D = projectile.instantiate() as Area2D
+	projectile_instance.global_position = weapon_marker.global_position
+	if current_direction == Direction.Right:
+		projectile_instance.direction = Vector2.RIGHT
+	else:
+		projectile_instance.direction = Vector2.LEFT
+	get_parent().add_child(projectile_instance)
+
+func check_attack_area() -> void:
+	if attack_area.has_overlapping_bodies():
+		var body: CharacterBody2D = attack_area.get_overlapping_bodies()[0] as CharacterBody2D
+		if body.has_method("add_damage"):
+			body.add_damage(1)
+
+func add_damage(damage: int) -> void:
+	if is_attacking or is_getting_hurt:
+		return
+	health -= damage
+	is_getting_hurt = true
+	if health > 0:
+		current_state = State.Hurt
+	else:
+		current_state = State.Dead
+	print("Health: ", health, " + State: ", state_names[current_state])
+
+func player_animate() -> void:
+	if weapon_names[current_weapon] == "default" and state_names[current_state] == "shot":
+		return
+	var anim_name = weapon_names[current_weapon] + "_" + state_names[current_state]
+	anim_sprite.play(anim_name)
+
+func _on_sprite_animation_finished():
+	var anim_name: StringName = anim_sprite.animation
+	#print(anim_name, " + ", state_names[current_state], " + ", is_attacking)
+	if anim_name.ends_with("_jump"):
+		current_state = State.Fall
+	elif anim_name.ends_with("_attack"):
+		is_attacking = false
+		check_attack_area()
+	elif anim_name.ends_with("_shot"):
+		print(anim_name, " + ", state_names[current_state], " + ", is_attacking)
+		is_attacking = false
+		if anim_name.ends_with("_fall_shot"):
+			current_state = State.Fall
+	elif anim_name.ends_with("_hurt"):
+		is_getting_hurt = false
+	elif anim_name.ends_with("_dead"):
+		queue_free()
