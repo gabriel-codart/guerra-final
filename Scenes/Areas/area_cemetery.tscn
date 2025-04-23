@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://djj8vmy4ly3vs" path="res://Assets/Tiles/Cemetery/Parallax_Churches.png" id="2_hlbnd"]
 [ext_resource type="Texture2D" uid="uid://cveo464pxjgk5" path="res://Assets/Tiles/Cemetery/Parallax_Tombstones.png" id="3_3s0ni"]
 [ext_resource type="Texture2D" uid="uid://cxn62w14uejnx" path="res://Assets/Tiles/Cemetery/Tiles.png" id="4_e1hot"]
-[ext_resource type="PackedScene" uid="uid://v5eys0hxy1es" path="res://Scenes/protagonist/protagonist.tscn" id="5_22qiw"]
+[ext_resource type="PackedScene" uid="uid://v5eys0hxy1es" path="res://Scenes/Protagonist/protagonist.tscn" id="5_22qiw"]
 [ext_resource type="PackedScene" uid="uid://bul51wa0ie6a8" path="res://Scenes/Enemies/gangster_without_gun.tscn" id="6_8d2nw"]
 [ext_resource type="PackedScene" uid="uid://c2dhgpsfx2a8c" path="res://Scenes/HUD/hud.tscn" id="7_c7eds"]
 

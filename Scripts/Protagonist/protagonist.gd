@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var projectile: PackedScene = preload("res://Scenes/Projectiles and Effects/projectile.tscn")
 
+@onready var HUD: CanvasLayer = $"../HUD"
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var weapon_marker: Marker2D = $WeaponMarker2D
 @onready var attack_area: Area2D = $AttackArea2D
@@ -61,28 +62,34 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	player_animate()
 
+func can_act() -> bool:
+	return not is_attacking and not is_getting_hurt
+
+func set_state(new_state: State) -> void:
+	if current_state != new_state:
+		current_state = new_state
+
 func player_gravity(delta: float) -> void:
-	if not is_on_floor():
+	if not is_on_floor(): # Está no ar
 		velocity.y += GRAVITY * delta
 		if current_state != State.Jump and current_state != State.Fall_Shot:
-			current_state = State.Fall
+			set_state(State.Fall)
 
 func player_idle(_delta: float) -> void:
-	#print(is_attacking)
-	if is_on_floor() and not is_attacking and not is_getting_hurt:
-		current_state = State.Idle
+	if is_on_floor() and can_act():
+		set_state(State.Idle)
 
 func player_run(_delta: float) -> void:
 	var direction: float = Input.get_axis("move_left","move_right")
 	
-	if direction and not is_attacking and not is_getting_hurt:
+	if direction and can_act():
 		velocity.x = direction * SPEED
 		# Flipa o Personagem de acordo com a direção
 		transform.x.x = direction * SCALE
 		# Guarda a direção atual
 		current_direction = Direction.Right if direction > 0 else Direction.Left
 		if is_on_floor():
-			current_state = State.Run
+			set_state(State.Run)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -91,29 +98,31 @@ func player_jump(_delta: float) -> void:
 		return
 	if Input.is_action_just_pressed("jump") and is_on_floor(): # Se remover o is_on_floor() tem-se uma mecânica de vôo
 		velocity.y = JUMP
-		current_state = State.Jump
+		set_state(State.Jump)
 
 func player_get_weapon() -> void:
 	if Input.is_action_just_pressed("get_default"):
 		current_weapon = Weapon.Default
 	if Input.is_action_just_pressed("get_pistol"):
 		current_weapon = Weapon.Pistol
+	
+	HUD.set_weapon(current_weapon) # Atualiza arma no HUD
 
 func player_action(_delta: float) -> void:
-	if Input.is_action_just_pressed("shoot") and current_weapon != Weapon.Default and not is_getting_hurt and not is_attacking:
+	if Input.is_action_just_pressed("shoot") and current_weapon != Weapon.Default and can_act():
 		if not is_on_floor(): # Atirando no ar
 			weapon_marker.set_axis(weapon_names[current_weapon], "in_air")
 			create_projectile()
-			current_state = State.Fall_Shot
+			set_state(State.Fall_Shot)
 			is_attacking = true
 			return
 		# Atirando no chão
 		weapon_marker.set_axis(weapon_names[current_weapon], "on_floor")
 		create_projectile()
-		current_state = State.Shot
+		set_state(State.Shot)
 		is_attacking = true
-	if Input.is_action_just_pressed("attack") and is_on_floor() and not is_getting_hurt and not is_attacking:
-		current_state = State.Attack
+	if Input.is_action_just_pressed("attack") and is_on_floor() and can_act():
+		set_state(State.Attack)
 		is_attacking = true
 
 func create_projectile() -> void:
@@ -135,12 +144,12 @@ func add_damage(damage: int) -> void:
 	if is_attacking or is_getting_hurt:
 		return
 	health -= damage
+	HUD.set_health(health) # Atualiza barra de vida no HUD
 	is_getting_hurt = true
 	if health > 0:
-		current_state = State.Hurt
+		set_state(State.Hurt)
 	else:
-		current_state = State.Dead
-	print("Health: ", health, " + State: ", state_names[current_state])
+		set_state(State.Dead)
 
 func player_animate() -> void:
 	if weapon_names[current_weapon] == "default" and state_names[current_state] == "shot":
@@ -150,17 +159,15 @@ func player_animate() -> void:
 
 func _on_sprite_animation_finished():
 	var anim_name: StringName = anim_sprite.animation
-	#print(anim_name, " + ", state_names[current_state], " + ", is_attacking)
 	if anim_name.ends_with("_jump"):
-		current_state = State.Fall
+		set_state(State.Fall)
 	elif anim_name.ends_with("_attack"):
 		is_attacking = false
 		check_attack_area()
 	elif anim_name.ends_with("_shot"):
-		print(anim_name, " + ", state_names[current_state], " + ", is_attacking)
 		is_attacking = false
 		if anim_name.ends_with("_fall_shot"):
-			current_state = State.Fall
+			set_state(State.Fall)
 	elif anim_name.ends_with("_hurt"):
 		is_getting_hurt = false
 	elif anim_name.ends_with("_dead"):

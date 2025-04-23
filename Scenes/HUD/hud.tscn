@@ -1,17 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2dhgpsfx2a8c"]
+[gd_scene load_steps=10 format=3 uid="uid://c2dhgpsfx2a8c"]
 
 [ext_resource type="Script" path="res://Scripts/HUD/hud.gd" id="1_3d8ni"]
+[ext_resource type="Texture2D" uid="uid://nv5ws6uwnu1t" path="res://Assets/Weapons/Default.png" id="2_kkc8p"]
 [ext_resource type="Texture2D" uid="uid://cmk3yxyyasb6e" path="res://Assets/HUD/Protagonist Health Bar Under.png" id="2_mh3a7"]
+[ext_resource type="Texture2D" uid="uid://bkk3631ktr1t0" path="res://Assets/HUD/Weapon Border.png" id="3_bw5gl"]
+[ext_resource type="Texture2D" uid="uid://4oxerhige7nt" path="res://Assets/Weapons/Pistol.png" id="3_dog1a"]
 [ext_resource type="Texture2D" uid="uid://d3guj1hbqe48w" path="res://Assets/HUD/Protagonist Health Bar Progress.png" id="3_riabt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fsb4"]
+atlas = ExtResource("2_kkc8p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2crst"]
+atlas = ExtResource("3_dog1a")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u63ej"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fsb4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2crst")
+}],
+"loop": false,
+"name": &"pistol",
+"speed": 5.0
+}]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_3d8ni")
 
+[node name="Weapon" type="AnimatedSprite2D" parent="."]
+position = Vector2(56, 48)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_u63ej")
+animation = &"pistol"
+
+[node name="WeaponBorder" type="Sprite2D" parent="."]
+position = Vector2(56, 48)
+texture = ExtResource("3_bw5gl")
+
 [node name="HealthBar" type="TextureProgressBar" parent="."]
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 64.0
-offset_bottom = 48.0
+offset_left = 24.0
+offset_top = 80.0
+offset_right = 72.0
+offset_bottom = 120.0
 scale = Vector2(1.5, 1.5)
 texture_under = ExtResource("2_mh3a7")
 texture_progress = ExtResource("3_riabt")

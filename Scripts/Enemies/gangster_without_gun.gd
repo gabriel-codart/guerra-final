@@ -155,10 +155,12 @@ func _on_timer_timeout() -> void:
 	can_walk = true
 
 func _on_attack_timer_timeout():
+	print("pode atacar")
 	can_attack = true
 
 func _on_animated_sprite_finished() -> void:
 	var anim_name: StringName = anim_sprite.animation
+	print(anim_name)
 	if anim_name == "attack":
 		is_attacking = false
 		can_attack = false
