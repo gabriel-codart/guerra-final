@@ -375,7 +375,7 @@ radius = 13.0
 height = 68.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktofw"]
-size = Vector2(285.517, 114)
+size = Vector2(502.069, 114)
 
 [node name="Gangster With Gun" type="CharacterBody2D"]
 scale = Vector2(1.45, 1.45)
@@ -399,14 +399,13 @@ wait_time = 2.0
 
 [node name="WeaponMarker2D" type="Marker2D" parent="."]
 position = Vector2(24.8276, 25.5172)
-scale = Vector2(1, 1)
 
 [node name="DetectionArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
-position = Vector2(-2.06898, 7)
+position = Vector2(-3.94624e-06, 7)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ktofw")
 

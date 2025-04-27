@@ -138,7 +138,7 @@ func check_attack_area() -> void:
 			body.add_damage(1)
 
 func add_damage(damage: int) -> void:
-	if is_attacking or is_getting_hurt:
+	if is_getting_hurt:
 		return
 	health -= damage
 	HUD.set_health(health) # Atualiza barra de vida no HUD
@@ -173,7 +173,7 @@ func _on_sprite_animation_finished():
 			set_state(State.Fall)
 	elif anim_name.ends_with("_hurt"):
 		is_getting_hurt = false
-		print("Hurt acad")
+		is_attacking = false
 		if anim_name.ends_with("_fall_hurt"):
 			set_state(State.Fall)
 	elif anim_name.ends_with("_dead"):

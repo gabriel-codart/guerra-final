@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://v5eys0hxy1es"]
+[gd_scene load_steps=103 format=3 uid="uid://v5eys0hxy1es"]
 
 [ext_resource type="Script" path="res://Scripts/Protagonist/protagonist.gd" id="1_i04aq"]
 [ext_resource type="Texture2D" uid="uid://k2c38coimah3" path="res://Assets/Protagonist/Protagonist - Default/Fall.png" id="2_f05om"]
@@ -59,14 +59,6 @@ region = Rect2(0, 640, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s26yb"]
 atlas = ExtResource("2_f05om")
-region = Rect2(0, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u6wj6"]
-atlas = ExtResource("5_3vpy5")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jdmeo"]
-atlas = ExtResource("5_3vpy5")
 region = Rect2(0, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7apha"]
@@ -183,10 +175,6 @@ region = Rect2(0, 384, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6u1vo"]
 atlas = ExtResource("10_pgi6s")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r0pis"]
-atlas = ExtResource("12_7m3uv")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_im1uy"]
@@ -398,12 +386,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u6wj6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jdmeo")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_7apha")
 }, {
 "duration": 1.0,
@@ -525,9 +507,6 @@ animations = [{
 "speed": 6.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r0pis")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_im1uy")
 }, {
@@ -703,7 +682,7 @@ script = ExtResource("1_i04aq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_um3wl")
-animation = &"pistol_fall_hurt"
+animation = &"default_fall_hurt"
 autoplay = "default_idle"
 speed_scale = 1.5
 

@@ -166,6 +166,7 @@ func _on_animated_sprite_finished() -> void:
 		attack_timer.start()
 	elif anim_name == "hurt":
 		is_getting_hurt = false
+		is_attacking = false
 		can_attack = true
 	elif anim_name == "dead":
 		queue_free()

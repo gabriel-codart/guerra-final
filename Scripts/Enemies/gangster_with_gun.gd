@@ -89,7 +89,7 @@ func enemy_walk(delta: float) -> void:
 func go_to_protagonist(delta: float) -> void:
 	check_direction(protagonist_point)
 	# Checa a distância do Protagonista
-	if abs(position.x - protagonist_point.x) > 155:
+	if abs(position.x - protagonist_point.x) > 315:
 		velocity.x = direction.x * SPEED * delta
 		current_state = State.Walk
 	else:
@@ -129,7 +129,6 @@ func check_detection_area() -> void:
 		protagonist_point = Vector2.ZERO
 
 func enemy_shot() -> void:
-	print("ataacando")
 	create_projectile()
 	current_state = State.Shot
 	is_shooting = true
@@ -138,6 +137,7 @@ func create_projectile() -> void:
 	var projectile_instance: Area2D = projectile.instantiate() as Area2D
 	projectile_instance.global_position = weapon_marker.global_position
 	projectile_instance.direction = direction
+	projectile_instance.damage = 2
 	get_parent().add_child(projectile_instance)
 
 func add_damage(damage: int) -> void:
