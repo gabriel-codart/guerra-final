@@ -7,6 +7,9 @@ const SPEED: float = 500.0
 # Direção
 var direction: Vector2
 
+func _ready() -> void:
+	print("criou projétil")
+
 func _process(delta: float) -> void:
 	translate(direction * SPEED * delta)
 

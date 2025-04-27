@@ -18,7 +18,7 @@ func _ready():
 		set_health(protagonist.health)
 	pass
 
-func _process(delta):
+func _process(_delta):
 	var protagonist: CharacterBody2D = get_parent().get_node("Protagonist") as CharacterBody2D
 	if protagonist:
 		health_bar.value = protagonist.health * 100 / protagonist.maxHealth

@@ -12,7 +12,7 @@ const JUMP: float = -350
 const SPEED: float = 250
 const SCALE: float = 1.5
 # Estados
-enum State { Idle, Run, Jump, Fall, Shot, Fall_Shot, Attack, Hurt, Dead }
+enum State { Idle, Run, Jump, Fall, Shot, Fall_Shot, Fall_Hurt, Attack, Hurt, Dead }
 var state_names = {
 	State.Idle: "idle",
 	State.Run: "run",
@@ -20,6 +20,7 @@ var state_names = {
 	State.Fall: "fall",
 	State.Shot: "shot",
 	State.Fall_Shot: "fall_shot",
+	State.Fall_Hurt: "fall_hurt",
 	State.Attack: "attack",
 	State.Hurt: "hurt",
 	State.Dead: "dead",
@@ -33,8 +34,7 @@ var weapon_names = {
 }
 var current_weapon: Weapon
 # Direção
-enum Direction { Left, Right }
-var current_direction: Direction
+var current_direction: Vector2
 # Verificadores
 var can_walk: bool
 var is_attacking: bool
@@ -46,7 +46,7 @@ var health: int = 10
 func _ready() -> void:
 	current_state = State.Idle
 	current_weapon = Weapon.Default
-	current_direction = Direction.Right
+	current_direction = Vector2.RIGHT
 	can_walk = true
 	is_attacking = false
 	is_getting_hurt = false
@@ -72,7 +72,7 @@ func set_state(new_state: State) -> void:
 func player_gravity(delta: float) -> void:
 	if not is_on_floor(): # Está no ar
 		velocity.y += GRAVITY * delta
-		if current_state != State.Jump and current_state != State.Fall_Shot:
+		if current_state != State.Jump and current_state != State.Fall_Shot and current_state != State.Fall_Hurt and current_state != State.Dead:
 			set_state(State.Fall)
 
 func player_idle(_delta: float) -> void:
@@ -87,14 +87,14 @@ func player_run(_delta: float) -> void:
 		# Flipa o Personagem de acordo com a direção
 		transform.x.x = direction * SCALE
 		# Guarda a direção atual
-		current_direction = Direction.Right if direction > 0 else Direction.Left
+		current_direction = Vector2.RIGHT if direction > 0 else Vector2.LEFT
 		if is_on_floor():
 			set_state(State.Run)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func player_jump(_delta: float) -> void:
-	if current_state == State.Shot or current_state == State.Attack:
+	if current_state == State.Shot or current_state == State.Attack or current_state == State.Hurt or current_state == State.Fall_Hurt:
 		return
 	if Input.is_action_just_pressed("jump") and is_on_floor(): # Se remover o is_on_floor() tem-se uma mecânica de vôo
 		velocity.y = JUMP
@@ -128,10 +128,7 @@ func player_action(_delta: float) -> void:
 func create_projectile() -> void:
 	var projectile_instance: Area2D = projectile.instantiate() as Area2D
 	projectile_instance.global_position = weapon_marker.global_position
-	if current_direction == Direction.Right:
-		projectile_instance.direction = Vector2.RIGHT
-	else:
-		projectile_instance.direction = Vector2.LEFT
+	projectile_instance.direction = current_direction
 	get_parent().add_child(projectile_instance)
 
 func check_attack_area() -> void:
@@ -147,12 +144,18 @@ func add_damage(damage: int) -> void:
 	HUD.set_health(health) # Atualiza barra de vida no HUD
 	is_getting_hurt = true
 	if health > 0:
+		if not is_on_floor():
+			set_state(State.Fall_Hurt)
+			return
 		set_state(State.Hurt)
 	else:
+		current_weapon = Weapon.Default
 		set_state(State.Dead)
 
 func player_animate() -> void:
 	if weapon_names[current_weapon] == "default" and state_names[current_state] == "shot":
+		return
+	if state_names[current_state] == "dead" and not is_on_floor():
 		return
 	var anim_name = weapon_names[current_weapon] + "_" + state_names[current_state]
 	anim_sprite.play(anim_name)
@@ -170,5 +173,8 @@ func _on_sprite_animation_finished():
 			set_state(State.Fall)
 	elif anim_name.ends_with("_hurt"):
 		is_getting_hurt = false
+		print("Hurt acad")
+		if anim_name.ends_with("_fall_hurt"):
+			set_state(State.Fall)
 	elif anim_name.ends_with("_dead"):
 		queue_free()

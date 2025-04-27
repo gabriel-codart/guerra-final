@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg886qu8jw67k"
-path="res://.godot/imported/Fall_Shot.png-c137231f999e67f85b8006674eddf68a.ctex"
+uid="uid://brudnif40lqbj"
+path="res://.godot/imported/Walk.png-0927ff484e8d78dc4d594e4268e43806.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Protagonist/Protagonist - Pistol/Fall_Shot.png"
-dest_files=["res://.godot/imported/Fall_Shot.png-c137231f999e67f85b8006674eddf68a.ctex"]
+source_file="res://Assets/Enemies/Gangster With Gun/Walk.png"
+dest_files=["res://.godot/imported/Walk.png-0927ff484e8d78dc4d594e4268e43806.ctex"]
 
 [params]
 

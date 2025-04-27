@@ -249,8 +249,8 @@ animations = [{
 radius = 14.0
 height = 68.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_37bd1"]
-radius = 131.84
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfge7"]
+size = Vector2(270.345, 112.414)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xry4c"]
 size = Vector2(26.8965, 7.5862)
@@ -263,10 +263,8 @@ script = ExtResource("1_jghsy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8lv0a")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 29)
@@ -283,8 +281,9 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
-position = Vector2(0, 23.4483)
-shape = SubResource("CircleShape2D_37bd1")
+position = Vector2(-2.06898, 8.62069)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_pfge7")
 
 [node name="AttackArea2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -292,7 +291,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D"]
 position = Vector2(23.7931, 14.1379)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_xry4c")
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
 
