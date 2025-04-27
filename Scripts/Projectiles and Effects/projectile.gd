@@ -10,7 +10,6 @@ var direction: Vector2
 var damage: int = 1
 
 func _ready() -> void:
-	#print("criou projétil")
 	pass
 
 func _process(delta: float) -> void:

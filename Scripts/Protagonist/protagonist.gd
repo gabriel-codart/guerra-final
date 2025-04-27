@@ -72,7 +72,8 @@ func set_state(new_state: State) -> void:
 func player_gravity(delta: float) -> void:
 	if not is_on_floor(): # Está no ar
 		velocity.y += GRAVITY * delta
-		if current_state != State.Jump and current_state != State.Fall_Shot and current_state != State.Fall_Hurt and current_state != State.Dead:
+		var protected_states = [State.Jump, State.Fall_Shot, State.Fall_Hurt, State.Dead]
+		if current_state not in protected_states:
 			set_state(State.Fall)
 
 func player_idle(_delta: float) -> void:
@@ -94,7 +95,8 @@ func player_run(_delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func player_jump(_delta: float) -> void:
-	if current_state == State.Shot or current_state == State.Attack or current_state == State.Hurt or current_state == State.Fall_Hurt:
+	var forbidden_states = [State.Shot, State.Attack, State.Hurt, State.Fall_Hurt]
+	if current_state in forbidden_states:
 		return
 	if Input.is_action_just_pressed("jump") and is_on_floor(): # Se remover o is_on_floor() tem-se uma mecânica de vôo
 		velocity.y = JUMP
@@ -129,7 +131,7 @@ func create_projectile() -> void:
 	var projectile_instance: Area2D = projectile.instantiate() as Area2D
 	projectile_instance.global_position = weapon_marker.global_position
 	projectile_instance.direction = current_direction
-	get_parent().add_child(projectile_instance)
+	get_tree().current_scene.get_node("Projectiles").add_child(projectile_instance)
 
 func check_attack_area() -> void:
 	if attack_area.has_overlapping_bodies():
@@ -152,10 +154,15 @@ func add_damage(damage: int) -> void:
 		current_weapon = Weapon.Default
 		set_state(State.Dead)
 
-func player_animate() -> void:
+func can_play_animation() -> bool:
 	if weapon_names[current_weapon] == "default" and state_names[current_state] == "shot":
-		return
+		return false
 	if state_names[current_state] == "dead" and not is_on_floor():
+		return false
+	return true
+
+func player_animate() -> void:
+	if not can_play_animation():
 		return
 	var anim_name = weapon_names[current_weapon] + "_" + state_names[current_state]
 	anim_sprite.play(anim_name)
@@ -163,6 +170,8 @@ func player_animate() -> void:
 func _on_sprite_animation_finished():
 	var anim_name: StringName = anim_sprite.animation
 	if anim_name.ends_with("_jump"):
+		if current_state == State.Dead:
+			return
 		set_state(State.Fall)
 	elif anim_name.ends_with("_attack"):
 		is_attacking = false

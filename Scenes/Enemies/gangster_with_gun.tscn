@@ -396,6 +396,7 @@ shape = SubResource("CapsuleShape2D_ris8u")
 wait_time = 2.0
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="WeaponMarker2D" type="Marker2D" parent="."]
 position = Vector2(24.8276, 25.5172)
@@ -406,7 +407,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
 position = Vector2(-3.94624e-06, 7)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ktofw")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_finished"]

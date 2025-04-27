@@ -61,8 +61,12 @@ func _physics_process(delta):
 	enemy_animate()
 
 func enemy_gravity(delta: float) -> void:
-	velocity.y = GRAVITY * delta
+	if not is_on_floor():
+		velocity.y += GRAVITY * delta
 
+func can_act() -> bool:
+	return not is_attacking and not is_getting_hurt and can_walk
+	
 func enemy_idle(delta: float) -> void:
 	if is_attacking or is_getting_hurt:
 		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
@@ -72,7 +76,7 @@ func enemy_idle(delta: float) -> void:
 		current_state = State.Idle
 
 func enemy_walk(delta: float) -> void:
-	if not can_walk or is_attacking or is_getting_hurt:
+	if not can_act():
 		return
 	
 	if protagonist_point != Vector2.ZERO:

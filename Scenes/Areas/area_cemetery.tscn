@@ -591,3 +591,5 @@ position = Vector2(-205.517, 53.1034)
 position = Vector2(215.862, 53.1034)
 
 [node name="HUD" parent="." instance=ExtResource("7_c7eds")]
+
+[node name="Projectiles" type="Node2D" parent="."]

@@ -63,7 +63,11 @@ func _physics_process(delta):
 	enemy_animate()
 
 func enemy_gravity(delta: float) -> void:
-	velocity.y = GRAVITY * delta
+	if not is_on_floor():
+		velocity.y += GRAVITY * delta
+
+func can_act() -> bool:
+	return not is_shooting and not is_getting_hurt and can_walk
 
 func enemy_idle(delta: float) -> void:
 	if is_shooting or is_getting_hurt:
@@ -74,7 +78,7 @@ func enemy_idle(delta: float) -> void:
 		current_state = State.Idle
 
 func enemy_walk(delta: float) -> void:
-	if not can_walk or is_shooting or is_getting_hurt:
+	if not can_act():
 		return
 	
 	if protagonist_point != Vector2.ZERO:
@@ -97,7 +101,7 @@ func go_to_protagonist(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED * delta)
 			current_state = State.Idle
 			return
-		enemy_shot()
+		enemy_shoot()
 
 func go_to_patrol(delta: float) -> void:
 	check_direction(current_point)
@@ -128,7 +132,7 @@ func check_detection_area() -> void:
 	else:
 		protagonist_point = Vector2.ZERO
 
-func enemy_shot() -> void:
+func enemy_shoot() -> void:
 	create_projectile()
 	current_state = State.Shot
 	is_shooting = true
@@ -138,7 +142,7 @@ func create_projectile() -> void:
 	projectile_instance.global_position = weapon_marker.global_position
 	projectile_instance.direction = direction
 	projectile_instance.damage = 2
-	get_parent().add_child(projectile_instance)
+	get_tree().current_scene.get_node("Projectiles").add_child(projectile_instance)
 
 func add_damage(damage: int) -> void:
 	if is_getting_hurt:
