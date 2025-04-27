@@ -1,9 +1,10 @@
-[gd_scene load_steps=100 format=3 uid="uid://v5eys0hxy1es"]
+[gd_scene load_steps=103 format=3 uid="uid://v5eys0hxy1es"]
 
 [ext_resource type="Script" path="res://Scripts/Protagonist/protagonist.gd" id="1_i04aq"]
 [ext_resource type="Texture2D" uid="uid://k2c38coimah3" path="res://Assets/Protagonist/Protagonist - Default/Fall.png" id="2_f05om"]
 [ext_resource type="Texture2D" uid="uid://d2jkerubi431r" path="res://Assets/Protagonist/Protagonist - Default/Attack.png" id="3_cphbn"]
 [ext_resource type="Texture2D" uid="uid://cv2o0okxu0x83" path="res://Assets/Protagonist/Protagonist - Default/Dead.png" id="4_qgg7j"]
+[ext_resource type="Texture2D" uid="uid://pn7qeqfyo4pm" path="res://Assets/Protagonist/Protagonist - Default/Fall Hurt.png" id="5_3vpy5"]
 [ext_resource type="Texture2D" uid="uid://cnkyhxx3pcp4o" path="res://Assets/Protagonist/Protagonist - Default/Hurt.png" id="5_sunpf"]
 [ext_resource type="Texture2D" uid="uid://berbmfsa6yjph" path="res://Assets/Protagonist/Protagonist - Default/Idle.png" id="6_upc8r"]
 [ext_resource type="Texture2D" uid="uid://d3clj7p2xde1j" path="res://Assets/Protagonist/Protagonist - Default/Jump.png" id="7_ctu38"]
@@ -12,10 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://bne183ok4agsv" path="res://Assets/Protagonist/Protagonist - Pistol/Attack.png" id="9_qkd0h"]
 [ext_resource type="Texture2D" uid="uid://cwtnjhtogkpja" path="res://Assets/Protagonist/Protagonist - Pistol/Hurt.png" id="10_nlg37"]
 [ext_resource type="Texture2D" uid="uid://r2wudtn0t7fm" path="res://Assets/Protagonist/Protagonist - Pistol/Fall.png" id="10_pgi6s"]
-[ext_resource type="Texture2D" uid="uid://cg886qu8jw67k" path="res://Assets/Protagonist/Protagonist - Pistol/Fall_Shot.png" id="11_d7hqf"]
+[ext_resource type="Texture2D" uid="uid://dqvtggr5ywnib" path="res://Assets/Protagonist/Protagonist - Pistol/Fall Hurt.png" id="12_7m3uv"]
 [ext_resource type="Texture2D" uid="uid://cif3415ma5wrj" path="res://Assets/Protagonist/Protagonist - Pistol/Jump.png" id="12_bc11x"]
 [ext_resource type="Texture2D" uid="uid://bcm5opxrslwhu" path="res://Assets/Protagonist/Protagonist - Pistol/Recharge.png" id="12_nen15"]
 [ext_resource type="Texture2D" uid="uid://be58l5ve7k0oy" path="res://Assets/Protagonist/Protagonist - Pistol/Shot.png" id="13_4lruu"]
+[ext_resource type="Texture2D" uid="uid://dp5jvd3ir6kaf" path="res://Assets/Protagonist/Protagonist - Pistol/Fall Shot.png" id="13_acfel"]
 [ext_resource type="Texture2D" uid="uid://bwnebgouldlou" path="res://Assets/Protagonist/Protagonist - Default/Run With Weapon.png" id="16_ghy5u"]
 [ext_resource type="Script" path="res://Scripts/Protagonist/weapon_marker_2d.gd" id="17_jtc62"]
 
@@ -30,10 +32,6 @@ region = Rect2(0, 256, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mouo2"]
 atlas = ExtResource("3_cphbn")
 region = Rect2(0, 384, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_01y13"]
-atlas = ExtResource("3_cphbn")
-region = Rect2(0, 512, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ef8fi"]
 atlas = ExtResource("4_qgg7j")
@@ -62,6 +60,14 @@ region = Rect2(0, 640, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_s26yb"]
 atlas = ExtResource("2_f05om")
 region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7apha"]
+atlas = ExtResource("5_3vpy5")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7xm5"]
+atlas = ExtResource("5_3vpy5")
+region = Rect2(0, 384, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2a2iy"]
 atlas = ExtResource("5_sunpf")
@@ -167,24 +173,24 @@ region = Rect2(0, 256, 128, 128)
 atlas = ExtResource("9_qkd0h")
 region = Rect2(0, 384, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pfkph"]
-atlas = ExtResource("9_qkd0h")
-region = Rect2(0, 512, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4coqn"]
-atlas = ExtResource("9_qkd0h")
-region = Rect2(0, 640, 128, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6u1vo"]
 atlas = ExtResource("10_pgi6s")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o0khr"]
-atlas = ExtResource("11_d7hqf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_im1uy"]
+atlas = ExtResource("12_7m3uv")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe3ne"]
+atlas = ExtResource("12_7m3uv")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xftm"]
+atlas = ExtResource("13_acfel")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_77od4"]
-atlas = ExtResource("11_d7hqf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2xq3"]
+atlas = ExtResource("13_acfel")
 region = Rect2(0, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hbty4"]
@@ -342,9 +348,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mouo2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_01y13")
 }],
 "loop": false,
 "name": &"default_attack",
@@ -379,6 +382,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"default_fall",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7apha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7xm5")
+}],
+"loop": false,
+"name": &"default_fall_hurt",
 "speed": 6.0
 }, {
 "frames": [{
@@ -479,12 +493,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uuobx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pfkph")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4coqn")
 }],
 "loop": false,
 "name": &"pistol_attack",
@@ -500,10 +508,21 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o0khr")
+"texture": SubResource("AtlasTexture_im1uy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_77od4")
+"texture": SubResource("AtlasTexture_oe3ne")
+}],
+"loop": false,
+"name": &"pistol_fall_hurt",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xftm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2xq3")
 }],
 "loop": false,
 "name": &"pistol_fall_shot",
@@ -663,9 +682,8 @@ script = ExtResource("1_i04aq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_um3wl")
-animation = &"default_attack"
+animation = &"default_fall_hurt"
 autoplay = "default_idle"
-frame = 1
 speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

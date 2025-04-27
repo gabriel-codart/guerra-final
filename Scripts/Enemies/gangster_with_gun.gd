@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
+var projectile: PackedScene = preload("res://Scenes/Projectiles and Effects/projectile.tscn")
+
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
 @onready var attack_timer: Timer = $AttackTimer
+@onready var weapon_marker: Marker2D = $WeaponMarker2D
 @onready var detection_area: Area2D = $DetectionArea2D
-@onready var attack_area: Area2D = $AttackArea2D
 # Pontos de Patrulha
 @export var patrol_points: Node2D
 var number_of_points: int
@@ -18,11 +20,11 @@ const SPEED: float = 1500.0
 const GRAVITY: float = 1000
 const SCALE: float = 1.45
 # Estados
-enum State { Idle, Walk, Attack, Hurt, Dead }
+enum State { Idle, Walk, Shot, Hurt, Dead }
 var state_names = {
 	State.Idle: "idle",
 	State.Walk: "walk",
-	State.Attack: "attack",
+	State.Shot: "shot",
 	State.Dead: "dead",
 	State.Hurt: "hurt",
 }
@@ -32,7 +34,7 @@ var direction: Vector2 = Vector2.LEFT
 # Verificadores
 var can_walk: bool
 var can_attack: bool
-var is_attacking: bool
+var is_shooting: bool
 var is_getting_hurt: bool
 var health: int = 5
 
@@ -47,7 +49,7 @@ func _ready():
 	current_state = State.Idle
 	can_walk = true
 	can_attack = true
-	is_attacking = false
+	is_shooting = false
 	is_getting_hurt = false
 
 func _physics_process(delta):
@@ -65,10 +67,10 @@ func enemy_gravity(delta: float) -> void:
 		velocity.y += GRAVITY * delta
 
 func can_act() -> bool:
-	return not is_attacking and not is_getting_hurt and can_walk
-	
+	return not is_shooting and not is_getting_hurt and can_walk
+
 func enemy_idle(delta: float) -> void:
-	if is_attacking or is_getting_hurt:
+	if is_shooting or is_getting_hurt:
 		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
 		return
 	if not can_walk:
@@ -91,7 +93,7 @@ func enemy_walk(delta: float) -> void:
 func go_to_protagonist(delta: float) -> void:
 	check_direction(protagonist_point)
 	# Checa a distância do Protagonista
-	if abs(position.x - protagonist_point.x) > 55:
+	if abs(position.x - protagonist_point.x) > 315:
 		velocity.x = direction.x * SPEED * delta
 		current_state = State.Walk
 	else:
@@ -99,7 +101,7 @@ func go_to_protagonist(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED * delta)
 			current_state = State.Idle
 			return
-		enemy_attack()
+		enemy_shoot()
 
 func go_to_patrol(delta: float) -> void:
 	check_direction(current_point)
@@ -130,18 +132,20 @@ func check_detection_area() -> void:
 	else:
 		protagonist_point = Vector2.ZERO
 
-func enemy_attack() -> void:
-	current_state = State.Attack
-	is_attacking = true
+func enemy_shoot() -> void:
+	create_projectile()
+	current_state = State.Shot
+	is_shooting = true
 
-func check_attack_area() -> void:
-	if attack_area.has_overlapping_bodies():
-		var body: CharacterBody2D = attack_area.get_overlapping_bodies()[0] as CharacterBody2D
-		if body.has_method("add_damage"):
-			body.add_damage(1)
+func create_projectile() -> void:
+	var projectile_instance: Area2D = projectile.instantiate() as Area2D
+	projectile_instance.global_position = weapon_marker.global_position
+	projectile_instance.direction = direction
+	projectile_instance.damage = 2
+	get_tree().current_scene.get_node("Projectiles").add_child(projectile_instance)
 
 func add_damage(damage: int) -> void:
-	if is_attacking or is_getting_hurt:
+	if is_getting_hurt:
 		return
 	health -= damage
 	is_getting_hurt = true
@@ -163,14 +167,13 @@ func _on_attack_timer_timeout():
 
 func _on_animated_sprite_finished() -> void:
 	var anim_name: StringName = anim_sprite.animation
-	if anim_name == "attack":
-		is_attacking = false
+	if anim_name == "shot":
+		is_shooting = false
 		can_attack = false
-		check_attack_area()
 		attack_timer.start()
 	elif anim_name == "hurt":
 		is_getting_hurt = false
-		is_attacking = false
+		is_shooting = false
 		can_attack = true
 	elif anim_name == "dead":
 		queue_free()
