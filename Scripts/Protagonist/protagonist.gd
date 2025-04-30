@@ -6,6 +6,7 @@ var projectile: PackedScene = preload("res://Scenes/Projectiles and Effects/proj
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var weapon_marker: Marker2D = $WeaponMarker2D
 @onready var attack_area: Area2D = $AttackArea2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 # Constantes
 const GRAVITY: float = 1000
 const JUMP: float = -350
@@ -52,6 +53,7 @@ func _ready() -> void:
 	is_getting_hurt = false
 
 func _physics_process(delta: float) -> void:
+	player_collision_shape(delta)
 	player_gravity(delta)
 	player_idle(delta)
 	player_run(delta)
@@ -63,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	player_animate()
 
 func can_act() -> bool:
-	return not is_attacking and not is_getting_hurt
+	return not is_attacking and not is_getting_hurt and current_state != State.Dead
 
 func set_state(new_state: State) -> void:
 	if current_state != new_state:
@@ -93,6 +95,18 @@ func player_run(_delta: float) -> void:
 			set_state(State.Run)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+func player_collision_shape(_delta: float) -> void:
+	match current_state:
+		State.Jump:
+			collision_shape.shape.height = 48
+			collision_shape.position = Vector2(-1, 22)
+		State.Fall, State.Fall_Shot, State.Fall_Hurt:
+			collision_shape.shape.height = 60
+			collision_shape.position = Vector2(-1, 28)
+		_:
+			collision_shape.shape.height = 62
+			collision_shape.position = Vector2(-3, 32)
 
 func player_jump(_delta: float) -> void:
 	var forbidden_states = [State.Shot, State.Attack, State.Hurt, State.Fall_Hurt]

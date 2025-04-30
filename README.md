@@ -26,4 +26,4 @@ Com estética em pixel art e jogabilidade intensa, *Guerra Final* propõe uma jo
 
 ---
 
-> *Guerra Final* é um prelúdio espiritual do projeto "Gideon" e foi desenvolvido como Trabalho de Conclusão de Curso (TCC) no Instituto Federal do Piauí (IFPI), representando uma versão acadêmica dentro de um universo maior idealizado pelo autor.
+> *Guerra Final* foi desenvolvido como Trabalho de Conclusão de Curso (TCC) no Instituto Federal do Piauí (IFPI), realizado por *Gabriel Oliveira Rodrigues* com orientação do professor *Francisco Marcelino Almeida de Araújo*.

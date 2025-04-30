@@ -396,7 +396,7 @@ shape = SubResource("CapsuleShape2D_ris8u")
 wait_time = 2.0
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.5
 
 [node name="WeaponMarker2D" type="Marker2D" parent="."]
 position = Vector2(24.8276, 25.5172)

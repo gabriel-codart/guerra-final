@@ -67,7 +67,7 @@ func enemy_gravity(delta: float) -> void:
 		velocity.y += GRAVITY * delta
 
 func can_act() -> bool:
-	return not is_shooting and not is_getting_hurt and can_walk
+	return not is_shooting and not is_getting_hurt and can_walk and current_state != State.Dead
 
 func enemy_idle(delta: float) -> void:
 	if is_shooting or is_getting_hurt:
@@ -93,7 +93,7 @@ func enemy_walk(delta: float) -> void:
 func go_to_protagonist(delta: float) -> void:
 	check_direction(protagonist_point)
 	# Checa a distância do Protagonista
-	if abs(position.x - protagonist_point.x) > 315:
+	if abs(position.x - protagonist_point.x) > 220:
 		velocity.x = direction.x * SPEED * delta
 		current_state = State.Walk
 	else:
