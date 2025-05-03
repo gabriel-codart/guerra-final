@@ -53,11 +53,11 @@ func _ready() -> void:
 	is_getting_hurt = false
 
 func _physics_process(delta: float) -> void:
-	player_collision_shape(delta)
 	player_gravity(delta)
 	player_idle(delta)
 	player_run(delta)
 	player_jump(delta)
+	player_collision_shape(delta)
 	player_get_weapon()
 	player_action(delta)
 	
@@ -98,18 +98,25 @@ func player_run(_delta: float) -> void:
 
 func player_collision_shape(_delta: float) -> void:
 	match current_state:
+		State.Dead:
+			collision_shape.shape.radius = 8.5
+			collision_shape.shape.height = 17
+			collision_shape.position = Vector2(-14, 56)
 		State.Jump:
+			collision_shape.shape.radius = 10
 			collision_shape.shape.height = 48
 			collision_shape.position = Vector2(-1, 22)
 		State.Fall, State.Fall_Shot, State.Fall_Hurt:
+			collision_shape.shape.radius = 10
 			collision_shape.shape.height = 60
 			collision_shape.position = Vector2(-1, 28)
 		_:
+			collision_shape.shape.radius = 10
 			collision_shape.shape.height = 62
 			collision_shape.position = Vector2(-3, 32)
 
 func player_jump(_delta: float) -> void:
-	var forbidden_states = [State.Shot, State.Attack, State.Hurt, State.Fall_Hurt]
+	var forbidden_states = [State.Shot, State.Attack, State.Hurt, State.Fall_Hurt, State.Dead]
 	if current_state in forbidden_states:
 		return
 	if Input.is_action_just_pressed("jump") and is_on_floor(): # Se remover o is_on_floor() tem-se uma mecânica de vôo
@@ -117,6 +124,8 @@ func player_jump(_delta: float) -> void:
 		set_state(State.Jump)
 
 func player_get_weapon() -> void:
+	if not can_act():
+		return
 	if Input.is_action_just_pressed("get_default"):
 		current_weapon = Weapon.Default
 	if Input.is_action_just_pressed("get_pistol"):
@@ -169,9 +178,9 @@ func add_damage(damage: int) -> void:
 		set_state(State.Dead)
 
 func can_play_animation() -> bool:
-	if weapon_names[current_weapon] == "default" and state_names[current_state] == "shot":
+	if current_weapon == Weapon.Default and current_state == State.Shot:
 		return false
-	if state_names[current_state] == "dead" and not is_on_floor():
+	if current_state == State.Dead and not is_on_floor():
 		return false
 	return true
 

@@ -668,8 +668,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5wlt6"]
-radius = 12.5
-height = 60.0
+height = 62.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvf74"]
 size = Vector2(14.6667, 7.33333)
@@ -682,12 +681,12 @@ script = ExtResource("1_i04aq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_um3wl")
-animation = &"default_fall_hurt"
+animation = &"default_idle"
 autoplay = "default_idle"
 speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 28)
+position = Vector2(-3, 32)
 shape = SubResource("CapsuleShape2D_5wlt6")
 
 [node name="Camera2D" type="Camera2D" parent="."]

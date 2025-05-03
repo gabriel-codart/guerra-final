@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c2dhgpsfx2a8c"]
 
-[ext_resource type="Script" path="res://Scripts/HUD/hud.gd" id="1_3d8ni"]
+[ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="1_3d8ni"]
 [ext_resource type="Texture2D" uid="uid://nv5ws6uwnu1t" path="res://Assets/Weapons/Default.png" id="2_kkc8p"]
 [ext_resource type="Texture2D" uid="uid://cmk3yxyyasb6e" path="res://Assets/HUD/Protagonist Health Bar Under.png" id="2_mh3a7"]
 [ext_resource type="Texture2D" uid="uid://bkk3631ktr1t0" path="res://Assets/HUD/Weapon Border.png" id="3_bw5gl"]

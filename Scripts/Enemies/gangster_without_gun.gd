@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var detection_area: Area2D = $DetectionArea2D
 @onready var attack_area: Area2D = $AttackArea2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 # Pontos de Patrulha
 @export var patrol_points: Node2D
 var number_of_points: int
@@ -149,6 +150,7 @@ func add_damage(damage: int) -> void:
 		current_state = State.Hurt
 	else:
 		current_state = State.Dead
+		collision_shape.disabled = true
 	print("Health: ", health, " + State: ", state_names[current_state])
 
 func enemy_animate() -> void:

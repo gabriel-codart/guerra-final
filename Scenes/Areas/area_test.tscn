@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://v5eys0hxy1es" path="res://Scenes/Protagonist/protagonist.tscn" id="5_odqvg"]
 [ext_resource type="PackedScene" uid="uid://bul51wa0ie6a8" path="res://Scenes/Enemies/gangster_without_gun.tscn" id="6_3nbm2"]
 [ext_resource type="PackedScene" uid="uid://bkgc6xg4mwgrb" path="res://Scenes/Enemies/gangster_with_gun.tscn" id="7_1axh8"]
-[ext_resource type="PackedScene" uid="uid://c2dhgpsfx2a8c" path="res://Scenes/HUD/hud.tscn" id="8_5k20u"]
+[ext_resource type="PackedScene" uid="uid://c2dhgpsfx2a8c" path="res://Scenes/UI/hud.tscn" id="8_5k20u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_abebr"]
 texture = ExtResource("4_8qdq4")
@@ -532,7 +532,7 @@ sources/0 = SubResource("TileSetAtlasSource_abebr")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxNightSky" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.1, 0.1)
+motion_scale = Vector2(0, 0)
 motion_mirroring = Vector2(768, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxNightSky"]
@@ -603,7 +603,7 @@ position = Vector2(-205.517, 53.1034)
 position = Vector2(215.862, 53.1034)
 
 [node name="Gangster With Gun2" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("7_1axh8")]
-position = Vector2(2087, 212)
+position = Vector2(2023, 212)
 patrol_points = NodePath("PatrolPoints")
 
 [node name="PatrolPoints" type="Node2D" parent="Gangster With Gun2"]
@@ -612,30 +612,6 @@ patrol_points = NodePath("PatrolPoints")
 position = Vector2(-205.517, 53.1034)
 
 [node name="PointRight" type="Marker2D" parent="Gangster With Gun2/PatrolPoints"]
-position = Vector2(215.862, 53.1034)
-
-[node name="Gangster With Gun3" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("7_1axh8")]
-position = Vector2(2757, 212)
-patrol_points = NodePath("PatrolPoints")
-
-[node name="PatrolPoints" type="Node2D" parent="Gangster With Gun3"]
-
-[node name="PointLeft" type="Marker2D" parent="Gangster With Gun3/PatrolPoints"]
-position = Vector2(-205.517, 53.1034)
-
-[node name="PointRight" type="Marker2D" parent="Gangster With Gun3/PatrolPoints"]
-position = Vector2(215.862, 53.1034)
-
-[node name="Gangster With Gun4" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("7_1axh8")]
-position = Vector2(3417, 212)
-patrol_points = NodePath("PatrolPoints")
-
-[node name="PatrolPoints" type="Node2D" parent="Gangster With Gun4"]
-
-[node name="PointLeft" type="Marker2D" parent="Gangster With Gun4/PatrolPoints"]
-position = Vector2(-205.517, 53.1034)
-
-[node name="PointRight" type="Marker2D" parent="Gangster With Gun4/PatrolPoints"]
 position = Vector2(215.862, 53.1034)
 
 [node name="HUD" parent="." instance=ExtResource("8_5k20u")]

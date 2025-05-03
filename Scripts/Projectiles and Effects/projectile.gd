@@ -3,7 +3,7 @@ extends Area2D
 # Impacto
 var projectile_impact: PackedScene = preload("res://Scenes/Projectiles and Effects/projectile_impact.tscn")
 # Constantes
-const SPEED: float = 500.0
+const SPEED: float = 400.0
 # Direção
 var direction: Vector2
 # Dano

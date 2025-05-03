@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Guerra Final"
+run/main_scene="res://Scenes/UI/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://Scripts/Global/game_manager.gd"
 
 [display]
 
