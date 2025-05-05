@@ -9,9 +9,9 @@ var projectile: PackedScene = preload("res://Scenes/Projectiles and Effects/proj
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 # Constantes
 const GRAVITY: float = 1000
-const JUMP: float = -350
-const SPEED: float = 250
-const SCALE: float = 1.5
+const JUMP: float = -300
+const SPEED: float = 200
+const SCALE: float = 1
 # Estados
 enum State { Idle, Run, Jump, Fall, Shot, Fall_Shot, Fall_Hurt, Attack, Hurt, Dead }
 var state_names = {
@@ -154,12 +154,13 @@ func create_projectile() -> void:
 	var projectile_instance: Area2D = projectile.instantiate() as Area2D
 	projectile_instance.global_position = weapon_marker.global_position
 	projectile_instance.direction = current_direction
+	projectile_instance.target_group = "Enemy"
 	get_tree().current_scene.get_node("Projectiles").add_child(projectile_instance)
 
 func check_attack_area() -> void:
 	if attack_area.has_overlapping_bodies():
 		var body: CharacterBody2D = attack_area.get_overlapping_bodies()[0] as CharacterBody2D
-		if body.has_method("add_damage"):
+		if body.is_in_group("Enemy") and body.has_method("add_damage"):
 			body.add_damage(1)
 
 func add_damage(damage: int) -> void:
@@ -209,4 +210,5 @@ func _on_sprite_animation_finished():
 		if anim_name.ends_with("_fall_hurt"):
 			set_state(State.Fall)
 	elif anim_name.ends_with("_dead"):
-		queue_free()
+		get_tree().paused = true
+		GameManager.menu_game()

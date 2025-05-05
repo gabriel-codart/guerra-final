@@ -351,7 +351,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default_attack",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -374,7 +374,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default_dead",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -382,7 +382,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default_fall",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -393,7 +393,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default_fall_hurt",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -410,7 +410,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default_hurt",
-"speed": 12.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -433,7 +433,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default_idle",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -450,7 +450,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default_jump",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -479,7 +479,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default_run",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -496,7 +496,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pistol_attack",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -504,7 +504,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pistol_fall",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -515,7 +515,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pistol_fall_hurt",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -526,7 +526,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pistol_fall_shot",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -543,7 +543,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pistol_hurt",
-"speed": 12.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -566,7 +566,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"pistol_idle",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -583,7 +583,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pistol_jump",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -621,7 +621,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pistol_recharge",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -650,7 +650,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pistol_run",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -664,7 +664,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pistol_shot",
-"speed": 6.0
+"speed": 8.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5wlt6"]
@@ -673,24 +673,20 @@ height = 62.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvf74"]
 size = Vector2(14.6667, 7.33333)
 
-[node name="Protagonist" type="CharacterBody2D"]
-scale = Vector2(1.5, 1.5)
+[node name="Protagonist" type="CharacterBody2D" groups=["Protagonist"]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_i04aq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_um3wl")
-animation = &"default_idle"
+animation = &"pistol_shot"
 autoplay = "default_idle"
 speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 32)
 shape = SubResource("CapsuleShape2D_5wlt6")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
 
 [node name="WeaponMarker2D" type="Marker2D" parent="."]
 position = Vector2(22, 19)

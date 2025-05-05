@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2dhgpsfx2a8c"]
+[gd_scene load_steps=11 format=3 uid="uid://c2dhgpsfx2a8c"]
 
 [ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="1_3d8ni"]
 [ext_resource type="Texture2D" uid="uid://nv5ws6uwnu1t" path="res://Assets/Weapons/Default.png" id="2_kkc8p"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bkk3631ktr1t0" path="res://Assets/HUD/Weapon Border.png" id="3_bw5gl"]
 [ext_resource type="Texture2D" uid="uid://4oxerhige7nt" path="res://Assets/Weapons/Pistol.png" id="3_dog1a"]
 [ext_resource type="Texture2D" uid="uid://d3guj1hbqe48w" path="res://Assets/HUD/Protagonist Health Bar Progress.png" id="3_riabt"]
+[ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="7_aupxn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5fsb4"]
 atlas = ExtResource("2_kkc8p")
@@ -55,3 +56,20 @@ offset_bottom = 120.0
 scale = Vector2(1.5, 1.5)
 texture_under = ExtResource("2_mh3a7")
 texture_progress = ExtResource("3_riabt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -96.0
+offset_right = 640.0
+grow_vertical = 0
+theme = ExtResource("7_aupxn")
+theme_override_constants/margin_left = 23
+theme_override_constants/margin_right = 23
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("7_aupxn")
+theme_override_font_sizes/normal_font_size = 12
+text = "Texto"

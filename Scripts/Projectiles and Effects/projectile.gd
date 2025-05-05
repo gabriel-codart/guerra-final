@@ -8,6 +8,8 @@ const SPEED: float = 400.0
 var direction: Vector2
 # Dano
 var damage: int = 1
+# Alvo
+var target_group: String
 
 func _ready() -> void:
 	pass
@@ -19,11 +21,11 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.has_method("add_damage"):
+	if body.is_in_group(target_group) and body.has_method("add_damage"):
 		body.add_damage(damage)
 	create_projectile_impact()
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	create_projectile_impact()
 
 func create_projectile_impact() -> void:

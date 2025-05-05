@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var timer: Timer = $Timer
 @onready var attack_timer: Timer = $AttackTimer
 @onready var detection_area: Area2D = $DetectionArea2D
 @onready var attack_area: Area2D = $AttackArea2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 # Pontos de Patrulha
-@export var patrol_points: Node2D
+@onready var patrol_points: Node2D = $PatrolPoints
 var number_of_points: int
 var point_positions: Array[Vector2]
 var current_point: Vector2
@@ -15,17 +16,16 @@ var current_point_position: int
 # Ponto do Protagonista
 var protagonist_point: Vector2
 # Constantes
-const SPEED: float = 1500.0
+const SPEED: float = 1200.0
 const GRAVITY: float = 1000
-const SCALE: float = 1.45
+const SCALE: float = 1
 # Estados
-enum State { Idle, Walk, Attack, Hurt, Dead }
+enum State { Idle, Walk, Attack, Dead }
 var state_names = {
 	State.Idle: "idle",
 	State.Walk: "walk",
 	State.Attack: "attack",
 	State.Dead: "dead",
-	State.Hurt: "hurt",
 }
 var current_state: State
 # Direção
@@ -34,7 +34,6 @@ var direction: Vector2 = Vector2.LEFT
 var can_walk: bool
 var can_attack: bool
 var is_attacking: bool
-var is_getting_hurt: bool
 var health: int = 5
 
 func _ready():
@@ -49,7 +48,6 @@ func _ready():
 	can_walk = true
 	can_attack = true
 	is_attacking = false
-	is_getting_hurt = false
 
 func _physics_process(delta):
 	check_detection_area()
@@ -66,10 +64,10 @@ func enemy_gravity(delta: float) -> void:
 		velocity.y += GRAVITY * delta
 
 func can_act() -> bool:
-	return not is_attacking and not is_getting_hurt and can_walk and current_state != State.Dead
+	return not is_attacking and can_walk and current_state != State.Dead
 	
 func enemy_idle(delta: float) -> void:
-	if is_attacking or is_getting_hurt:
+	if is_attacking:
 		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
 		return
 	if not can_walk:
@@ -138,19 +136,19 @@ func enemy_attack() -> void:
 func check_attack_area() -> void:
 	if attack_area.has_overlapping_bodies():
 		var body: CharacterBody2D = attack_area.get_overlapping_bodies()[0] as CharacterBody2D
-		if body.has_method("add_damage"):
-			body.add_damage(1)
+		if body.is_in_group("Protagonist") and body.has_method("add_damage"):
+			body.add_damage(2)
 
 func add_damage(damage: int) -> void:
-	if is_attacking or is_getting_hurt:
+	if is_attacking:
 		return
 	health -= damage
-	is_getting_hurt = true
 	if health > 0:
-		current_state = State.Hurt
+		anim_player.play("hurt")
 	else:
 		current_state = State.Dead
-		collision_shape.disabled = true
+		velocity = Vector2.ZERO
+		#collision_shape.disabled = true
 	print("Health: ", health, " + State: ", state_names[current_state])
 
 func enemy_animate() -> void:
@@ -170,10 +168,6 @@ func _on_animated_sprite_finished() -> void:
 		can_attack = false
 		check_attack_area()
 		attack_timer.start()
-	elif anim_name == "hurt":
-		is_getting_hurt = false
-		is_attacking = false
-		can_attack = true
 	elif anim_name == "dead":
 		queue_free()
 

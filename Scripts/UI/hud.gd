@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var weapon_sprite: AnimatedSprite2D = $Weapon
 @onready var health_bar: TextureProgressBar = $HealthBar
+@onready var text_label: RichTextLabel = $MarginContainer/RichTextLabel
 # Armas Enumeradas
 enum Weapon { Default, Pistol }
 var weapon_names = {
@@ -28,3 +29,6 @@ func set_weapon(weapon: Weapon) -> void:
 
 func set_health(health: int) -> void:
 	health_bar.value = health * 100 / max_health
+
+func set_text(text: String) -> void:
+	text_label.text = text
