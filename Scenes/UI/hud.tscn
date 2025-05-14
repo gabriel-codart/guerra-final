@@ -1,26 +1,40 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2dhgpsfx2a8c"]
+[gd_scene load_steps=16 format=3 uid="uid://c2dhgpsfx2a8c"]
 
 [ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="1_3d8ni"]
-[ext_resource type="Texture2D" uid="uid://nv5ws6uwnu1t" path="res://Assets/Weapons/Default.png" id="2_kkc8p"]
+[ext_resource type="Texture2D" uid="uid://imlb1ngf326l" path="res://Assets/HUD/Weapons/Default.png" id="2_ash45"]
 [ext_resource type="Texture2D" uid="uid://cmk3yxyyasb6e" path="res://Assets/HUD/Protagonist Health Bar Under.png" id="2_mh3a7"]
-[ext_resource type="Texture2D" uid="uid://bkk3631ktr1t0" path="res://Assets/HUD/Weapon Border.png" id="3_bw5gl"]
-[ext_resource type="Texture2D" uid="uid://4oxerhige7nt" path="res://Assets/Weapons/Pistol.png" id="3_dog1a"]
 [ext_resource type="Texture2D" uid="uid://d3guj1hbqe48w" path="res://Assets/HUD/Protagonist Health Bar Progress.png" id="3_riabt"]
+[ext_resource type="Texture2D" uid="uid://dof06cr0ufpeg" path="res://Assets/HUD/Weapons/Pistol.png" id="3_uvlgb"]
+[ext_resource type="Texture2D" uid="uid://bihi0a2rhjs0c" path="res://Assets/HUD/Weapons/Rifle-Assault.png" id="4_0frx0"]
+[ext_resource type="Texture2D" uid="uid://dqxtfk0y3fhnv" path="res://Assets/HUD/Weapons/Shotgun.png" id="4_q5bw5"]
+[ext_resource type="Texture2D" uid="uid://cnj8wcr0lhavi" path="res://Assets/HUD/Weapons/SMG.png" id="5_srb2e"]
 [ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="7_aupxn"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5fsb4"]
-atlas = ExtResource("2_kkc8p")
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrpvv"]
+atlas = ExtResource("2_ash45")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2crst"]
-atlas = ExtResource("3_dog1a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb4ne"]
+atlas = ExtResource("3_uvlgb")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6r2l"]
+atlas = ExtResource("4_0frx0")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2jd3"]
+atlas = ExtResource("4_q5bw5")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6ql6"]
+atlas = ExtResource("5_srb2e")
+region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u63ej"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5fsb4")
+"texture": SubResource("AtlasTexture_nrpvv")
 }],
 "loop": false,
 "name": &"default",
@@ -28,10 +42,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2crst")
+"texture": SubResource("AtlasTexture_xb4ne")
 }],
 "loop": false,
 "name": &"pistol",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6r2l")
+}],
+"loop": false,
+"name": &"rassault",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2jd3")
+}],
+"loop": false,
+"name": &"shotgun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6ql6")
+}],
+"loop": false,
+"name": &"smg",
 "speed": 5.0
 }]
 
@@ -39,14 +77,12 @@ animations = [{
 script = ExtResource("1_3d8ni")
 
 [node name="Weapon" type="AnimatedSprite2D" parent="."]
-position = Vector2(56, 48)
-scale = Vector2(1.5, 1.5)
+position = Vector2(24, 48)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_u63ej")
-animation = &"pistol"
-
-[node name="WeaponBorder" type="Sprite2D" parent="."]
-position = Vector2(56, 48)
-texture = ExtResource("3_bw5gl")
+animation = &"rassault"
+centered = false
+offset = Vector2(0, -16)
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
 offset_left = 24.0

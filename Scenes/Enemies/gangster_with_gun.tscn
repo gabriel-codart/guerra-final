@@ -363,6 +363,21 @@ height = 68.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktofw"]
 size = Vector2(612, 114)
 
+[sub_resource type="Animation" id="Animation_o6x0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_84287"]
 resource_name = "hurt"
 length = 0.20001
@@ -378,21 +393,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_o6x0x"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nndy8"]
@@ -424,7 +424,7 @@ wait_time = 1.5
 [node name="WeaponMarker2D" type="Marker2D" parent="."]
 position = Vector2(24.8276, 25.5172)
 
-[node name="DetectionArea2D" type="Area2D" parent="."]
+[node name="DetectionArea2D" type="Area2D" parent="." groups=["Attack - Detection"]]
 collision_layer = 0
 collision_mask = 2
 

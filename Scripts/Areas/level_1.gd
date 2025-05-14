@@ -5,7 +5,7 @@ extends Node2D
 func _ready() -> void:
 	HUD.set_text("Ouço prantos de horror! Seja quem for chegou no vilarejo, e não veio em paz.")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):
 		GameManager.pause_game()
 

@@ -4,6 +4,7 @@ var projectile: PackedScene = preload("res://Scenes/Projectiles and Effects/proj
 
 @onready var HUD: CanvasLayer = $"../HUD"
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var weapon_marker: Marker2D = $WeaponMarker2D
 @onready var attack_area: Area2D = $AttackArea2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -13,7 +14,7 @@ const JUMP: float = -300
 const SPEED: float = 200
 const SCALE: float = 1
 # Estados
-enum State { Idle, Run, Jump, Fall, Shot, Fall_Shot, Fall_Hurt, Attack, Hurt, Dead }
+enum State { Idle, Run, Jump, Fall, Shot, Fall_Shot, Attack, Dead }
 var state_names = {
 	State.Idle: "idle",
 	State.Run: "run",
@@ -21,17 +22,18 @@ var state_names = {
 	State.Fall: "fall",
 	State.Shot: "shot",
 	State.Fall_Shot: "fall_shot",
-	State.Fall_Hurt: "fall_hurt",
 	State.Attack: "attack",
-	State.Hurt: "hurt",
 	State.Dead: "dead",
 }
 var current_state: State
 # Armas
-enum Weapon { Default, Pistol }
+enum Weapon { Default, Pistol, SMG, Shotgun, Rassault }
 var weapon_names = {
 	Weapon.Default: "default",
-	Weapon.Pistol: "pistol"
+	Weapon.Pistol: "pistol",
+	Weapon.SMG: "smg",
+	Weapon.Shotgun: "shotgun",
+	Weapon.Rassault: "rassault",
 }
 var current_weapon: Weapon
 # Direção
@@ -39,7 +41,6 @@ var current_direction: Vector2
 # Verificadores
 var can_walk: bool
 var is_attacking: bool
-var is_getting_hurt: bool
 # Vida
 var maxHealth: int = 10
 var health: int = 10
@@ -50,7 +51,6 @@ func _ready() -> void:
 	current_direction = Vector2.RIGHT
 	can_walk = true
 	is_attacking = false
-	is_getting_hurt = false
 
 func _physics_process(delta: float) -> void:
 	player_gravity(delta)
@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	player_animate()
 
 func can_act() -> bool:
-	return not is_attacking and not is_getting_hurt and current_state != State.Dead
+	return not is_attacking and current_state != State.Dead
 
 func set_state(new_state: State) -> void:
 	if current_state != new_state:
@@ -74,7 +74,7 @@ func set_state(new_state: State) -> void:
 func player_gravity(delta: float) -> void:
 	if not is_on_floor(): # Está no ar
 		velocity.y += GRAVITY * delta
-		var protected_states = [State.Jump, State.Fall_Shot, State.Fall_Hurt, State.Dead]
+		var protected_states = [State.Jump, State.Fall_Shot, State.Dead]
 		if current_state not in protected_states:
 			set_state(State.Fall)
 
@@ -106,7 +106,7 @@ func player_collision_shape(_delta: float) -> void:
 			collision_shape.shape.radius = 10
 			collision_shape.shape.height = 48
 			collision_shape.position = Vector2(-1, 22)
-		State.Fall, State.Fall_Shot, State.Fall_Hurt:
+		State.Fall, State.Fall_Shot:
 			collision_shape.shape.radius = 10
 			collision_shape.shape.height = 60
 			collision_shape.position = Vector2(-1, 28)
@@ -116,7 +116,7 @@ func player_collision_shape(_delta: float) -> void:
 			collision_shape.position = Vector2(-3, 32)
 
 func player_jump(_delta: float) -> void:
-	var forbidden_states = [State.Shot, State.Attack, State.Hurt, State.Fall_Hurt, State.Dead]
+	var forbidden_states = [State.Shot, State.Attack, State.Dead]
 	if current_state in forbidden_states:
 		return
 	if Input.is_action_just_pressed("jump") and is_on_floor(): # Se remover o is_on_floor() tem-se uma mecânica de vôo
@@ -128,14 +128,26 @@ func player_get_weapon() -> void:
 		return
 	if Input.is_action_just_pressed("get_default"):
 		current_weapon = Weapon.Default
-	if Input.is_action_just_pressed("get_pistol"):
+	elif Input.is_action_just_pressed("get_pistol"):
 		current_weapon = Weapon.Pistol
+	elif Input.is_action_just_pressed("get_smg"):
+		current_weapon = Weapon.SMG
+	elif Input.is_action_just_pressed("get_shotgun"):
+		current_weapon = Weapon.Shotgun
+	elif Input.is_action_just_pressed("get_rassault"):
+		print("rassault")
+		current_weapon = Weapon.Rassault
 	
 	HUD.set_weapon(current_weapon) # Atualiza arma no HUD
 
 func player_action(_delta: float) -> void:
 	if Input.is_action_just_pressed("shoot") and current_weapon != Weapon.Default and can_act():
 		if not is_on_floor(): # Atirando no ar
+			# Shotgun e Rassault não podem atirar no ar
+			if current_weapon == Weapon.Shotgun or current_weapon == Weapon.Rassault:
+				return
+			
+			# Outras armas atiram no ar normalmente
 			weapon_marker.set_axis(weapon_names[current_weapon], "in_air")
 			create_projectile()
 			set_state(State.Fall_Shot)
@@ -164,17 +176,10 @@ func check_attack_area() -> void:
 			body.add_damage(1)
 
 func add_damage(damage: int) -> void:
-	if is_getting_hurt:
-		return
 	health -= damage
 	HUD.set_health(health) # Atualiza barra de vida no HUD
-	is_getting_hurt = true
-	if health > 0:
-		if not is_on_floor():
-			set_state(State.Fall_Hurt)
-			return
-		set_state(State.Hurt)
-	else:
+	anim_player.play("hurt")
+	if health <= 0:
 		current_weapon = Weapon.Default
 		set_state(State.Dead)
 
@@ -188,7 +193,11 @@ func can_play_animation() -> bool:
 func player_animate() -> void:
 	if not can_play_animation():
 		return
-	var anim_name = weapon_names[current_weapon] + "_" + state_names[current_state]
+	var anim_name: String
+	if current_state == State.Run and current_weapon != Weapon.Default:
+		anim_name = "weapon_run"
+	else:
+		anim_name = weapon_names[current_weapon] + "_" + state_names[current_state]
 	anim_sprite.play(anim_name)
 
 func _on_sprite_animation_finished():
@@ -203,11 +212,6 @@ func _on_sprite_animation_finished():
 	elif anim_name.ends_with("_shot"):
 		is_attacking = false
 		if anim_name.ends_with("_fall_shot"):
-			set_state(State.Fall)
-	elif anim_name.ends_with("_hurt"):
-		is_getting_hurt = false
-		is_attacking = false
-		if anim_name.ends_with("_fall_hurt"):
 			set_state(State.Fall)
 	elif anim_name.ends_with("_dead"):
 		get_tree().paused = true

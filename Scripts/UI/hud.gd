@@ -1,13 +1,17 @@
 extends CanvasLayer
 
+@warning_ignore("integer_division")
 @onready var weapon_sprite: AnimatedSprite2D = $Weapon
 @onready var health_bar: TextureProgressBar = $HealthBar
 @onready var text_label: RichTextLabel = $MarginContainer/RichTextLabel
 # Armas Enumeradas
-enum Weapon { Default, Pistol }
+enum Weapon { Default, Pistol, SMG, Shotgun, Rassault }
 var weapon_names = {
 	Weapon.Default: "default",
-	Weapon.Pistol: "pistol"
+	Weapon.Pistol: "pistol",
+	Weapon.SMG: "smg",
+	Weapon.Shotgun: "shotgun",
+	Weapon.Rassault: "rassault",
 }
 # Vida
 var max_health: int

@@ -23,7 +23,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group(target_group) and body.has_method("add_damage"):
 		body.add_damage(damage)
-	create_projectile_impact()
+		create_projectile_impact()
 
 func _on_area_entered(_area: Area2D) -> void:
 	create_projectile_impact()

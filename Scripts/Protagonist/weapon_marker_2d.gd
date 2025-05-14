@@ -14,3 +14,16 @@ func set_axis(weapon: String, state: String) -> void:
 			return
 		position.x = 22
 		position.y = 19
+	elif weapon == "smg":
+		if state == "in_air":
+			position.x = 26
+			position.y = 11
+			return
+		position.x = 11
+		position.y = 22
+	elif weapon == "shotgun":
+		position.x = 20
+		position.y = 21
+	elif weapon == "rassault":
+		position.x = 19
+		position.y = 22

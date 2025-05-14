@@ -143,9 +143,8 @@ func add_damage(damage: int) -> void:
 	if is_attacking:
 		return
 	health -= damage
-	if health > 0:
-		anim_player.play("hurt")
-	else:
+	anim_player.play("hurt")
+	if health <= 0:
 		current_state = State.Dead
 		velocity = Vector2.ZERO
 		#collision_shape.disabled = true
