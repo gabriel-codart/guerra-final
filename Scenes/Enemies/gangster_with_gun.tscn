@@ -1,6 +1,6 @@
 [gd_scene load_steps=59 format=3 uid="uid://bkgc6xg4mwgrb"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/gangster_with_gun.gd" id="1_2sbhq"]
+[ext_resource type="Script" path="res://Scripts/Enemies/enemy_with_gun.gd" id="1_2sbhq"]
 [ext_resource type="Texture2D" uid="uid://bn84gat5wo323" path="res://Assets/Enemies/Gangster With Gun/Dead.png" id="1_mj3nh"]
 [ext_resource type="Texture2D" uid="uid://c05is76qanana" path="res://Assets/Enemies/Gangster With Gun/Idle.png" id="1_u1k1p"]
 [ext_resource type="Texture2D" uid="uid://cr1kyyijn3ajv" path="res://Assets/Enemies/Gangster With Gun/Hurt.png" id="2_e17cg"]
@@ -361,7 +361,7 @@ radius = 13.0
 height = 68.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktofw"]
-size = Vector2(612, 114)
+size = Vector2(704, 114)
 
 [sub_resource type="Animation" id="Animation_o6x0x"]
 length = 0.001
@@ -424,12 +424,12 @@ wait_time = 1.5
 [node name="WeaponMarker2D" type="Marker2D" parent="."]
 position = Vector2(24.8276, 25.5172)
 
-[node name="DetectionArea2D" type="Area2D" parent="." groups=["Attack - Detection"]]
+[node name="DetectionArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
-position = Vector2(-2, 7)
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_ktofw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -801,6 +801,7 @@ editor_draw_limits = true
 
 [node name="Gangster Without Gun" parent="Enemies" instance=ExtResource("10_15nm1")]
 position = Vector2(606, 175)
+health = 10
 
 [node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster Without Gun"]
 
@@ -812,6 +813,8 @@ position = Vector2(-230, 61)
 
 [node name="Gangster Without Gun2" parent="Enemies" instance=ExtResource("10_15nm1")]
 position = Vector2(834, 175)
+speed = 2000.0
+damage = 2
 
 [node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster Without Gun2"]
 
@@ -823,6 +826,7 @@ position = Vector2(-230, 61)
 
 [node name="Gangster With Gun" parent="Enemies" instance=ExtResource("12_65hnw")]
 position = Vector2(1176, 176)
+damage = 5
 
 [node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster With Gun"]
 
