@@ -118,8 +118,6 @@ func check_detection_area() -> void:
 		protagonist_point = Vector2.ZERO
 
 func add_damage(damage_recieved: int) -> void:
-	if is_attacking:
-		return
 	health -= damage_recieved
 	anim_player.play("hurt")
 	if health <= 0:
@@ -136,11 +134,9 @@ func _on_detection_area_2d_body_entered(body: Node2D) -> void:
 
 # --- Timer Callbacks ---
 func _on_timer_timeout() -> void:
-	print("pode andar")
 	can_walk = true
 
 func _on_attack_timer_timeout() -> void:
-	print("pode atirar")
 	can_attack = true
 
 # --- Animated Sprite 2D Callback ---

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr1kyyijn3ajv"
-path="res://.godot/imported/Hurt.png-058a44ef74e16bb05c1affc2a9bb65e2.ctex"
+uid="uid://c05is76qanana"
+path="res://.godot/imported/Idle.png-0db25411ef2aab67fdb9b9a34de91678.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/Gangster With Gun/Hurt.png"
-dest_files=["res://.godot/imported/Hurt.png-058a44ef74e16bb05c1affc2a9bb65e2.ctex"]
+source_file="res://Assets/Enemies/Gangster With SMG/Idle.png"
+dest_files=["res://.godot/imported/Idle.png-0db25411ef2aab67fdb9b9a34de91678.ctex"]
 
 [params]
 

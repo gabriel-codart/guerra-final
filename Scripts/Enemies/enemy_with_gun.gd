@@ -36,7 +36,6 @@ func create_projectile() -> void:
 
 func _on_animated_sprite_finished() -> void:
 	var anim_name: StringName = anim_sprite.animation
-	print(anim_name)
 	if anim_name == "shot":
 		is_attacking = false
 		can_attack = false

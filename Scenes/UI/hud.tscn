@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2dhgpsfx2a8c"]
+[gd_scene load_steps=25 format=3 uid="uid://c2dhgpsfx2a8c"]
 
 [ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="1_3d8ni"]
 [ext_resource type="Texture2D" uid="uid://imlb1ngf326l" path="res://Assets/HUD/Weapons/Default.png" id="2_ash45"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://dqxtfk0y3fhnv" path="res://Assets/HUD/Weapons/Shotgun.png" id="4_q5bw5"]
 [ext_resource type="Texture2D" uid="uid://cnj8wcr0lhavi" path="res://Assets/HUD/Weapons/SMG.png" id="5_srb2e"]
 [ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="7_aupxn"]
+[ext_resource type="Texture2D" uid="uid://qof1fdoy0bau" path="res://Assets/HUD/Items/Empty.png" id="7_kvcdi"]
+[ext_resource type="Texture2D" uid="uid://b4kw4e7xbowcs" path="res://Assets/HUD/Items/Key Gold.png" id="8_axum4"]
+[ext_resource type="Texture2D" uid="uid://c41gvi6bhxlwm" path="res://Assets/HUD/Items/Key Red.png" id="9_ptwvy"]
+[ext_resource type="Texture2D" uid="uid://ccetn3dfn22mf" path="res://Assets/HUD/Items/Key Silver.png" id="10_kybbx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrpvv"]
 atlas = ExtResource("2_ash45")
@@ -73,6 +77,57 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw3av"]
+atlas = ExtResource("7_kvcdi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31rc5"]
+atlas = ExtResource("8_axum4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85vsn"]
+atlas = ExtResource("9_ptwvy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjhic"]
+atlas = ExtResource("10_kybbx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n0sjq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw3av")
+}],
+"loop": false,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31rc5")
+}],
+"loop": false,
+"name": &"gold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85vsn")
+}],
+"loop": false,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjhic")
+}],
+"loop": false,
+"name": &"silver",
+"speed": 5.0
+}]
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_3d8ni")
 
@@ -80,9 +135,16 @@ script = ExtResource("1_3d8ni")
 position = Vector2(24, 48)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_u63ej")
-animation = &"rassault"
+autoplay = "default"
 centered = false
 offset = Vector2(0, -16)
+
+[node name="Key" type="AnimatedSprite2D" parent="."]
+position = Vector2(584, 48)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_n0sjq")
+animation = &"empty"
+autoplay = "empty"
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
 offset_left = 24.0

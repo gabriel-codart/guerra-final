@@ -1,0 +1,109 @@
+[gd_scene load_steps=13 format=3 uid="uid://c1plhx10asgms"]
+
+[ext_resource type="Script" path="res://Scripts/Items/key.gd" id="1_rpeix"]
+[ext_resource type="Texture2D" uid="uid://ca61e2pevkoqe" path="res://Assets/Items/Keys/Key Gold.png" id="2_0wdp0"]
+[ext_resource type="Texture2D" uid="uid://dt3ipbqr5px36" path="res://Assets/Items/Keys/Key Red.png" id="3_c1nyv"]
+[ext_resource type="Texture2D" uid="uid://b74ymofkvwub4" path="res://Assets/Items/Keys/Key Silver.png" id="4_4ke5v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqsgx"]
+atlas = ExtResource("2_0wdp0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eogy6"]
+atlas = ExtResource("3_c1nyv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smqf8"]
+atlas = ExtResource("4_4ke5v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6p3hg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqsgx")
+}],
+"loop": false,
+"name": &"gold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eogy6")
+}],
+"loop": false,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smqf8")
+}],
+"loop": false,
+"name": &"silver",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nevm1"]
+size = Vector2(16, 32)
+
+[sub_resource type="Animation" id="Animation_syqht"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(2, 2, 2, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0usks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c2ufi"]
+_data = {
+"RESET": SubResource("Animation_0usks"),
+"idle": SubResource("Animation_syqht")
+}
+
+[node name="Key" type="Node2D"]
+script = ExtResource("1_rpeix")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6p3hg")
+animation = &"silver"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_nevm1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c2ufi")
+}
+autoplay = "idle"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

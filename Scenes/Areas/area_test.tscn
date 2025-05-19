@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cxn62w14uejnx" path="res://Assets/Tiles/Cemetery/Tiles.png" id="4_8qdq4"]
 [ext_resource type="PackedScene" uid="uid://v5eys0hxy1es" path="res://Scenes/Protagonist/protagonist.tscn" id="5_odqvg"]
 [ext_resource type="PackedScene" uid="uid://bul51wa0ie6a8" path="res://Scenes/Enemies/gangster_without_gun.tscn" id="6_3nbm2"]
-[ext_resource type="PackedScene" uid="uid://bkgc6xg4mwgrb" path="res://Scenes/Enemies/gangster_with_gun.tscn" id="7_1axh8"]
+[ext_resource type="PackedScene" uid="uid://bkgc6xg4mwgrb" path="res://Scenes/Enemies/gangster_with_smg.tscn" id="7_1axh8"]
 [ext_resource type="PackedScene" uid="uid://c2dhgpsfx2a8c" path="res://Scenes/UI/hud.tscn" id="8_5k20u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_abebr"]

@@ -18,9 +18,10 @@ const SCALE: float = 1
 @onready var state_names = States.PROTAGONIST_NAMES
 var current_state: States.Protagonist
 # Armas
-@onready var weapons = Weapons.Type
 @onready var weapon_names = Weapons.NAMES
 var current_weapon: Weapons.Type
+# Chaves
+var current_key: Keys.Type
 # Direção
 var current_direction: Vector2
 # Verificadores
@@ -33,6 +34,7 @@ var health: int = 10
 func _ready() -> void:
 	current_state = States.Protagonist.Idle
 	current_weapon = Weapons.Type.Default
+	current_key = Keys.Type.Empty
 	current_direction = Vector2.RIGHT
 	can_walk = true
 	is_attacking = false
@@ -43,7 +45,6 @@ func _physics_process(delta: float) -> void:
 	player_run(delta)
 	player_jump(delta)
 	player_collision_shape(delta)
-	player_get_weapon()
 	player_action(delta)
 	
 	move_and_slide()
@@ -55,6 +56,14 @@ func can_act() -> bool:
 func set_state(new_state: States.Protagonist) -> void:
 	if current_state != new_state:
 		current_state = new_state
+
+func set_weapon(new_weapon: Weapons.Type) -> void:
+	current_weapon = new_weapon
+	HUD.set_weapon(new_weapon)
+
+func set_key(new_key: Keys.Type) -> void:
+	current_key = new_key
+	HUD.set_key(new_key)
 
 func player_gravity(delta: float) -> void:
 	if not is_on_floor(): # Está no ar
@@ -107,22 +116,6 @@ func player_jump(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor(): # Se remover o is_on_floor() tem-se uma mecânica de vôo
 		velocity.y = JUMP
 		set_state(States.Protagonist.Jump)
-
-func player_get_weapon() -> void:
-	if not can_act():
-		return
-	if Input.is_action_just_pressed("get_default"):
-		current_weapon = Weapons.Type.Default
-	elif Input.is_action_just_pressed("get_pistol"):
-		current_weapon = Weapons.Type.Pistol
-	elif Input.is_action_just_pressed("get_smg"):
-		current_weapon = Weapons.Type.SMG
-	elif Input.is_action_just_pressed("get_shotgun"):
-		current_weapon = Weapons.Type.Shotgun
-	elif Input.is_action_just_pressed("get_rassault"):
-		current_weapon = Weapons.Type.Rassault
-	
-	HUD.set_weapon(current_weapon) # Atualiza arma no HUD
 
 func player_action(_delta: float) -> void:
 	if Input.is_action_just_pressed("shoot") and current_weapon != Weapons.Type.Default and can_act():

@@ -25,7 +25,6 @@ func enemy_attack() -> void:
 	is_attacking = true
 
 func check_attack_area() -> void:
-	print("Atacou com dano")
 	if attack_area.has_overlapping_bodies():
 		for body in attack_area.get_overlapping_bodies():
 			if body.is_in_group("Protagonist") and body.has_method("add_damage"):
