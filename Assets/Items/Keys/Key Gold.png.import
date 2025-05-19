@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brudnif40lqbj"
-path="res://.godot/imported/Walk.png-0927ff484e8d78dc4d594e4268e43806.ctex"
+uid="uid://ca61e2pevkoqe"
+path="res://.godot/imported/Key Gold.png-cb5fcafc4c843eeb9b2a23a465797493.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/Gangster With Gun/Walk.png"
-dest_files=["res://.godot/imported/Walk.png-0927ff484e8d78dc4d594e4268e43806.ctex"]
+source_file="res://Assets/Items/Keys/Key Gold.png"
+dest_files=["res://.godot/imported/Key Gold.png-cb5fcafc4c843eeb9b2a23a465797493.ctex"]
 
 [params]
 

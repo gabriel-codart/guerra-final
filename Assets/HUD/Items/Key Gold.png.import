@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo6r2jxt0g7pm"
-path="res://.godot/imported/Recharge.png-6e4643b0f69d4d723935e05662d6af23.ctex"
+uid="uid://b4kw4e7xbowcs"
+path="res://.godot/imported/Key Gold.png-c89f1fd9dd703b78baf3a32d0d124315.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/Gangster With Gun/Recharge.png"
-dest_files=["res://.godot/imported/Recharge.png-6e4643b0f69d4d723935e05662d6af23.ctex"]
+source_file="res://Assets/HUD/Items/Key Gold.png"
+dest_files=["res://.godot/imported/Key Gold.png-c89f1fd9dd703b78baf3a32d0d124315.ctex"]
 
 [params]
 

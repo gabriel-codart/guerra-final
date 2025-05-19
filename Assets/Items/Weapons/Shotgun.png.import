@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2pi7yemnjsmt"
-path="res://.godot/imported/Shot.png-87c6cc97ce0b879ae21e4c2f86b755c0.ctex"
+uid="uid://ddhe2o00ordeh"
+path="res://.godot/imported/Shotgun.png-00552e0b7e5fb4b1fb0a65b0cd79c85d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/Gangster With Gun/Shot.png"
-dest_files=["res://.godot/imported/Shot.png-87c6cc97ce0b879ae21e4c2f86b755c0.ctex"]
+source_file="res://Assets/Items/Weapons/Shotgun.png"
+dest_files=["res://.godot/imported/Shotgun.png-00552e0b7e5fb4b1fb0a65b0cd79c85d.ctex"]
 
 [params]
 

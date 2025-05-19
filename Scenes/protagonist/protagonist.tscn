@@ -1471,7 +1471,7 @@ shape = SubResource("CapsuleShape2D_5wlt6")
 position = Vector2(14, 22)
 script = ExtResource("17_jtc62")
 
-[node name="AttackArea2D" type="Area2D" parent="." groups=["Attack - Detection"]]
+[node name="AttackArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 

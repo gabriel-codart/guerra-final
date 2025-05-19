@@ -1,0 +1,122 @@
+[gd_scene load_steps=15 format=3 uid="uid://bn48rgwwwuwc7"]
+
+[ext_resource type="Texture2D" uid="uid://cvqkfubg37it8" path="res://Assets/Items/Weapons/Pistol.png" id="1_06d7u"]
+[ext_resource type="Script" path="res://Scripts/Items/weapon.gd" id="1_gsme4"]
+[ext_resource type="Texture2D" uid="uid://ba3b6lsaqyrv4" path="res://Assets/Items/Weapons/Rifle-Assault.png" id="2_fvueg"]
+[ext_resource type="Texture2D" uid="uid://ddhe2o00ordeh" path="res://Assets/Items/Weapons/Shotgun.png" id="3_2yy1i"]
+[ext_resource type="Texture2D" uid="uid://df4eodpj821je" path="res://Assets/Items/Weapons/SMG.png" id="4_lcmck"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3y5j"]
+atlas = ExtResource("1_06d7u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo6ho"]
+atlas = ExtResource("2_fvueg")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u13mb"]
+atlas = ExtResource("3_2yy1i")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbbp8"]
+atlas = ExtResource("4_lcmck")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ranto"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3y5j")
+}],
+"loop": false,
+"name": &"pistol",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo6ho")
+}],
+"loop": false,
+"name": &"rassault",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u13mb")
+}],
+"loop": false,
+"name": &"shotgun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbbp8")
+}],
+"loop": false,
+"name": &"smg",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmb14"]
+size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_2rglf"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(2, 2, 2, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lf4h3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ddc5x"]
+_data = {
+"RESET": SubResource("Animation_lf4h3"),
+"idle": SubResource("Animation_2rglf")
+}
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_gsme4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ranto")
+animation = &"pistol"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hmb14")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ddc5x")
+}
+autoplay = "idle"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

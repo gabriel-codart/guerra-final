@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://d1cxkc33ndjoy"]
+[gd_scene load_steps=27 format=4 uid="uid://d1cxkc33ndjoy"]
 
 [ext_resource type="Texture2D" uid="uid://d2ctrlv6r3ut5" path="res://Assets/Tiles/Level 1/Parallax_Night_Sky.png" id="1_2d6eg"]
 [ext_resource type="Script" path="res://Scripts/Areas/level_1.gd" id="1_er6j7"]
@@ -11,7 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://v5eys0hxy1es" path="res://Scenes/Protagonist/protagonist.tscn" id="5_0sjv2"]
 [ext_resource type="PackedScene" uid="uid://c2dhgpsfx2a8c" path="res://Scenes/UI/hud.tscn" id="6_03ydl"]
 [ext_resource type="PackedScene" uid="uid://bul51wa0ie6a8" path="res://Scenes/Enemies/gangster_without_gun.tscn" id="10_15nm1"]
-[ext_resource type="PackedScene" uid="uid://bkgc6xg4mwgrb" path="res://Scenes/Enemies/gangster_with_gun.tscn" id="12_65hnw"]
+[ext_resource type="PackedScene" uid="uid://b4ulxnmu4hab2" path="res://Scenes/Enemies/gangster_with_pistol.tscn" id="12_46hxi"]
+[ext_resource type="PackedScene" uid="uid://c1plhx10asgms" path="res://Scenes/Items/key.tscn" id="13_dkh0y"]
+[ext_resource type="PackedScene" uid="uid://bn48rgwwwuwc7" path="res://Scenes/Items/weapon.tscn" id="14_fxl1w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fjm2"]
 atlas = ExtResource("3_eel48")
@@ -801,6 +803,7 @@ editor_draw_limits = true
 
 [node name="Gangster Without Gun" parent="Enemies" instance=ExtResource("10_15nm1")]
 position = Vector2(606, 175)
+health = 10
 
 [node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster Without Gun"]
 
@@ -812,6 +815,8 @@ position = Vector2(-230, 61)
 
 [node name="Gangster Without Gun2" parent="Enemies" instance=ExtResource("10_15nm1")]
 position = Vector2(834, 175)
+speed = 2000.0
+damage = 2
 
 [node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster Without Gun2"]
 
@@ -821,40 +826,48 @@ position = Vector2(55, 61)
 [node name="Marker2D2" type="Marker2D" parent="Enemies/Gangster Without Gun2/PatrolPoints"]
 position = Vector2(-230, 61)
 
-[node name="Gangster With Gun" parent="Enemies" instance=ExtResource("12_65hnw")]
-position = Vector2(1176, 176)
+[node name="Gangster With Pistol" parent="Enemies" instance=ExtResource("12_46hxi")]
+position = Vector2(1239, 176)
 
-[node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster With Gun"]
+[node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster With Pistol"]
 
-[node name="Marker2D" type="Marker2D" parent="Enemies/Gangster With Gun/PatrolPoints"]
-position = Vector2(-137, 60)
+[node name="Marker2D" type="Marker2D" parent="Enemies/Gangster With Pistol/PatrolPoints"]
+position = Vector2(-295, 60)
 
-[node name="Marker2D2" type="Marker2D" parent="Enemies/Gangster With Gun/PatrolPoints"]
-position = Vector2(208, 61)
-
-[node name="Gangster With Gun2" parent="Enemies" instance=ExtResource("12_65hnw")]
-position = Vector2(1564, 176)
-
-[node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster With Gun2"]
-
-[node name="Marker2D" type="Marker2D" parent="Enemies/Gangster With Gun2/PatrolPoints"]
-position = Vector2(-137, 60)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemies/Gangster With Gun2/PatrolPoints"]
-position = Vector2(208, 61)
-
-[node name="Gangster With Gun3" parent="Enemies" instance=ExtResource("12_65hnw")]
-position = Vector2(1930, 176)
-
-[node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster With Gun3"]
-
-[node name="Marker2D" type="Marker2D" parent="Enemies/Gangster With Gun3/PatrolPoints"]
-position = Vector2(-137, 60)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemies/Gangster With Gun3/PatrolPoints"]
-position = Vector2(208, 61)
+[node name="Marker2D2" type="Marker2D" parent="Enemies/Gangster With Pistol/PatrolPoints"]
+position = Vector2(338, 58)
 
 [node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Key" parent="Items" instance=ExtResource("13_dkh0y")]
+position = Vector2(376, 213)
+key_type = 1
+
+[node name="Key2" parent="Items" instance=ExtResource("13_dkh0y")]
+position = Vector2(430, 213)
+key_type = 2
+
+[node name="Key3" parent="Items" instance=ExtResource("13_dkh0y")]
+position = Vector2(488, 211)
+key_type = 3
+
+[node name="Weapon" parent="Items" instance=ExtResource("14_fxl1w")]
+position = Vector2(327, 213)
+weapon_type = 1
+
+[node name="Weapon2" parent="Items" instance=ExtResource("14_fxl1w")]
+position = Vector2(551, 212)
+weapon_type = 2
+
+[node name="Weapon3" parent="Items" instance=ExtResource("14_fxl1w")]
+position = Vector2(742, 208)
+weapon_type = 3
+
+[node name="Weapon4" parent="Items" instance=ExtResource("14_fxl1w")]
+position = Vector2(970, 206)
+weapon_type = 4
 
 [node name="LevelLimits" type="StaticBody2D" parent="."]
 
