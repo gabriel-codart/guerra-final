@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgooy8d5q3xnc"]
+[gd_scene load_steps=3 format=3 uid="uid://d0aus4tbwyhmt"]
 
-[ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="1_0m6ms"]
-[ext_resource type="Script" path="res://Scripts/UI/pause_menu.gd" id="2_5aogx"]
+[ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="1_q8ehh"]
+[ext_resource type="Script" path="res://Scripts/UI/game_over.gd" id="1_q586s"]
 
-[node name="PauseMenu" type="CanvasLayer"]
+[node name="GameOver" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("2_5aogx")
+script = ExtResource("1_q586s")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.498039)
+color = Color(0.498039, 0, 0, 0.498039)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 8
@@ -27,7 +27,9 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_0m6ms")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_q8ehh")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -37,15 +39,15 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Jogo pausado"
+text = "Você morreu!"
 
-[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="RestartLevelButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Voltar ao jogo"
+text = "Tentar de novo"
 
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Menu principal"
+text = "Menu Principal"
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

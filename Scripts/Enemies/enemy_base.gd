@@ -9,7 +9,7 @@ class_name EnemyBase extends CharacterBody2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 # --- Patrulha ---
-@onready var patrol_points: Node2D = $PatrolPoints
+var patrol_points: Node2D = null
 var number_of_points: int
 var point_positions: Array[Vector2]
 var current_point: Vector2
@@ -30,6 +30,8 @@ var state_names: Dictionary = States.ENEMY_NAMES
 @export var speed: float = 1200.0
 @export var damage: int = 1
 @export var health: int = 5
+@export var distance_to_shoot: int = 300
+@export var distance_to_attack: int = 40
 # --- Variáveis Comuns ---
 var direction: Vector2 = Vector2.LEFT
 var can_walk: bool = true
@@ -38,13 +40,13 @@ var is_attacking: bool = false
 
 # --- Métodos Comuns ---
 func _ready():
-	if patrol_points != null:
-		number_of_points = patrol_points.get_children().size()
-		for point in patrol_points.get_children():
-			point_positions.append(point.global_position)
-		current_point = point_positions[current_point_position]
-	else:
-		print('No patrol points')
+	if has_node("PatrolPoints"):
+		patrol_points = $PatrolPoints
+		if patrol_points != null:
+			number_of_points = patrol_points.get_children().size()
+			for point in patrol_points.get_children():
+				point_positions.append(point.global_position)
+			current_point = point_positions[current_point_position]
 	
 	# Conectar detection area
 	if not detection_area.body_entered.is_connected(_on_detection_area_2d_body_entered):

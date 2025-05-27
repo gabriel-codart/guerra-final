@@ -1408,7 +1408,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5wlt6"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hbhle"]
 height = 62.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvf74"]
@@ -1465,7 +1465,7 @@ speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 32)
-shape = SubResource("CapsuleShape2D_5wlt6")
+shape = SubResource("CapsuleShape2D_hbhle")
 
 [node name="WeaponMarker2D" type="Marker2D" parent="."]
 position = Vector2(14, 22)

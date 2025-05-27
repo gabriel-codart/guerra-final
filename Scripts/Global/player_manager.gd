@@ -1,8 +1,11 @@
 extends Node
 
-func _ready() -> void:
-	pass # Replace with function body.
+var health: int
+var current_weapon: Weapons.Type
+var current_key: Keys.Type
+var current_progress: int
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func _ready() -> void:
+	health = 10
+	current_weapon = Weapons.Type.Default
+	current_key = Keys.Type.Empty

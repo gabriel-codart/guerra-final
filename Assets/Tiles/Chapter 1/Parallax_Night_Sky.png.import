@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://krfrl444p60d"
-path="res://.godot/imported/Salt.png-8ea67cfc76f3bc066ee6d3d799f0f8c1.ctex"
+uid="uid://d2ctrlv6r3ut5"
+path="res://.godot/imported/Parallax_Night_Sky.png-1b05442ca33755cd445086297c8f1c18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Level 1/Salt.png"
-dest_files=["res://.godot/imported/Salt.png-8ea67cfc76f3bc066ee6d3d799f0f8c1.ctex"]
+source_file="res://Assets/Tiles/Chapter 1/Parallax_Night_Sky.png"
+dest_files=["res://.godot/imported/Parallax_Night_Sky.png-1b05442ca33755cd445086297c8f1c18.ctex"]
 
 [params]
 

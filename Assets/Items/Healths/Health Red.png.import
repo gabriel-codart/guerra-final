@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nnjjjdb0hb1t"
-path="res://.godot/imported/Pines.png-6dfdafcedc14af712fb2fe6eb4d9a1b0.ctex"
+uid="uid://b7iis8c546b6b"
+path="res://.godot/imported/Health Red.png-e1a5affdbddfd507dbd7783b43734d01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Level 1/Pines.png"
-dest_files=["res://.godot/imported/Pines.png-6dfdafcedc14af712fb2fe6eb4d9a1b0.ctex"]
+source_file="res://Assets/Items/Healths/Health Red.png"
+dest_files=["res://.godot/imported/Health Red.png-e1a5affdbddfd507dbd7783b43734d01.ctex"]
 
 [params]
 

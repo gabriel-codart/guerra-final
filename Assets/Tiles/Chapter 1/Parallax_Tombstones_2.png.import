@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://84y1k1bk6nqi"
-path="res://.godot/imported/Brush.png-6f649f2c4e4f6de2f681dc2210a6596c.ctex"
+uid="uid://bto7a6qytlyvd"
+path="res://.godot/imported/Parallax_Tombstones_2.png-bec3e04ba79d3aa9005973351967f2b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Level 1/Brush.png"
-dest_files=["res://.godot/imported/Brush.png-6f649f2c4e4f6de2f681dc2210a6596c.ctex"]
+source_file="res://Assets/Tiles/Chapter 1/Parallax_Tombstones_2.png"
+dest_files=["res://.godot/imported/Parallax_Tombstones_2.png-bec3e04ba79d3aa9005973351967f2b5.ctex"]
 
 [params]
 

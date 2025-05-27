@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Protagonist
+
 var projectile: PackedScene = preload("res://Scenes/Projectiles and Effects/projectile.tscn")
 
 @onready var HUD: CanvasLayer = $"../HUD"
@@ -29,12 +31,13 @@ var can_walk: bool
 var is_attacking: bool
 # Vida
 var maxHealth: int = 10
-var health: int = 10
+var health: int
 
 func _ready() -> void:
+	health = PlayerManager.health
+	current_weapon = PlayerManager.current_weapon
+	current_key = PlayerManager.current_key
 	current_state = States.Protagonist.Idle
-	current_weapon = Weapons.Type.Default
-	current_key = Keys.Type.Empty
 	current_direction = Vector2.RIGHT
 	can_walk = true
 	is_attacking = false
@@ -44,8 +47,8 @@ func _physics_process(delta: float) -> void:
 	player_idle(delta)
 	player_run(delta)
 	player_jump(delta)
-	player_collision_shape(delta)
 	player_action(delta)
+	player_pause(delta)
 	
 	move_and_slide()
 	player_animate()
@@ -56,6 +59,7 @@ func can_act() -> bool:
 func set_state(new_state: States.Protagonist) -> void:
 	if current_state != new_state:
 		current_state = new_state
+		player_collision_shape()
 
 func set_weapon(new_weapon: Weapons.Type) -> void:
 	current_weapon = new_weapon
@@ -90,7 +94,7 @@ func player_run(_delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-func player_collision_shape(_delta: float) -> void:
+func player_collision_shape() -> void:
 	match current_state:
 		States.Protagonist.Dead:
 			collision_shape.shape.radius = 8.5
@@ -100,10 +104,6 @@ func player_collision_shape(_delta: float) -> void:
 			collision_shape.shape.radius = 10
 			collision_shape.shape.height = 48
 			collision_shape.position = Vector2(-1, 22)
-		States.Protagonist.Fall, States.Protagonist.Fall_Shot:
-			collision_shape.shape.radius = 10
-			collision_shape.shape.height = 60
-			collision_shape.position = Vector2(-1, 28)
 		_:
 			collision_shape.shape.radius = 10
 			collision_shape.shape.height = 62
@@ -144,6 +144,7 @@ func create_projectile() -> void:
 	projectile_instance.global_position = weapon_marker.global_position
 	projectile_instance.direction = current_direction
 	projectile_instance.target_group = "Enemy"
+	projectile_instance.damage = current_weapon
 	get_tree().current_scene.get_node("Projectiles").add_child(projectile_instance)
 
 func check_attack_area() -> void:
@@ -151,6 +152,17 @@ func check_attack_area() -> void:
 		var body: CharacterBody2D = attack_area.get_overlapping_bodies()[0] as CharacterBody2D
 		if body.is_in_group("Enemy") and body.has_method("add_damage"):
 			body.add_damage(1)
+
+func player_pause(_delta: float) -> void:
+	if Input.is_action_just_pressed("esc"):
+		GameManager.go_to_pause_menu()
+
+func add_health(health_recieved: int) -> void:
+	if maxHealth <= health + health_recieved:
+		health = maxHealth
+	else:
+		health += health_recieved
+	HUD.set_health(health)
 
 func add_damage(damage_recieved: int) -> void:
 	health -= damage_recieved
@@ -192,4 +204,4 @@ func _on_sprite_animation_finished():
 			set_state(States.Protagonist.Fall)
 	elif anim_name.ends_with("_dead"):
 		get_tree().paused = true
-		GameManager.menu_game()
+		GameManager.go_to_game_over()

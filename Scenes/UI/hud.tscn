@@ -155,19 +155,28 @@ scale = Vector2(1.5, 1.5)
 texture_under = ExtResource("2_mh3a7")
 texture_progress = ExtResource("3_riabt")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TextNode" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="TextNode"]
+offset_top = 272.0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="TextNode"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -96.0
+offset_top = 272.0
 offset_right = 640.0
+offset_bottom = 360.0
 grow_vertical = 0
 theme = ExtResource("7_aupxn")
 theme_override_constants/margin_left = 23
 theme_override_constants/margin_right = 23
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextNode/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("7_aupxn")
 theme_override_font_sizes/normal_font_size = 12
-text = "Texto"
+text = "teste"

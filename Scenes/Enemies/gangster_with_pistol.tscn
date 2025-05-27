@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b4ulxnmu4hab2"]
+[gd_scene load_steps=40 format=3 uid="uid://b4ulxnmu4hab2"]
 
 [ext_resource type="Texture2D" uid="uid://btdvky72vn1b8" path="res://Assets/Enemies/Gangster With Pistol/Dead.png" id="1_621no"]
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_with_gun.gd" id="1_er5ie"]
@@ -54,23 +54,27 @@ region = Rect2(640, 0, 128, 128)
 atlas = ExtResource("2_fa2cp")
 region = Rect2(768, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4q23g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_57ktw"]
+atlas = ExtResource("3_uj8mt")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhfmn"]
 atlas = ExtResource("3_uj8mt")
 region = Rect2(896, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w53x1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_74pax"]
 atlas = ExtResource("3_uj8mt")
 region = Rect2(1024, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ik5el"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bprn3"]
 atlas = ExtResource("3_uj8mt")
 region = Rect2(1152, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b54p4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr20y"]
 atlas = ExtResource("3_uj8mt")
 region = Rect2(1280, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uu0ea"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldahr"]
 atlas = ExtResource("3_uj8mt")
 region = Rect2(1408, 0, 128, 128)
 
@@ -164,19 +168,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4q23g")
+"texture": SubResource("AtlasTexture_57ktw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w53x1")
+"texture": SubResource("AtlasTexture_fhfmn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ik5el")
+"texture": SubResource("AtlasTexture_74pax")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b54p4")
+"texture": SubResource("AtlasTexture_bprn3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uu0ea")
+"texture": SubResource("AtlasTexture_lr20y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldahr")
 }],
 "loop": false,
 "name": &"shot",
@@ -219,7 +226,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2v1sj"]
-radius = 13.0
+radius = 18.0
 height = 68.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68i78"]
@@ -267,15 +274,16 @@ _data = {
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_er5ie")
+damage = 2
+health = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2fd1t")
 animation = &"shot"
 autoplay = "idle"
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 29)
+position = Vector2(-4, 29)
 shape = SubResource("CapsuleShape2D_2v1sj")
 
 [node name="Timer" type="Timer" parent="."]
@@ -283,7 +291,7 @@ shape = SubResource("CapsuleShape2D_2v1sj")
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="WeaponMarker2D" type="Marker2D" parent="."]
-position = Vector2(36, 14)
+position = Vector2(36, 17)
 
 [node name="DetectionArea2D" type="Area2D" parent="."]
 collision_layer = 0

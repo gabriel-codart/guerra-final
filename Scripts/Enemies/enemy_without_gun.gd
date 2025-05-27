@@ -10,7 +10,7 @@ func _ready():
 
 func go_to_protagonist(delta: float) -> void:
 	check_direction(protagonist_point)
-	if abs(position.x - protagonist_point.x) > 42:
+	if abs(position.x - protagonist_point.x) > distance_to_attack:
 		velocity.x = direction.x * speed * delta
 		current_state = States.Enemy.Walk
 	else:

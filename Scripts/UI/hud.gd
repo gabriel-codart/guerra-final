@@ -3,7 +3,8 @@ extends CanvasLayer
 @onready var weapon_sprite: AnimatedSprite2D = $Weapon
 @onready var key_sprite: AnimatedSprite2D = $Key
 @onready var health_bar: TextureProgressBar = $HealthBar
-@onready var text_label: RichTextLabel = $MarginContainer/RichTextLabel
+@onready var text_label: RichTextLabel = $TextNode/MarginContainer/RichTextLabel
+@onready var text_node: Node2D = $TextNode
 # Armas
 @onready var weapon_names = Weapons.NAMES
 # Chaves
@@ -16,6 +17,8 @@ func _ready():
 	if protagonist:
 		max_health = protagonist.maxHealth
 		set_health(protagonist.health)
+		set_weapon(protagonist.current_weapon)
+		set_key(protagonist.current_key)
 	pass
 
 func _process(_delta):
@@ -35,3 +38,7 @@ func set_health(health: int) -> void:
 
 func set_text(text: String) -> void:
 	text_label.text = text
+	if text == "":
+		text_node.visible = false
+	else:
+		text_node.visible = true

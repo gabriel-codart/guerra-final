@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dae1sf20gt580"
-path="res://.godot/imported/Tiles.png-581e472743e094ca518c2a0b2b9c4861.ctex"
+uid="uid://b4bm64mgv2g35"
+path="res://.godot/imported/Parallax_Churches.png-8a4b2cf0dde14441f95c87fb3d96fc50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Level 1/Tiles.png"
-dest_files=["res://.godot/imported/Tiles.png-581e472743e094ca518c2a0b2b9c4861.ctex"]
+source_file="res://Assets/Tiles/Chapter 1/Parallax_Churches.png"
+dest_files=["res://.godot/imported/Parallax_Churches.png-8a4b2cf0dde14441f95c87fb3d96fc50.ctex"]
 
 [params]
 
