@@ -38,3 +38,7 @@ func go_to_next_level() -> void:
 func _on_next_level_area_body_entered(body):
 	if body.is_in_group("Protagonist"):
 		go_to_next_level()
+
+func _on_next_level_area_body_exited(body):
+	if body.is_in_group("Protagonist"):
+		set_HUD_text("")

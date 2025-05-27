@@ -68,12 +68,16 @@ func _physics_process(delta):
 	move_and_slide()
 	enemy_animate()
 
+func can_act() -> bool:
+	return not is_attacking and can_walk and current_state != States.Enemy.Dead
+
+func set_state(new_state: States.Enemy) -> void:
+	if current_state != new_state:
+		current_state = new_state
+
 func enemy_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
-
-func can_act() -> bool:
-	return not is_attacking and can_walk and current_state != States.Enemy.Dead
 
 func enemy_idle(delta: float) -> void:
 	if is_attacking:
@@ -81,7 +85,7 @@ func enemy_idle(delta: float) -> void:
 		return
 	if not can_walk:
 		velocity.x = move_toward(velocity.x, 0, speed * delta)
-		current_state = States.Enemy.Idle
+		set_state(States.Enemy.Idle)
 
 func enemy_walk(delta: float) -> void:
 	if not can_act():
@@ -99,7 +103,7 @@ func go_to_patrol(delta: float) -> void:
 	check_direction(current_point)
 	if abs(position.x - current_point.x) > 0.5:
 		velocity.x = direction.x * speed * delta
-		current_state = States.Enemy.Walk
+		set_state(States.Enemy.Walk)
 	else:
 		current_point_position = (current_point_position + 1) % number_of_points
 		current_point = point_positions[current_point_position]
@@ -123,7 +127,7 @@ func add_damage(damage_recieved: int) -> void:
 	health -= damage_recieved
 	anim_player.play("hurt")
 	if health <= 0:
-		current_state = States.Enemy.Dead
+		set_state(States.Enemy.Dead)
 		velocity = Vector2.ZERO
 
 func enemy_animate() -> void:

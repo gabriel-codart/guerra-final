@@ -4,7 +4,7 @@ extends EnemyBase
 
 func _ready():
 	state_names = States.ENEMY_NAMES
-	current_state = States.Enemy.Idle
+	set_state(States.Enemy.Idle)
 	
 	super._ready()
 
@@ -12,16 +12,16 @@ func go_to_protagonist(delta: float) -> void:
 	check_direction(protagonist_point)
 	if abs(position.x - protagonist_point.x) > distance_to_attack:
 		velocity.x = direction.x * speed * delta
-		current_state = States.Enemy.Walk
+		set_state(States.Enemy.Walk)
 	else:
 		if not can_attack:
 			velocity.x = move_toward(velocity.x, 0, speed * delta)
-			current_state = States.Enemy.Idle
+			set_state(States.Enemy.Idle)
 			return
 		enemy_attack()
 
 func enemy_attack() -> void:
-	current_state = States.Enemy.Attack
+	set_state(States.Enemy.Attack)
 	is_attacking = true
 
 func check_attack_area() -> void:

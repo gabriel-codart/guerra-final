@@ -110,10 +110,14 @@ func player_collision_shape() -> void:
 			collision_shape.position = Vector2(-3, 32)
 
 func player_jump(_delta: float) -> void:
-	var forbidden_states = [States.Protagonist.Shot, States.Protagonist.Attack, States.Protagonist.Dead]
+	var forbidden_states = [States.Protagonist.Dead]
 	if current_state in forbidden_states:
 		return
+	
+	var attacking_states = [States.Protagonist.Shot, States.Protagonist.Attack]
 	if Input.is_action_just_pressed("jump") and is_on_floor(): # Se remover o is_on_floor() tem-se uma mecânica de vôo
+		if current_state in attacking_states:
+			is_attacking = false
 		velocity.y = JUMP
 		set_state(States.Protagonist.Jump)
 
