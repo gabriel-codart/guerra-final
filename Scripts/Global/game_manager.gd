@@ -8,6 +8,7 @@ var game_over: PackedScene = preload("res://Scenes/UI/game_over.tscn")
 # Levels
 var level_1: PackedScene = preload("res://Scenes/Areas/level_1.tscn")
 var level_2: PackedScene = preload("res://Scenes/Areas/level_2.tscn")
+var level_3: PackedScene = preload("res://Scenes/Areas/level_3.tscn")
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color(0, 0, 0, 1.00))
@@ -17,7 +18,23 @@ func transition_to_scene(scene: PackedScene) -> void:
 	get_tree().change_scene_to_packed(scene)
 	get_tree().paused = false
 
-func start_game() -> void:
+func load_current_level() -> void:
+	var progress := PlayerManager.current_progress
+	match progress:
+		1:
+			transition_to_scene(Scenes.get_scene(Scenes.SceneID.LEVEL_1))
+		2:
+			transition_to_scene(Scenes.get_scene(Scenes.SceneID.LEVEL_2))
+		3:
+			transition_to_scene(Scenes.get_scene(Scenes.SceneID.LEVEL_3))
+		_:
+			print("Progresso inválido:", progress)
+
+func continue_game() -> void:
+	load_current_level()
+
+func new_game() -> void:
+	PlayerManager.current_progress = 1
 	transition_to_scene(level_1)
 
 func exit_game() -> void:
@@ -36,5 +53,5 @@ func go_to_game_over() -> void:
 	var game_over_instance = game_over.instantiate()
 	get_tree().get_root().add_child(game_over_instance)
 
-func go_to_next_level() -> void:
-	transition_to_scene(level_2)
+func go_to_next_scene() -> void:
+	load_current_level()

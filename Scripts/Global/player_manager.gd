@@ -9,3 +9,4 @@ func _ready() -> void:
 	health = 10
 	current_weapon = Weapons.Type.Default
 	current_key = Keys.Type.Empty
+	current_progress = 1

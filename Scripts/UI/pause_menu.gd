@@ -1,10 +1,13 @@
 extends CanvasLayer
 
+var can_process_input := false
+
 func _ready() -> void:
-	pass # Replace with function body.
+	await get_tree().create_timer(0.2).timeout
+	can_process_input = true
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("esc"):
+	if can_process_input and Input.is_action_just_pressed("esc"):
 		resume_game()
 
 func resume_game() -> void:

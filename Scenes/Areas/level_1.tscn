@@ -871,16 +871,16 @@ position = Vector2(-440, 49)
 [node name="Marker2D2" type="Marker2D" parent="Enemies/Gangster With SMG2/PatrolPoints"]
 position = Vector2(503, 48)
 
-[node name="Gangster With SMG3" parent="Enemies" instance=ExtResource("14_vkun3")]
-position = Vector2(3304, 170)
+[node name="Gangster Without Gun3" parent="Enemies" instance=ExtResource("10_15nm1")]
+position = Vector2(3288, 174)
 
-[node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster With SMG3"]
+[node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster Without Gun3"]
 
-[node name="Marker2D" type="Marker2D" parent="Enemies/Gangster With SMG3/PatrolPoints"]
-position = Vector2(-115, 50)
+[node name="Marker2D" type="Marker2D" parent="Enemies/Gangster Without Gun3/PatrolPoints"]
+position = Vector2(-156, 59)
 
-[node name="Marker2D2" type="Marker2D" parent="Enemies/Gangster With SMG3/PatrolPoints"]
-position = Vector2(79, 51)
+[node name="Marker2D2" type="Marker2D" parent="Enemies/Gangster Without Gun3/PatrolPoints"]
+position = Vector2(130, 60)
 
 [node name="Projectiles" type="Node2D" parent="."]
 

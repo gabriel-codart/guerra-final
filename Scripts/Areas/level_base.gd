@@ -31,10 +31,11 @@ func go_to_next_level() -> void:
 		PlayerManager.health = protagonist.health
 		PlayerManager.current_weapon = protagonist.current_weapon
 		PlayerManager.current_key = Keys.Type.Empty
-		GameManager.go_to_next_level()
+		PlayerManager.current_progress += 1
+		GameManager.go_to_next_scene()
 	else:
 		set_HUD_text("Preciso de uma chave " + key_names[key_to_next_level].to_upper() + " para seguir em frente.")
-		
+
 func _on_next_level_area_body_entered(body):
 	if body.is_in_group("Protagonist"):
 		go_to_next_level()

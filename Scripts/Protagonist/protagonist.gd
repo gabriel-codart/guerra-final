@@ -74,6 +74,7 @@ func player_gravity(delta: float) -> void:
 		velocity.y += GRAVITY * delta
 		var protected_states = [States.Protagonist.Jump, States.Protagonist.Fall_Shot, States.Protagonist.Dead]
 		if current_state not in protected_states:
+			is_attacking = false
 			set_state(States.Protagonist.Fall)
 
 func player_idle(_delta: float) -> void:
@@ -198,13 +199,14 @@ func _on_sprite_animation_finished():
 	if anim_name.ends_with("_jump"):
 		if current_state == States.Protagonist.Dead:
 			return
-		set_state(States.Protagonist.Fall)
+		if not is_on_floor():
+			set_state(States.Protagonist.Fall)
 	elif anim_name.ends_with("_attack"):
 		is_attacking = false
 		check_attack_area()
 	elif anim_name.ends_with("_shot"):
 		is_attacking = false
-		if anim_name.ends_with("_fall_shot"):
+		if current_state == States.Protagonist.Fall_Shot and not is_on_floor():
 			set_state(States.Protagonist.Fall)
 	elif anim_name.ends_with("_dead"):
 		get_tree().paused = true
