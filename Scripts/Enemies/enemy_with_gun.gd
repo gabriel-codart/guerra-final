@@ -27,7 +27,7 @@ func enemy_shoot() -> void:
 	is_attacking = true
 
 func create_projectile() -> void:
-	var projectile_instance: Area2D = projectile.instantiate()
+	var projectile_instance: Node2D = projectile.instantiate() as Node2D
 	projectile_instance.global_position = weapon_marker.global_position
 	projectile_instance.direction = direction
 	projectile_instance.damage = damage

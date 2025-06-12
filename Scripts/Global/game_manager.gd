@@ -27,6 +27,10 @@ func load_current_level() -> void:
 			transition_to_scene(Scenes.get_scene(Scenes.SceneID.LEVEL_2))
 		3:
 			transition_to_scene(Scenes.get_scene(Scenes.SceneID.LEVEL_3))
+		4:
+			transition_to_scene(Scenes.get_scene(Scenes.SceneID.LEVEL_4))
+		5:
+			transition_to_scene(Scenes.get_scene(Scenes.SceneID.LEVEL_5))
 		_:
 			print("Progresso inválido:", progress)
 

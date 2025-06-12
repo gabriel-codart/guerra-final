@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 # Impacto
 var projectile_impact: PackedScene = preload("res://Scenes/Projectiles and Effects/projectile_impact.tscn")
@@ -12,7 +12,7 @@ var damage: int = 1
 var target_group: String
 
 func _ready() -> void:
-	pass
+	transform.x.x = 1 if direction == Vector2.RIGHT else -1
 
 func _process(delta: float) -> void:
 	translate(direction * SPEED * delta)
@@ -20,13 +20,14 @@ func _process(delta: float) -> void:
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group(target_group) and body.has_method("add_damage"):
-		body.add_damage(damage)
+func _on_body_entered(object: Node2D) -> void:
+	if object is TileMapLayer:
 		create_projectile_impact()
-
-func _on_area_entered(_area: Area2D) -> void:
-	create_projectile_impact()
+		return
+	
+	if object.is_in_group(target_group) and object.has_method("add_damage"):
+		object.add_damage(damage)
+		create_projectile_impact()
 
 func create_projectile_impact() -> void:
 	var projectile_impact_instance: AnimatedSprite2D = projectile_impact.instantiate() as AnimatedSprite2D

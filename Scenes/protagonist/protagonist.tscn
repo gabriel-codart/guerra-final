@@ -1454,7 +1454,7 @@ _data = {
 
 [node name="Protagonist" type="CharacterBody2D" groups=["Protagonist"]]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 29
 script = ExtResource("1_i04aq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

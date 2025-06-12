@@ -145,7 +145,7 @@ func player_action(_delta: float) -> void:
 		is_attacking = true
 
 func create_projectile() -> void:
-	var projectile_instance: Area2D = projectile.instantiate() as Area2D
+	var projectile_instance: Node2D = projectile.instantiate() as Node2D
 	projectile_instance.global_position = weapon_marker.global_position
 	projectile_instance.direction = current_direction
 	projectile_instance.target_group = "Enemy"
@@ -175,6 +175,7 @@ func add_damage(damage_recieved: int) -> void:
 	anim_player.play("hurt")
 	if health <= 0:
 		current_weapon = Weapons.Type.Default
+		PlayerManager.current_weapon = Weapons.Type.Default
 		set_state(States.Protagonist.Dead)
 
 func can_play_animation() -> bool:
