@@ -129,10 +129,25 @@ func add_damage(damage_recieved: int) -> void:
 	if health <= 0:
 		set_state(States.Enemy.Dead)
 		velocity = Vector2.ZERO
+		enemy_sfx("dead")
+	else:
+		enemy_sfx("hurt")
 
 func enemy_animate() -> void:
 	var anim_name = state_names.get(current_state, "idle")
 	anim_sprite.play(anim_name)
+	
+
+func enemy_sfx(sfx_name: String) -> void:
+	match sfx_name:
+		"walk":
+			$SFX/Walk.play()
+		"hurt":
+			$SFX/Hurt.play()
+		"dead":
+			$SFX/Dead.play()
+		_:
+			pass
 
 # --- Detect Protagonist ---
 func _on_detection_area_2d_body_entered(body: Node2D) -> void:

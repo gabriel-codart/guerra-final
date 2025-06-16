@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dv3wj161khjcv"
+path="res://.godot/imported/pickUp by jsfxr.wav-2fcdaade5f9959f713435ca661be6389.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/pickUp by jsfxr.wav"
+dest_files=["res://.godot/imported/pickUp by jsfxr.wav-2fcdaade5f9959f713435ca661be6389.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

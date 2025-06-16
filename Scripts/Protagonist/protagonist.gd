@@ -64,10 +64,12 @@ func set_state(new_state: States.Protagonist) -> void:
 func set_weapon(new_weapon: Weapons.Type) -> void:
 	current_weapon = new_weapon
 	HUD.set_weapon(new_weapon)
+	player_sfx("pickup")
 
 func set_key(new_key: Keys.Type) -> void:
 	current_key = new_key
 	HUD.set_key(new_key)
+	player_sfx("pickup")
 
 func player_gravity(delta: float) -> void:
 	if not is_on_floor(): # Está no ar
@@ -121,6 +123,7 @@ func player_jump(_delta: float) -> void:
 			is_attacking = false
 		velocity.y = JUMP
 		set_state(States.Protagonist.Jump)
+		player_sfx("jump")
 
 func player_action(_delta: float) -> void:
 	if Input.is_action_just_pressed("shoot") and current_weapon != Weapons.Type.Default and can_act():
@@ -168,6 +171,7 @@ func add_health(health_recieved: int) -> void:
 	else:
 		health += health_recieved
 	HUD.set_health(health)
+	player_sfx("pickup")
 
 func add_damage(damage_recieved: int) -> void:
 	health -= damage_recieved
@@ -177,6 +181,9 @@ func add_damage(damage_recieved: int) -> void:
 		current_weapon = Weapons.Type.Default
 		PlayerManager.current_weapon = Weapons.Type.Default
 		set_state(States.Protagonist.Dead)
+		player_sfx("game_over")
+	else:
+		player_sfx("hurt")
 
 func can_play_animation() -> bool:
 	if current_weapon == Weapons.Type.Default and current_state == States.Protagonist.Shot:
@@ -195,9 +202,26 @@ func player_animate() -> void:
 		anim_name = weapon_names[current_weapon] + "_" + state_names[current_state]
 	anim_sprite.play(anim_name)
 
+func player_sfx(sfx_name: String) -> void:
+	match sfx_name:
+		"walk":
+			$SFX/Walk.play()
+		"jump":
+			$SFX/Jump.play()
+		"pickup":
+			$SFX/Pickup.play()
+		"hurt":
+			$SFX/Hurt.play()
+		"game_over":
+			$SFX/GameOver.play()
+		_:
+			pass
+
 func _on_sprite_animation_finished():
 	var anim_name: StringName = anim_sprite.animation
-	if anim_name.ends_with("_jump"):
+	if anim_name.ends_with("_run"):
+		player_sfx("walk")
+	elif anim_name.ends_with("_jump"):
 		if current_state == States.Protagonist.Dead:
 			return
 		if not is_on_floor():

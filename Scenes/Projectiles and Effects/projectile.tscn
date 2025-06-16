@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpwvamojrivt0"]
+[gd_scene load_steps=6 format=3 uid="uid://dpwvamojrivt0"]
 
 [ext_resource type="Script" path="res://Scripts/Projectiles and Effects/projectile.gd" id="1_14hns"]
+[ext_resource type="AudioStream" uid="uid://djts5aj0nl1si" path="res://Assets/SFX/laserShoot by jsfxr.wav" id="2_320wv"]
+[ext_resource type="AudioStream" uid="uid://b0qpbn2pykq12" path="res://Assets/SFX/impactHit by jsfxr.wav" id="3_lqekk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nvs4q"]
 size = Vector2(9, 1)
@@ -38,6 +40,14 @@ shape = SubResource("RectangleShape2D_dow7i")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-2, -0.5)
 scale = Vector2(0.6, 0.25)
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Shoot" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_320wv")
+
+[node name="Impact" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_lqekk")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://fp86pj6iiy4f"
+path="res://.godot/imported/Castle of Athanasius by Spencer Y.K. from Pixabay.mp3-f7f23f0c7a458da04af75236809acc68.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Castle of Athanasius by Spencer Y.K. from Pixabay.mp3"
+dest_files=["res://.godot/imported/Castle of Athanasius by Spencer Y.K. from Pixabay.mp3-f7f23f0c7a458da04af75236809acc68.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

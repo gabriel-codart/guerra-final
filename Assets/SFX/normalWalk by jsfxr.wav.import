@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c4tl0ww1uu82o"
+path="res://.godot/imported/normalWalk by jsfxr.wav-d6167fecc3ea7f988c5c54131ceb8d42.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/normalWalk by jsfxr.wav"
+dest_files=["res://.godot/imported/normalWalk by jsfxr.wav-d6167fecc3ea7f988c5c54131ceb8d42.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

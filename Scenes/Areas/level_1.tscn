@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://d1cxkc33ndjoy"]
+[gd_scene load_steps=28 format=4 uid="uid://d1cxkc33ndjoy"]
 
 [ext_resource type="Script" path="res://Scripts/Areas/level_base.gd" id="1_er6j7"]
 [ext_resource type="Texture2D" uid="uid://d2ctrlv6r3ut5" path="res://Assets/Tiles/Chapter 1/Parallax_Night_Sky.png" id="2_1m1om"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ckd6d0gyvqt0h" path="res://Scenes/Items/health.tscn" id="11_jjuyv"]
 [ext_resource type="PackedScene" uid="uid://du2kta8mpf5k7" path="res://Scenes/Items/info.tscn" id="13_k1uff"]
 [ext_resource type="PackedScene" uid="uid://bkgc6xg4mwgrb" path="res://Scenes/Enemies/gangster_with_smg.tscn" id="14_vkun3"]
+[ext_resource type="AudioStream" uid="uid://dr481w6mwljp8" path="res://Assets/Music/8bit Boi by u_w2fp0sqa7t from Pixabay.mp3" id="16_u7708"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fjm2"]
 atlas = ExtResource("3_eel48")
@@ -910,3 +911,7 @@ shape = SubResource("RectangleShape2D_0eili")
 [node name="CollisionRight" type="CollisionShape2D" parent="LevelLimits"]
 position = Vector2(3775, 19)
 shape = SubResource("RectangleShape2D_m0vc0")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_u7708")
+autoplay = true

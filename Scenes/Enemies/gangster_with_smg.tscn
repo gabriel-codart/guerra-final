@@ -1,10 +1,13 @@
-[gd_scene load_steps=37 format=3 uid="uid://bkgc6xg4mwgrb"]
+[gd_scene load_steps=40 format=3 uid="uid://bkgc6xg4mwgrb"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_with_gun.gd" id="1_jt5q0"]
 [ext_resource type="Texture2D" uid="uid://bn84gat5wo323" path="res://Assets/Enemies/Gangster With SMG/Dead.png" id="2_omjuk"]
 [ext_resource type="Texture2D" uid="uid://c05is76qanana" path="res://Assets/Enemies/Gangster With SMG/Idle.png" id="3_472xi"]
 [ext_resource type="Texture2D" uid="uid://2pi7yemnjsmt" path="res://Assets/Enemies/Gangster With SMG/Shot.png" id="4_1diiv"]
 [ext_resource type="Texture2D" uid="uid://brudnif40lqbj" path="res://Assets/Enemies/Gangster With SMG/Walk.png" id="5_oybn7"]
+[ext_resource type="AudioStream" uid="uid://cgiabmvm2yty4" path="res://Assets/SFX/hitHurt_enemy by jsfxr.wav" id="6_gh1yu"]
+[ext_resource type="AudioStream" uid="uid://c4tl0ww1uu82o" path="res://Assets/SFX/normalWalk by jsfxr.wav" id="6_tnldd"]
+[ext_resource type="AudioStream" uid="uid://ifv2ax4xi6nn" path="res://Assets/SFX/dead_enemy by jsfxr.wav" id="8_vy1xv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nl428"]
 atlas = ExtResource("2_omjuk")
@@ -285,6 +288,17 @@ shape = SubResource("RectangleShape2D_ktofw")
 libraries = {
 "": SubResource("AnimationLibrary_nndy8")
 }
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Walk" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_tnldd")
+
+[node name="Hurt" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_gh1yu")
+
+[node name="Dead" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("8_vy1xv")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

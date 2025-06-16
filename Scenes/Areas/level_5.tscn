@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://h7d6x1j01kko"]
+[gd_scene load_steps=22 format=4 uid="uid://h7d6x1j01kko"]
 
 [ext_resource type="Texture2D" uid="uid://dgc73fls4fu8" path="res://Assets/Tiles/Chapter 1/Church_Tiles.png" id="1_23xrd"]
 [ext_resource type="Script" path="res://Scripts/Areas/level_base.gd" id="1_in2eo"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b4ulxnmu4hab2" path="res://Scenes/Enemies/gangster_with_pistol.tscn" id="8_fo7hg"]
 [ext_resource type="PackedScene" uid="uid://c2dhgpsfx2a8c" path="res://Scenes/UI/hud.tscn" id="9_0wqtg"]
 [ext_resource type="PackedScene" uid="uid://bul51wa0ie6a8" path="res://Scenes/Enemies/gangster_without_gun.tscn" id="9_jijrh"]
+[ext_resource type="AudioStream" uid="uid://3qdnti5y3rb0" path="res://Assets/Music/Level III by Vlad Krotov from Pixabay.mp3" id="13_dsyrt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0uh8"]
 texture = ExtResource("1_23xrd")
@@ -1269,7 +1270,7 @@ editor_draw_limits = true
 position = Vector2(1423, 174)
 speed = 1600.0
 health = 20
-distance_to_shoot = 350
+distance_to_shoot = 700
 
 [node name="Gangster Without Gun2" parent="Enemies" instance=ExtResource("9_jijrh")]
 position = Vector2(1369, 173)
@@ -1309,3 +1310,7 @@ collision_mask = 2
 position = Vector2(1007, -182)
 shape = SubResource("RectangleShape2D_eng6k")
 debug_color = Color(0, 0.649289, 0.149823, 0.42)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_dsyrt")
+autoplay = true

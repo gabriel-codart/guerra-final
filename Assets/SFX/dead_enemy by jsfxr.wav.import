@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ifv2ax4xi6nn"
+path="res://.godot/imported/dead_enemy by jsfxr.wav-dedcf7c5bf9e762b049ff3cf6d2138f7.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/dead_enemy by jsfxr.wav"
+dest_files=["res://.godot/imported/dead_enemy by jsfxr.wav-dedcf7c5bf9e762b049ff3cf6d2138f7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

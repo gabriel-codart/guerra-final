@@ -5,10 +5,6 @@ var area_test: PackedScene = preload("res://Scenes/Areas/area_test.tscn")
 var main_menu: PackedScene = preload("res://Scenes/UI/main_menu.tscn")
 var pause_menu: PackedScene = preload("res://Scenes/UI/pause_menu.tscn")
 var game_over: PackedScene = preload("res://Scenes/UI/game_over.tscn")
-# Levels
-var level_1: PackedScene = preload("res://Scenes/Areas/level_1.tscn")
-var level_2: PackedScene = preload("res://Scenes/Areas/level_2.tscn")
-var level_3: PackedScene = preload("res://Scenes/Areas/level_3.tscn")
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color(0, 0, 0, 1.00))
@@ -39,7 +35,7 @@ func continue_game() -> void:
 
 func new_game() -> void:
 	PlayerManager.current_progress = 1
-	transition_to_scene(level_1)
+	load_current_level()
 
 func exit_game() -> void:
 	get_tree().quit()

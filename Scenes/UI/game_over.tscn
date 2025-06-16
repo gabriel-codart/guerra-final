@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0aus4tbwyhmt"]
+[gd_scene load_steps=4 format=3 uid="uid://d0aus4tbwyhmt"]
 
 [ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="1_q8ehh"]
 [ext_resource type="Script" path="res://Scripts/UI/game_over.gd" id="1_q586s"]
+[ext_resource type="AudioStream" uid="uid://fp86pj6iiy4f" path="res://Assets/Music/Castle of Athanasius by Spencer Y.K. from Pixabay.mp3" id="3_ytsjw"]
 
 [node name="GameOver" type="CanvasLayer"]
 process_mode = 3
@@ -48,6 +49,10 @@ text = "Tentar de novo"
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Menu Principal"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ytsjw")
+autoplay = true
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
