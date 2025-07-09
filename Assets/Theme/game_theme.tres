@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://b31dg5p0p2jkb"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://b31dg5p0p2jkb"]
 
 [ext_resource type="FontFile" uid="uid://bdopae2exjcnn" path="res://Assets/Theme/Better VCR 9.0.1.ttf" id="1_td8xw"]
 
@@ -57,8 +57,18 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8x32"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1j2ta"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eir2l"]
+bg_color = Color(0.819541, 0.377607, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frslb"]
+bg_color = Color(0.831373, 0.207843, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 
 [resource]
 Button/font_sizes/font_size = 10
@@ -73,5 +83,11 @@ MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_j8x32")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_1j2ta")
+PopupMenu/font_sizes/font_size = 12
+PopupMenu/fonts/font = ExtResource("1_td8xw")
+PopupMenu/fonts/font_separator = ExtResource("1_td8xw")
+PopupMenu/fonts/title_font = ExtResource("1_td8xw")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_eir2l")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_frslb")
 RichTextLabel/fonts/normal_font = ExtResource("1_td8xw")

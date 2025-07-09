@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 func _ready() -> void:
-	pass # Replace with function body.
+	MusicPlayer.play_music("GameOver")
 
 func _on_restart_level_button_pressed():
 	get_tree().reload_current_scene()

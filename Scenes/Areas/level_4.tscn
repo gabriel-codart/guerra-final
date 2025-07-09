@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://d3wl6rgpak84m"]
+[gd_scene load_steps=21 format=4 uid="uid://d3wl6rgpak84m"]
 
 [ext_resource type="Script" path="res://Scripts/Areas/level_base.gd" id="1_adcjv"]
 [ext_resource type="Texture2D" uid="uid://dgc73fls4fu8" path="res://Assets/Tiles/Chapter 1/Church_Tiles.png" id="1_v7krg"]
@@ -12,8 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bul51wa0ie6a8" path="res://Scenes/Enemies/gangster_without_gun.tscn" id="7_lii3x"]
 [ext_resource type="PackedScene" uid="uid://bkgc6xg4mwgrb" path="res://Scenes/Enemies/gangster_with_smg.tscn" id="8_r6ac3"]
 [ext_resource type="PackedScene" uid="uid://c2dhgpsfx2a8c" path="res://Scenes/UI/hud.tscn" id="9_n8ypa"]
-[ext_resource type="PackedScene" uid="uid://bn48rgwwwuwc7" path="res://Scenes/Items/weapon.tscn" id="9_tk83f"]
-[ext_resource type="AudioStream" uid="uid://dr481w6mwljp8" path="res://Assets/Music/8bit Boi by u_w2fp0sqa7t from Pixabay.mp3" id="14_p621s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aaybs"]
 texture = ExtResource("1_v7krg")
@@ -1229,10 +1227,6 @@ key_type = 1
 [node name="Health" parent="Items" instance=ExtResource("5_xitx1")]
 position = Vector2(2847, 210)
 
-[node name="Weapon" parent="Items" instance=ExtResource("9_tk83f")]
-position = Vector2(144, 0)
-weapon_type = 1
-
 [node name="Protagonist" parent="." instance=ExtResource("6_fues6")]
 position = Vector2(111, 177)
 
@@ -1339,7 +1333,3 @@ collision_mask = 2
 position = Vector2(3731, 181)
 shape = SubResource("RectangleShape2D_4c2di")
 debug_color = Color(0, 0.649289, 0.149823, 0.42)
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_p621s")
-autoplay = true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cd4wh0imf73se"
+path="res://.godot/imported/Cinimatic Synthwave by ido berg from Pixabay.mp3-8f95398f54d2a257792af427ea38a18c.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Cinimatic Synthwave by ido berg from Pixabay.mp3"
+dest_files=["res://.godot/imported/Cinimatic Synthwave by ido berg from Pixabay.mp3-8f95398f54d2a257792af427ea38a18c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

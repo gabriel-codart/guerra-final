@@ -131,52 +131,107 @@ animations = [{
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_3d8ni")
 
-[node name="Weapon" type="AnimatedSprite2D" parent="."]
-position = Vector2(24, 48)
-scale = Vector2(2, 2)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftControl" type="Control" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/LeftControl"]
+layout_mode = 1
+offset_right = 80.0
+offset_bottom = 82.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/LeftControl/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="WeaponControl" type="Control" parent="MarginContainer/LeftControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Weapon" type="AnimatedSprite2D" parent="MarginContainer/LeftControl/MarginContainer/VBoxContainer/WeaponControl"]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_u63ej")
 autoplay = "default"
 centered = false
-offset = Vector2(0, -16)
 
-[node name="Key" type="AnimatedSprite2D" parent="."]
-position = Vector2(584, 48)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_n0sjq")
-animation = &"empty"
-autoplay = "empty"
-
-[node name="HealthBar" type="TextureProgressBar" parent="."]
-offset_left = 24.0
-offset_top = 80.0
-offset_right = 72.0
-offset_bottom = 120.0
-scale = Vector2(1.5, 1.5)
+[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/LeftControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
 texture_under = ExtResource("2_mh3a7")
 texture_progress = ExtResource("3_riabt")
 
-[node name="TextNode" type="Node2D" parent="."]
+[node name="RightControl" type="Control" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 
-[node name="ColorRect" type="ColorRect" parent="TextNode"]
-offset_top = 272.0
-offset_right = 640.0
-offset_bottom = 360.0
-color = Color(0, 0, 0, 0.5)
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/RightControl"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -82.0
+offset_bottom = 16.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
 
-[node name="MarginContainer" type="MarginContainer" parent="TextNode"]
-anchors_preset = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/RightControl/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="KeyControl" type="Control" parent="MarginContainer/RightControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Key" type="AnimatedSprite2D" parent="MarginContainer/RightControl/MarginContainer/VBoxContainer/KeyControl"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_n0sjq")
+animation = &"red"
+autoplay = "empty"
+centered = false
+
+[node name="TextControl" type="Control" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TextControl"]
+layout_mode = 1
+anchors_preset = 12
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 272.0
-offset_right = 640.0
-offset_bottom = 360.0
+offset_top = -30.0
+grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("7_aupxn")
-theme_override_constants/margin_left = 23
-theme_override_constants/margin_right = 23
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextNode/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/TextControl/MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TextControl/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TextControl/MarginContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/TextControl/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("7_aupxn")
-theme_override_font_sizes/normal_font_size = 12
-text = "teste"
+theme_override_font_sizes/normal_font_size = 8
+text = "sadssd"
+fit_content = true

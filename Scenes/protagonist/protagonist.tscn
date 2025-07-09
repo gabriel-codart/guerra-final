@@ -1504,7 +1504,7 @@ stream = ExtResource("38_qn66r")
 [node name="Hurt" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("36_7cy35")
 
-[node name="GameOver" type="AudioStreamPlayer" parent="SFX"]
+[node name="Dead" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("39_tkspx")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_sprite_animation_finished"]

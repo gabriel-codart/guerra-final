@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdowfycj6ta0"]
+
+[ext_resource type="Script" path="res://Scripts/Global/music_player.gd" id="1_8wrtx"]
+[ext_resource type="AudioStream" uid="uid://dr481w6mwljp8" path="res://Assets/Music/8bit Boi by u_w2fp0sqa7t from Pixabay.mp3" id="1_dvjm6"]
+[ext_resource type="AudioStream" uid="uid://3qdnti5y3rb0" path="res://Assets/Music/Level III by Vlad Krotov from Pixabay.mp3" id="2_23g2w"]
+[ext_resource type="AudioStream" uid="uid://bm0okdpie3omu" path="res://Assets/Music/Thinking Overture by DSTechnician from Pixabay.mp3" id="3_7n2ih"]
+[ext_resource type="AudioStream" uid="uid://fp86pj6iiy4f" path="res://Assets/Music/Castle of Athanasius by Spencer Y.K. from Pixabay.mp3" id="4_2e4xh"]
+[ext_resource type="AudioStream" uid="uid://cd4wh0imf73se" path="res://Assets/Music/Cinimatic Synthwave by ido berg from Pixabay.mp3" id="6_lnvxw"]
+
+[node name="MusicPlayer" type="Node"]
+process_mode = 3
+script = ExtResource("1_8wrtx")
+
+[node name="MainMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7n2ih")
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2e4xh")
+
+[node name="LevelCommon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_dvjm6")
+volume_db = -5.0
+
+[node name="LevelBoss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_23g2w")
+volume_db = -5.0
+
+[node name="Cutscene" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lnvxw")

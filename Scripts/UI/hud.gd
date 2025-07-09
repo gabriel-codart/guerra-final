@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-@onready var weapon_sprite: AnimatedSprite2D = $Weapon
-@onready var key_sprite: AnimatedSprite2D = $Key
-@onready var health_bar: TextureProgressBar = $HealthBar
-@onready var text_label: RichTextLabel = $TextNode/MarginContainer/RichTextLabel
-@onready var text_node: Node2D = $TextNode
+@onready var weapon_sprite: AnimatedSprite2D = $MarginContainer/LeftControl/MarginContainer/VBoxContainer/WeaponControl/Weapon
+@onready var key_sprite: AnimatedSprite2D = $MarginContainer/RightControl/MarginContainer/VBoxContainer/KeyControl/Key
+@onready var health_bar: TextureProgressBar = $MarginContainer/LeftControl/MarginContainer/VBoxContainer/HealthBar
+@onready var text_label: RichTextLabel = $MarginContainer/TextControl/MarginContainer/MarginContainer/VBoxContainer/RichTextLabel
+@onready var text_control: Control = $MarginContainer/TextControl
 # Armas
 @onready var weapon_names = Weapons.NAMES
 # Chaves
@@ -39,6 +39,6 @@ func set_health(health: int) -> void:
 func set_text(text: String) -> void:
 	text_label.text = text
 	if text == "":
-		text_node.visible = false
+		text_control.visible = false
 	else:
-		text_node.visible = true
+		text_control.visible = true

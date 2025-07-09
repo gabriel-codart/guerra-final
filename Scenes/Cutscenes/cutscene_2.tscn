@@ -1,0 +1,164 @@
+[gd_scene load_steps=7 format=3 uid="uid://dotpru00kwsfu"]
+
+[ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="1_4w1r1"]
+[ext_resource type="Script" path="res://Scripts/Cutscenes/cutscene_base.gd" id="1_nl0mt"]
+[ext_resource type="Texture2D" uid="uid://drdcko31sircq" path="res://Assets/Cutscenes/Cutscene 2.png" id="2_fte66"]
+
+[sub_resource type="Animation" id="Animation_62b8x"]
+resource_name = "Default"
+length = 20.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/RichText 1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 17.5, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/SpriteControl/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4, 6.5, 17.5, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/RichText 2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(8, 10.5, 17.5, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(20),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"go_to_next_scene"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_82htg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/RichText 1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/SpriteControl/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/RichText 2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_74q0i"]
+_data = {
+"Default": SubResource("Animation_62b8x"),
+"RESET": SubResource("Animation_82htg")
+}
+
+[node name="Cutscene 2" type="CanvasLayer"]
+script = ExtResource("1_nl0mt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_74q0i")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="RichText 1" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_4w1r1")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center]NÃO! ELISE! Mortos... todos...
+todos mortos. Não restou nada.[/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="SpriteControl" type="Control" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/CenterContainer/VBoxContainer/SpriteControl"]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_fte66")
+
+[node name="RichText 2" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_4w1r1")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center]Não tenho mais nada... O que me resta
+é apenas isso, apenas minha VINGANÇA![/center]"
+fit_content = true
+autowrap_mode = 0

@@ -178,10 +178,8 @@ func add_damage(damage_recieved: int) -> void:
 	HUD.set_health(health) # Atualiza barra de vida no HUD
 	anim_player.play("hurt")
 	if health <= 0:
-		current_weapon = Weapons.Type.Default
-		PlayerManager.current_weapon = Weapons.Type.Default
 		set_state(States.Protagonist.Dead)
-		player_sfx("game_over")
+		player_sfx("dead")
 	else:
 		player_sfx("hurt")
 
@@ -198,6 +196,8 @@ func player_animate() -> void:
 	var anim_name: String
 	if current_state == States.Protagonist.Run and current_weapon != Weapons.Type.Default:
 		anim_name = "weapon_run"
+	elif current_state == States.Protagonist.Dead:
+		anim_name = "default_dead"
 	else:
 		anim_name = weapon_names[current_weapon] + "_" + state_names[current_state]
 	anim_sprite.play(anim_name)
@@ -212,8 +212,8 @@ func player_sfx(sfx_name: String) -> void:
 			$SFX/Pickup.play()
 		"hurt":
 			$SFX/Hurt.play()
-		"game_over":
-			$SFX/GameOver.play()
+		"dead":
+			$SFX/Dead.play()
 		_:
 			pass
 

@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var can_process_input := false
+@onready var settings_menu: PackedScene = preload("res://Scenes/UI/settings_menu.tscn")
 
 func _ready() -> void:
 	await get_tree().create_timer(0.2).timeout
@@ -16,6 +17,10 @@ func resume_game() -> void:
 
 func _on_resume_button_pressed():
 	resume_game()
+
+func _on_settings_button_pressed():
+	var settings_menu_instance = settings_menu.instantiate()
+	get_tree().get_root().add_child(settings_menu_instance)
 
 func _on_main_menu_button_pressed():
 	GameManager.go_to_main_menu()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://h7d6x1j01kko"]
+[gd_scene load_steps=20 format=4 uid="uid://h7d6x1j01kko"]
 
 [ext_resource type="Texture2D" uid="uid://dgc73fls4fu8" path="res://Assets/Tiles/Chapter 1/Church_Tiles.png" id="1_23xrd"]
 [ext_resource type="Script" path="res://Scripts/Areas/level_base.gd" id="1_in2eo"]
@@ -7,12 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://krfrl444p60d" path="res://Assets/Tiles/Chapter 1/Salt.png" id="4_f5aq7"]
 [ext_resource type="Texture2D" uid="uid://dae1sf20gt580" path="res://Assets/Tiles/Chapter 1/Tiles.png" id="5_mfagw"]
 [ext_resource type="PackedScene" uid="uid://ckd6d0gyvqt0h" path="res://Scenes/Items/health.tscn" id="7_irel6"]
-[ext_resource type="PackedScene" uid="uid://bn48rgwwwuwc7" path="res://Scenes/Items/weapon.tscn" id="7_swlwo"]
 [ext_resource type="PackedScene" uid="uid://v5eys0hxy1es" path="res://Scenes/Protagonist/protagonist.tscn" id="8_16ko5"]
 [ext_resource type="PackedScene" uid="uid://b4ulxnmu4hab2" path="res://Scenes/Enemies/gangster_with_pistol.tscn" id="8_fo7hg"]
 [ext_resource type="PackedScene" uid="uid://c2dhgpsfx2a8c" path="res://Scenes/UI/hud.tscn" id="9_0wqtg"]
 [ext_resource type="PackedScene" uid="uid://bul51wa0ie6a8" path="res://Scenes/Enemies/gangster_without_gun.tscn" id="9_jijrh"]
-[ext_resource type="AudioStream" uid="uid://3qdnti5y3rb0" path="res://Assets/Music/Level III by Vlad Krotov from Pixabay.mp3" id="13_dsyrt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0uh8"]
 texture = ExtResource("1_23xrd")
@@ -1175,6 +1173,7 @@ size = Vector2(83, 126)
 [node name="Level 5" type="Node2D"]
 script = ExtResource("1_in2eo")
 initial_text = "Deve ser ele o líder, vou eliminá-lo até a última gota de sangue!"
+level_type = 1
 
 [node name="TileBackground" type="TileMapLayer" parent="."]
 modulate = Color(0.8, 0.8, 0.8, 1)
@@ -1246,10 +1245,6 @@ tile_set = SubResource("TileSet_2ogab")
 
 [node name="Items" type="Node2D" parent="."]
 
-[node name="Weapon" parent="Items" instance=ExtResource("7_swlwo")]
-position = Vector2(-234, 206)
-weapon_type = 1
-
 [node name="Health" parent="Items" instance=ExtResource("7_irel6")]
 position = Vector2(-269, 206)
 
@@ -1310,7 +1305,3 @@ collision_mask = 2
 position = Vector2(1007, -182)
 shape = SubResource("RectangleShape2D_eng6k")
 debug_color = Color(0, 0.649289, 0.149823, 0.42)
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_dsyrt")
-autoplay = true
