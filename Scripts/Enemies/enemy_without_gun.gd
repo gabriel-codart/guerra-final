@@ -28,7 +28,7 @@ func check_attack_area() -> void:
 	if attack_area.has_overlapping_bodies():
 		for body in attack_area.get_overlapping_bodies():
 			if body.is_in_group("Protagonist") and body.has_method("add_damage"):
-				body.add_damage(damage)
+				body.add_damage(damage, direction.x)
 
 func _on_animated_sprite_finished() -> void:
 	var anim_name: StringName = anim_sprite.animation
@@ -37,5 +37,8 @@ func _on_animated_sprite_finished() -> void:
 		can_attack = false
 		check_attack_area()
 		attack_timer.start()
+	elif anim_name == "hurt":
+		if current_state == States.Enemy.Hurt:
+			set_state(States.Enemy.Idle)
 	elif anim_name == "dead":
 		queue_free()

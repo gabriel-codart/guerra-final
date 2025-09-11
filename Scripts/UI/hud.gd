@@ -1,14 +1,14 @@
 extends CanvasLayer
 
-@onready var weapon_sprite: AnimatedSprite2D = $MarginContainer/LeftControl/MarginContainer/VBoxContainer/WeaponControl/Weapon
-@onready var key_sprite: AnimatedSprite2D = $MarginContainer/RightControl/MarginContainer/VBoxContainer/KeyControl/Key
-@onready var health_bar: TextureProgressBar = $MarginContainer/LeftControl/MarginContainer/VBoxContainer/HealthBar
+@onready var weapon_label: Label = $MarginContainer/LeftControl/MarginContainer/VBoxContainer/WeaponControl/Label
+@onready var key_label: Label = $MarginContainer/LeftControl/MarginContainer/VBoxContainer/KeyControl/Label
+@onready var health_bar: TextureProgressBar = $MarginContainer/LeftControl/MarginContainer/VBoxContainer/HealthControl/HealthBar
 @onready var text_label: RichTextLabel = $MarginContainer/TextControl/MarginContainer/MarginContainer/VBoxContainer/RichTextLabel
 @onready var text_control: Control = $MarginContainer/TextControl
 # Armas
-@onready var weapon_names = Weapons.NAMES
+@onready var weapon_names = Weapons.LABEL_NAMES
 # Chaves
-@onready var key_names = Keys.NAMES
+@onready var key_names = Keys.LABEL_NAMES
 # Vida
 var max_health: int
 
@@ -27,10 +27,12 @@ func _process(_delta):
 		health_bar.value = protagonist.health * 100 / protagonist.maxHealth
 
 func set_weapon(weapon: Weapons.Type) -> void:
-	weapon_sprite.play(weapon_names[weapon])
+	#weapon_sprite.play(weapon_names[weapon])
+	weapon_label.text = weapon_names[weapon]
 
 func set_key(key: Keys.Type) -> void:
-	key_sprite.play(key_names[key])
+	#key_sprite.play(key_names[key])
+	key_label.text = key_names[key]
 
 func set_health(health: int) -> void:
 	@warning_ignore("integer_division")

@@ -15,6 +15,8 @@ const GRAVITY: float = 1000
 const JUMP: float = -300
 const SPEED: float = 200
 const SCALE: float = 1
+# Exportáveis
+@export var damage: int = 1
 # Estados
 @onready var states = States.Protagonist
 @onready var state_names = States.PROTAGONIST_NAMES
@@ -30,7 +32,7 @@ var current_direction: Vector2
 var can_walk: bool
 var is_attacking: bool
 # Vida
-var maxHealth: int = 10
+var maxHealth: int = 4
 var health: int
 
 func _ready() -> void:
@@ -54,12 +56,15 @@ func _physics_process(delta: float) -> void:
 	player_animate()
 
 func can_act() -> bool:
-	return not is_attacking and current_state != States.Protagonist.Dead
+	return not is_attacking and current_state != States.Protagonist.Dead and current_state != States.Protagonist.Hurt
 
 func set_state(new_state: States.Protagonist) -> void:
 	if current_state != new_state:
 		current_state = new_state
 		player_collision_shape()
+		
+		if new_state != States.Protagonist.Attack and new_state != States.Protagonist.Shot:
+			is_attacking = false
 
 func set_weapon(new_weapon: Weapons.Type) -> void:
 	current_weapon = new_weapon
@@ -159,7 +164,7 @@ func check_attack_area() -> void:
 	if attack_area.has_overlapping_bodies():
 		var body: CharacterBody2D = attack_area.get_overlapping_bodies()[0] as CharacterBody2D
 		if body.is_in_group("Enemy") and body.has_method("add_damage"):
-			body.add_damage(1)
+			body.add_damage(damage, current_direction.x)
 
 func player_pause(_delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):
@@ -173,14 +178,20 @@ func add_health(health_recieved: int) -> void:
 	HUD.set_health(health)
 	player_sfx("pickup")
 
-func add_damage(damage_recieved: int) -> void:
+func add_damage(damage_recieved: int, direction_recieved: int) -> void:
+	if current_state == States.Protagonist.Dead or current_state == States.Protagonist.Hurt:
+		return # não acumula hits se já está morto ou tomando dano
+	
 	health -= damage_recieved
 	HUD.set_health(health) # Atualiza barra de vida no HUD
 	anim_player.play("hurt")
+	velocity = Vector2(direction_recieved * 750, 0)
+	
 	if health <= 0:
 		set_state(States.Protagonist.Dead)
 		player_sfx("dead")
 	else:
+		set_state(States.Protagonist.Hurt)
 		player_sfx("hurt")
 
 func can_play_animation() -> bool:
@@ -198,6 +209,8 @@ func player_animate() -> void:
 		anim_name = "weapon_run"
 	elif current_state == States.Protagonist.Dead:
 		anim_name = "default_dead"
+	elif current_state == States.Protagonist.Hurt:
+		anim_name = "default_hurt"
 	else:
 		anim_name = weapon_names[current_weapon] + "_" + state_names[current_state]
 	anim_sprite.play(anim_name)
@@ -233,6 +246,9 @@ func _on_sprite_animation_finished():
 		is_attacking = false
 		if current_state == States.Protagonist.Fall_Shot and not is_on_floor():
 			set_state(States.Protagonist.Fall)
+	elif anim_name.ends_with("_hurt"):
+		if current_state == States.Protagonist.Hurt:
+			set_state(States.Protagonist.Idle)
 	elif anim_name.ends_with("_dead"):
 		get_tree().paused = true
 		GameManager.go_to_game_over()

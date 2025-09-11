@@ -29,7 +29,7 @@ var state_names: Dictionary = States.ENEMY_NAMES
 # --- Variáveis Exportáveis
 @export var speed: float = 1200.0
 @export var damage: int = 1
-@export var health: int = 5
+@export var health: int = 2
 @export var distance_to_shoot: int = 300
 @export var distance_to_attack: int = 40
 # --- Variáveis Comuns ---
@@ -69,11 +69,14 @@ func _physics_process(delta):
 	enemy_animate()
 
 func can_act() -> bool:
-	return not is_attacking and can_walk and current_state != States.Enemy.Dead
+	return not is_attacking and can_walk and current_state != States.Enemy.Dead and current_state != States.Enemy.Hurt
 
 func set_state(new_state: States.Enemy) -> void:
 	if current_state != new_state:
 		current_state = new_state
+		
+		if new_state != States.Enemy.Attack and new_state != States.Enemy.Shot:
+			is_attacking = false
 
 func enemy_gravity(delta: float) -> void:
 	if not is_on_floor():
@@ -90,7 +93,7 @@ func enemy_idle(delta: float) -> void:
 func enemy_walk(delta: float) -> void:
 	if not can_act():
 		return
-
+	
 	if protagonist_point != Vector2.ZERO:
 		go_to_protagonist(delta)
 	elif number_of_points != 0:
@@ -123,20 +126,27 @@ func check_detection_area() -> void:
 	else:
 		protagonist_point = Vector2.ZERO
 
-func add_damage(damage_recieved: int) -> void:
+func add_damage(damage_recieved: int, direction_recieved: int) -> void:
+	if current_state == States.Enemy.Attack:
+		return # bloqueia se estiver atacando
+	if current_state == States.Enemy.Dead or current_state == States.Enemy.Hurt:
+		return # não acumula hits se já está morto ou tomando dano
+	
 	health -= damage_recieved
 	anim_player.play("hurt")
+	enemy_sfx("hurt")
+	velocity = Vector2(direction_recieved * 45, 0)
+	
 	if health <= 0:
 		set_state(States.Enemy.Dead)
-		velocity = Vector2.ZERO
+		#velocity = Vector2.ZERO
 		enemy_sfx("dead")
 	else:
-		enemy_sfx("hurt")
+		set_state(States.Enemy.Hurt)
 
 func enemy_animate() -> void:
-	var anim_name = state_names.get(current_state, "idle")
+	var anim_name = state_names[current_state]
 	anim_sprite.play(anim_name)
-	
 
 func enemy_sfx(sfx_name: String) -> void:
 	match sfx_name:

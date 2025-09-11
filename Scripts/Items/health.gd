@@ -7,5 +7,5 @@ func _ready() -> void:
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Protagonist"):
-		body.add_health(5)
+		body.add_health(1)
 		queue_free()

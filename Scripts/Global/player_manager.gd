@@ -6,7 +6,7 @@ var current_key: Keys.Type
 var current_progress: int
 
 func _ready() -> void:
-	health = 10
+	health = 1
 	current_weapon = Weapons.Type.Default
 	current_key = Keys.Type.Empty
 	current_progress = 1

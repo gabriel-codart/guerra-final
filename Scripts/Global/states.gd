@@ -1,7 +1,7 @@
 class_name States
 
 enum Protagonist {
-	Idle, Run, Jump, Fall, Shot, Fall_Shot, Attack, Dead
+	Idle, Run, Jump, Fall, Shot, Fall_Shot, Attack, Dead, Hurt
 }
 
 const PROTAGONIST_NAMES = {
@@ -13,10 +13,11 @@ const PROTAGONIST_NAMES = {
 	Protagonist.Fall_Shot: "fall_shot",
 	Protagonist.Attack: "attack",
 	Protagonist.Dead: "dead",
+	Protagonist.Hurt: "hurt",
 }
 
 enum Enemy {
-	Idle, Walk, Attack, Shot, Dead
+	Idle, Walk, Attack, Shot, Dead, Hurt
 }
 
 const ENEMY_NAMES = {
@@ -25,4 +26,5 @@ const ENEMY_NAMES = {
 	Enemy.Attack: "attack",
 	Enemy.Shot: "shot",
 	Enemy.Dead: "dead",
+	Enemy.Hurt: "hurt",
 }

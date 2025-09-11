@@ -40,5 +40,8 @@ func _on_animated_sprite_finished() -> void:
 		is_attacking = false
 		can_attack = false
 		attack_timer.start()
+	elif anim_name == "hurt":
+		if current_state == States.Enemy.Hurt:
+			set_state(States.Enemy.Idle)
 	elif anim_name == "dead":
 		queue_free()

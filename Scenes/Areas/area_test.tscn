@@ -596,7 +596,7 @@ weapon_type = 2
 position = Vector2(304, 208)
 
 [node name="Gangster Without Gun" parent="." instance=ExtResource("6_3nbm2")]
-position = Vector2(784, 211)
+position = Vector2(435, 234)
 
 [node name="PatrolPoints" type="Node2D" parent="Gangster Without Gun"]
 
@@ -606,19 +606,8 @@ position = Vector2(-164.667, 52.6667)
 [node name="PointRight" type="Marker2D" parent="Gangster Without Gun/PatrolPoints"]
 position = Vector2(156.667, 50.6667)
 
-[node name="Gangster Without Gun2" parent="." instance=ExtResource("6_3nbm2")]
-position = Vector2(1118, 211)
-
-[node name="PatrolPoints" type="Node2D" parent="Gangster Without Gun2"]
-
-[node name="PointLeft" type="Marker2D" parent="Gangster Without Gun2/PatrolPoints"]
-position = Vector2(-164.667, 52.6667)
-
-[node name="PointRight" type="Marker2D" parent="Gangster Without Gun2/PatrolPoints"]
-position = Vector2(156.667, 50.6667)
-
 [node name="Gangster With Gun" parent="." instance=ExtResource("7_1axh8")]
-position = Vector2(1589, 212)
+position = Vector2(806, 236)
 
 [node name="PatrolPoints" type="Node2D" parent="Gangster With Gun"]
 
@@ -626,17 +615,6 @@ position = Vector2(1589, 212)
 position = Vector2(-205.517, 53.1034)
 
 [node name="PointRight" type="Marker2D" parent="Gangster With Gun/PatrolPoints"]
-position = Vector2(215.862, 53.1034)
-
-[node name="Gangster With Gun2" parent="." instance=ExtResource("7_1axh8")]
-position = Vector2(2023, 212)
-
-[node name="PatrolPoints" type="Node2D" parent="Gangster With Gun2"]
-
-[node name="PointLeft" type="Marker2D" parent="Gangster With Gun2/PatrolPoints"]
-position = Vector2(-205.517, 53.1034)
-
-[node name="PointRight" type="Marker2D" parent="Gangster With Gun2/PatrolPoints"]
 position = Vector2(215.862, 53.1034)
 
 [node name="Projectiles" type="Node2D" parent="."]

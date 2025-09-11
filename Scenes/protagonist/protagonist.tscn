@@ -1,9 +1,10 @@
-[gd_scene load_steps=219 format=3 uid="uid://v5eys0hxy1es"]
+[gd_scene load_steps=222 format=3 uid="uid://v5eys0hxy1es"]
 
 [ext_resource type="Script" path="res://Scripts/Protagonist/protagonist.gd" id="1_i04aq"]
 [ext_resource type="Texture2D" uid="uid://k2c38coimah3" path="res://Assets/Protagonist/Protagonist - Default/Fall.png" id="2_f05om"]
 [ext_resource type="Texture2D" uid="uid://d2jkerubi431r" path="res://Assets/Protagonist/Protagonist - Default/Attack.png" id="3_cphbn"]
 [ext_resource type="Texture2D" uid="uid://cv2o0okxu0x83" path="res://Assets/Protagonist/Protagonist - Default/Dead.png" id="4_qgg7j"]
+[ext_resource type="Texture2D" uid="uid://drplj8j1d7bbc" path="res://Assets/Protagonist/Protagonist - Default/Hurt.png" id="5_rrwjy"]
 [ext_resource type="Texture2D" uid="uid://berbmfsa6yjph" path="res://Assets/Protagonist/Protagonist - Default/Idle.png" id="6_upc8r"]
 [ext_resource type="Texture2D" uid="uid://d3clj7p2xde1j" path="res://Assets/Protagonist/Protagonist - Default/Jump.png" id="7_ctu38"]
 [ext_resource type="Texture2D" uid="uid://7ng7m6xim5wo" path="res://Assets/Protagonist/Protagonist - Default/Run.png" id="8_baom2"]
@@ -79,6 +80,14 @@ region = Rect2(0, 640, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s26yb"]
 atlas = ExtResource("2_f05om")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm6pa"]
+atlas = ExtResource("5_rrwjy")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i0fp"]
+atlas = ExtResource("5_rrwjy")
 region = Rect2(0, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0twp1"]
@@ -778,6 +787,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_xm6pa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i0fp")
+}],
+"loop": false,
+"name": &"default_hurt",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0twp1")
 }, {
 "duration": 1.0,
@@ -1464,7 +1484,7 @@ script = ExtResource("1_i04aq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_um3wl")
-animation = &"smg_shot"
+animation = &"default_hurt"
 autoplay = "default_idle"
 speed_scale = 1.5
 

@@ -11,3 +11,11 @@ const NAMES = {
 	Type.Shotgun: "shotgun",
 	Type.Rassault: "rassault",
 }
+
+const LABEL_NAMES = {
+	Type.Default: "SOCO",
+	Type.Pistol: "PISTOLA",
+	Type.SMG: "METRALHADORA",
+	Type.Shotgun: "ESPINGARDA",
+	Type.Rassault: "FUZIL",
+}

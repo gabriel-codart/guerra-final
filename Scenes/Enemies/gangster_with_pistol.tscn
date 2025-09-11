@@ -1,8 +1,9 @@
-[gd_scene load_steps=43 format=3 uid="uid://b4ulxnmu4hab2"]
+[gd_scene load_steps=47 format=3 uid="uid://b4ulxnmu4hab2"]
 
 [ext_resource type="Texture2D" uid="uid://btdvky72vn1b8" path="res://Assets/Enemies/Gangster With Pistol/Dead.png" id="1_621no"]
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_with_gun.gd" id="1_er5ie"]
 [ext_resource type="Texture2D" uid="uid://dy2kubxv0w3id" path="res://Assets/Enemies/Gangster With Pistol/Idle.png" id="2_fa2cp"]
+[ext_resource type="Texture2D" uid="uid://b3a1v5enun72i" path="res://Assets/Enemies/Gangster With Pistol/Hurt.png" id="3_gjhfj"]
 [ext_resource type="Texture2D" uid="uid://bwruw6kn4g8lw" path="res://Assets/Enemies/Gangster With Pistol/Shot.png" id="3_uj8mt"]
 [ext_resource type="Texture2D" uid="uid://c2visg3wkgynj" path="res://Assets/Enemies/Gangster With Pistol/Walk.png" id="4_te8mg"]
 [ext_resource type="AudioStream" uid="uid://cgiabmvm2yty4" path="res://Assets/SFX/hitHurt_enemy by jsfxr.wav" id="6_8b8y1"]
@@ -28,6 +29,18 @@ region = Rect2(384, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_m5oy5"]
 atlas = ExtResource("1_621no")
 region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6m3v"]
+atlas = ExtResource("3_gjhfj")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6hr0"]
+atlas = ExtResource("3_gjhfj")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrh01"]
+atlas = ExtResource("3_gjhfj")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qtiry"]
 atlas = ExtResource("2_fa2cp")
@@ -141,6 +154,20 @@ animations = [{
 }],
 "loop": false,
 "name": &"dead",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6m3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6hr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrh01")
+}],
+"loop": false,
+"name": &"hurt",
 "speed": 8.0
 }, {
 "frames": [{
@@ -282,7 +309,7 @@ health = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2fd1t")
-animation = &"shot"
+animation = &"hurt"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -319,3 +346,4 @@ stream = ExtResource("6_8b8y1")
 
 [node name="Dead" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("8_mt2is")
+volume_db = 5.0

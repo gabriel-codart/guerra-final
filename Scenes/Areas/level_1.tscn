@@ -831,6 +831,7 @@ editor_draw_limits = true
 
 [node name="Gangster Without Gun" parent="Enemies" instance=ExtResource("10_15nm1")]
 position = Vector2(606, 175)
+health = 1
 
 [node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster Without Gun"]
 
@@ -842,6 +843,7 @@ position = Vector2(-230, 61)
 
 [node name="Gangster Without Gun2" parent="Enemies" instance=ExtResource("10_15nm1")]
 position = Vector2(834, 175)
+health = 1
 
 [node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster Without Gun2"]
 
@@ -853,6 +855,7 @@ position = Vector2(-230, 61)
 
 [node name="Gangster With SMG" parent="Enemies" instance=ExtResource("14_vkun3")]
 position = Vector2(1491, 176)
+health = 2
 
 [node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster With SMG"]
 
@@ -864,6 +867,7 @@ position = Vector2(79, 51)
 
 [node name="Gangster With SMG2" parent="Enemies" instance=ExtResource("14_vkun3")]
 position = Vector2(2353, 28)
+health = 2
 
 [node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster With SMG2"]
 
@@ -875,6 +879,7 @@ position = Vector2(503, 48)
 
 [node name="Gangster Without Gun3" parent="Enemies" instance=ExtResource("10_15nm1")]
 position = Vector2(3288, 174)
+health = 1
 
 [node name="PatrolPoints" type="Node2D" parent="Enemies/Gangster Without Gun3"]
 

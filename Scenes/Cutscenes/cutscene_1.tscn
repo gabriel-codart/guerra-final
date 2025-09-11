@@ -58,6 +58,18 @@ tracks/3/keys = {
 "method": &"go_to_next_scene"
 }]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("JumpCutContainer/PanelContainer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_82htg"]
 length = 0.001
@@ -97,6 +109,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("JumpCutContainer/PanelContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_74q0i"]
 _data = {
@@ -122,9 +146,15 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.5
+offset_top = -116.0
+offset_right = 202.5
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -159,3 +189,38 @@ theme_override_font_sizes/normal_font_size = 12
 text = "Uma explosão! Ah não, estão atacando a vila!"
 fit_content = true
 autowrap_mode = 0
+
+[node name="JumpCutContainer" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_apqfx")
+
+[node name="PanelContainer" type="PanelContainer" parent="JumpCutContainer"]
+layout_mode = 2
+theme = ExtResource("1_apqfx")
+
+[node name="ColorRect" type="ColorRect" parent="JumpCutContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_apqfx")
+color = Color(0.25, 0.25, 0.25, 0.25)
+
+[node name="MarginContainer" type="MarginContainer" parent="JumpCutContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="JumpCutContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_apqfx")
+theme_override_font_sizes/font_size = 12
+text = "ENTER para pular"
+horizontal_alignment = 1
+vertical_alignment = 1

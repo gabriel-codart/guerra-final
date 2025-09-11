@@ -27,7 +27,7 @@ func _on_body_entered(object: Node2D) -> void:
 		return
 	
 	if object.is_in_group(target_group) and object.has_method("add_damage"):
-		object.add_damage(damage)
+		object.add_damage(damage, direction.x)
 		create_projectile_impact()
 
 func create_projectile_impact() -> void:

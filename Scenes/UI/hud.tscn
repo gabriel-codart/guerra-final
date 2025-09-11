@@ -1,132 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://c2dhgpsfx2a8c"]
+[gd_scene load_steps=4 format=3 uid="uid://c2dhgpsfx2a8c"]
 
 [ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="1_3d8ni"]
-[ext_resource type="Texture2D" uid="uid://imlb1ngf326l" path="res://Assets/HUD/Weapons/Default.png" id="2_ash45"]
-[ext_resource type="Texture2D" uid="uid://cmk3yxyyasb6e" path="res://Assets/HUD/Protagonist Health Bar Under.png" id="2_mh3a7"]
-[ext_resource type="Texture2D" uid="uid://d3guj1hbqe48w" path="res://Assets/HUD/Protagonist Health Bar Progress.png" id="3_riabt"]
-[ext_resource type="Texture2D" uid="uid://dof06cr0ufpeg" path="res://Assets/HUD/Weapons/Pistol.png" id="3_uvlgb"]
-[ext_resource type="Texture2D" uid="uid://bihi0a2rhjs0c" path="res://Assets/HUD/Weapons/Rifle-Assault.png" id="4_0frx0"]
-[ext_resource type="Texture2D" uid="uid://dqxtfk0y3fhnv" path="res://Assets/HUD/Weapons/Shotgun.png" id="4_q5bw5"]
-[ext_resource type="Texture2D" uid="uid://cnj8wcr0lhavi" path="res://Assets/HUD/Weapons/SMG.png" id="5_srb2e"]
 [ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="7_aupxn"]
-[ext_resource type="Texture2D" uid="uid://qof1fdoy0bau" path="res://Assets/HUD/Items/Empty.png" id="7_kvcdi"]
-[ext_resource type="Texture2D" uid="uid://b4kw4e7xbowcs" path="res://Assets/HUD/Items/Key Gold.png" id="8_axum4"]
-[ext_resource type="Texture2D" uid="uid://c41gvi6bhxlwm" path="res://Assets/HUD/Items/Key Red.png" id="9_ptwvy"]
-[ext_resource type="Texture2D" uid="uid://ccetn3dfn22mf" path="res://Assets/HUD/Items/Key Silver.png" id="10_kybbx"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nrpvv"]
-atlas = ExtResource("2_ash45")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xb4ne"]
-atlas = ExtResource("3_uvlgb")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e6r2l"]
-atlas = ExtResource("4_0frx0")
-region = Rect2(0, 0, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j2jd3"]
-atlas = ExtResource("4_q5bw5")
-region = Rect2(0, 0, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j6ql6"]
-atlas = ExtResource("5_srb2e")
-region = Rect2(0, 0, 64, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_u63ej"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nrpvv")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xb4ne")
-}],
-"loop": false,
-"name": &"pistol",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e6r2l")
-}],
-"loop": false,
-"name": &"rassault",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j2jd3")
-}],
-"loop": false,
-"name": &"shotgun",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j6ql6")
-}],
-"loop": false,
-"name": &"smg",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aw3av"]
-atlas = ExtResource("7_kvcdi")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_31rc5"]
-atlas = ExtResource("8_axum4")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_85vsn"]
-atlas = ExtResource("9_ptwvy")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gjhic"]
-atlas = ExtResource("10_kybbx")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_n0sjq"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aw3av")
-}],
-"loop": false,
-"name": &"empty",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_31rc5")
-}],
-"loop": false,
-"name": &"gold",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_85vsn")
-}],
-"loop": false,
-"name": &"red",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gjhic")
-}],
-"loop": false,
-"name": &"silver",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://ew1yrj21ixag" path="res://Assets/HUD/Protagonist Health Hearts.png" id="7_oypw7"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_3d8ni")
@@ -146,58 +22,49 @@ size_flags_vertical = 0
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/LeftControl"]
 layout_mode = 1
 offset_right = 80.0
-offset_bottom = 82.0
+offset_bottom = 72.0
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/LeftControl/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 20
 
 [node name="WeaponControl" type="Control" parent="MarginContainer/LeftControl/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Weapon" type="AnimatedSprite2D" parent="MarginContainer/LeftControl/MarginContainer/VBoxContainer/WeaponControl"]
-scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_u63ej")
-autoplay = "default"
-centered = false
-
-[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/LeftControl/MarginContainer/VBoxContainer"]
-layout_mode = 2
-texture_under = ExtResource("2_mh3a7")
-texture_progress = ExtResource("3_riabt")
-
-[node name="RightControl" type="Control" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/RightControl"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -82.0
+[node name="Label" type="Label" parent="MarginContainer/LeftControl/MarginContainer/VBoxContainer/WeaponControl"]
+layout_mode = 0
+offset_right = 40.0
 offset_bottom = 16.0
-grow_horizontal = 0
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 32
+theme = ExtResource("7_aupxn")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 12
+text = "SOCO"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/RightControl/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="KeyControl" type="Control" parent="MarginContainer/RightControl/MarginContainer/VBoxContainer"]
+[node name="HealthControl" type="Control" parent="MarginContainer/LeftControl/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Key" type="AnimatedSprite2D" parent="MarginContainer/RightControl/MarginContainer/VBoxContainer/KeyControl"]
-scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_n0sjq")
-animation = &"red"
-autoplay = "empty"
-centered = false
+[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/LeftControl/MarginContainer/VBoxContainer/HealthControl"]
+layout_mode = 2
+offset_top = -2.0
+offset_right = 69.0
+offset_bottom = 14.0
+texture_progress = ExtResource("7_oypw7")
+
+[node name="KeyControl" type="Control" parent="MarginContainer/LeftControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/LeftControl/MarginContainer/VBoxContainer/KeyControl"]
+layout_mode = 0
+offset_right = 41.0
+offset_bottom = 8.0
+theme = ExtResource("7_aupxn")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 6
+text = "SEM CHAVE"
 
 [node name="TextControl" type="Control" parent="MarginContainer"]
 layout_mode = 2
