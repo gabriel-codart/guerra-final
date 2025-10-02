@@ -1264,7 +1264,8 @@ editor_draw_limits = true
 [node name="Gangster With Pistol" parent="Enemies" instance=ExtResource("8_fo7hg")]
 position = Vector2(1423, 174)
 speed = 1600.0
-health = 20
+damage = 1
+health = 5
 distance_to_shoot = 700
 
 [node name="Gangster Without Gun2" parent="Enemies" instance=ExtResource("9_jijrh")]

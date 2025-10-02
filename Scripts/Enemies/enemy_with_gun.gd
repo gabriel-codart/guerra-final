@@ -6,18 +6,22 @@ var projectile: PackedScene = preload("res://Scenes/Projectiles and Effects/proj
 func _ready():
 	state_names = States.ENEMY_NAMES
 	set_state(States.Enemy.Idle)
-	
 	super._ready()
 
 func go_to_protagonist(delta: float) -> void:
 	check_direction(protagonist_point)
-	if abs(position.x - protagonist_point.x) > distance_to_shoot:
+	var current_distance = abs(position.x - protagonist_point.x)
+	
+	if current_distance > distance_to_shoot:
 		velocity.x = direction.x * speed * delta
 		set_state(States.Enemy.Walk)
 	else:
 		if not can_attack:
 			velocity.x = move_toward(velocity.x, 0, speed * delta)
 			set_state(States.Enemy.Idle)
+			return
+		if current_distance <= distance_to_attack:
+			enemy_attack()
 			return
 		enemy_shoot()
 
@@ -36,10 +40,15 @@ func create_projectile() -> void:
 
 func _on_animated_sprite_finished() -> void:
 	var anim_name: StringName = anim_sprite.animation
-	if anim_name == "shot":
+	if anim_name == "attack":
 		is_attacking = false
 		can_attack = false
-		attack_timer.start()
+		check_attack_area()
+		attack_timer.start(0.1)
+	elif anim_name == "shot":
+		is_attacking = false
+		can_attack = false
+		attack_timer.start(1.5)
 	elif anim_name == "hurt":
 		if current_state == States.Enemy.Hurt:
 			set_state(States.Enemy.Idle)

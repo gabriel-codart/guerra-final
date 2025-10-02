@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bul51wa0ie6a8"]
+[gd_scene load_steps=44 format=3 uid="uid://bul51wa0ie6a8"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_without_gun.gd" id="1_jghsy"]
 [ext_resource type="Texture2D" uid="uid://e3x7s4xdpfei" path="res://Assets/Enemies/Gangster Without Gun/Attack.png" id="1_xfgfp"]
@@ -9,10 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://c4tl0ww1uu82o" path="res://Assets/SFX/normalWalk by jsfxr.wav" id="6_34o0p"]
 [ext_resource type="AudioStream" uid="uid://cgiabmvm2yty4" path="res://Assets/SFX/hitHurt_enemy by jsfxr.wav" id="6_sxjif"]
 [ext_resource type="AudioStream" uid="uid://ifv2ax4xi6nn" path="res://Assets/SFX/dead_enemy by jsfxr.wav" id="8_y5dum"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ep5ue"]
-atlas = ExtResource("1_xfgfp")
-region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pba53"]
 atlas = ExtResource("1_xfgfp")
@@ -125,9 +121,6 @@ region = Rect2(1152, 0, 128, 128)
 [sub_resource type="SpriteFrames" id="SpriteFrames_8lv0a"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ep5ue")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pba53")
 }, {
@@ -287,11 +280,11 @@ _data = {
 collision_layer = 4
 collision_mask = 27
 script = ExtResource("1_jghsy")
-health = 8
+health = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8lv0a")
-animation = &"hurt"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -302,7 +295,7 @@ shape = SubResource("CapsuleShape2D_56fp5")
 wait_time = 2.0
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 0.1
 
 [node name="DetectionArea2D" type="Area2D" parent="."]
 collision_layer = 0

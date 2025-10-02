@@ -11,10 +11,12 @@ func _ready():
 
 func _on_continue_game_button_pressed():
 	GameManager.continue_game()
+	await get_tree().create_timer(2.5).timeout
 	queue_free()
 
 func _on_new_game_button_pressed():
 	GameManager.new_game()
+	await get_tree().create_timer(2.5).timeout
 	queue_free()
 
 func _on_settings_button_pressed():

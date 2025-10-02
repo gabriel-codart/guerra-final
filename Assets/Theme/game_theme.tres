@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://b31dg5p0p2jkb"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://b31dg5p0p2jkb"]
 
 [ext_resource type="FontFile" uid="uid://bdopae2exjcnn" path="res://Assets/Theme/Better VCR 9.0.1.ttf" id="1_td8xw"]
 
@@ -57,6 +57,33 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ky18i"]
+bg_color = Color(0.831373, 0.207843, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6ib6"]
+bg_color = Color(0.831373, 0.207843, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akcik"]
+bg_color = Color(0.299547, 0.299547, 0.299547, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1j2ta"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -78,6 +105,9 @@ Button/styles/focus = SubResource("StyleBoxFlat_lk66t")
 Button/styles/hover = SubResource("StyleBoxFlat_85on0")
 Button/styles/normal = SubResource("StyleBoxFlat_bevcx")
 Button/styles/pressed = SubResource("StyleBoxFlat_8prvv")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_ky18i")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_r6ib6")
+HSlider/styles/slider = SubResource("StyleBoxFlat_akcik")
 Label/fonts/font = ExtResource("1_td8xw")
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10

@@ -1,20 +1,28 @@
 extends Node
 
 var area_test: PackedScene = preload("res://Scenes/Areas/area_test.tscn")
-# Telas
+# Menus
 var main_menu: PackedScene = preload("res://Scenes/UI/main_menu.tscn")
 var pause_menu: PackedScene = preload("res://Scenes/UI/pause_menu.tscn")
 var game_over: PackedScene = preload("res://Scenes/UI/game_over.tscn")
+# Tela de Transição
+@onready var transition_layer = preload("res://Scenes/UI/transition_layer.tscn").instantiate()
+# Camada de Brilho
+@onready var brightness_layer = preload("res://Scenes/UI/brightness_layer.tscn").instantiate()
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color(0, 0, 0, 1.00))
-	
+	# Adiciona a transição
+	get_tree().root.add_child.call_deferred(transition_layer)
+	# Layer global para brilho
+	get_tree().root.add_child.call_deferred(brightness_layer)
+	#brightness_layer.name = "BrightnessLayer"
+	# Carrega as configs do usuário
 	SettingsManager.load_settings()
 
 func transition_to_scene(scene: PackedScene) -> void:
-	await get_tree().create_timer(1.0).timeout
-	get_tree().change_scene_to_packed(scene)
 	get_tree().paused = false
+	transition_layer.play_transition(scene)
 
 func load_current_scene() -> void:
 	var scene_id = Scenes.PROGRESS_SCENE_MAP.get(PlayerManager.current_progress, null)

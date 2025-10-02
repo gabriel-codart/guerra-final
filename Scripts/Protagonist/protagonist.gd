@@ -31,8 +31,9 @@ var current_direction: Vector2
 # Verificadores
 var can_walk: bool
 var is_attacking: bool
+var is_dead: bool = false
 # Vida
-var maxHealth: int = 4
+var maxHealth: int = 5
 var health: int
 
 func _ready() -> void:
@@ -45,6 +46,9 @@ func _ready() -> void:
 	is_attacking = false
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+	
 	player_gravity(delta)
 	player_idle(delta)
 	player_run(delta)
@@ -65,6 +69,11 @@ func set_state(new_state: States.Protagonist) -> void:
 		
 		if new_state != States.Protagonist.Attack and new_state != States.Protagonist.Shot:
 			is_attacking = false
+		# Manipula o Z Index em Ataque
+		if new_state == States.Protagonist.Attack:
+			z_index = 1
+		else:
+			z_index = 0
 
 func set_weapon(new_weapon: Weapons.Type) -> void:
 	current_weapon = new_weapon
@@ -131,7 +140,14 @@ func player_jump(_delta: float) -> void:
 		player_sfx("jump")
 
 func player_action(_delta: float) -> void:
-	if Input.is_action_just_pressed("shoot") and current_weapon != Weapons.Type.Default and can_act():
+	if Input.is_action_just_pressed("attack") and can_act():
+		# Primeiro verificamos se tem inimigo por perto
+		if is_on_floor() and attack_area.has_overlapping_bodies():
+			set_state(States.Protagonist.Attack)
+			is_attacking = true
+			return
+		
+		# Caso contrário, tratamos como disparo
 		if not is_on_floor(): # Atirando no ar
 			# Shotgun e Rassault não podem atirar no ar
 			if current_weapon == Weapons.Type.Shotgun or current_weapon == Weapons.Type.Rassault:
@@ -139,17 +155,17 @@ func player_action(_delta: float) -> void:
 			
 			# Outras armas atiram no ar normalmente
 			weapon_marker.set_axis(weapon_names[current_weapon], "in_air")
-			create_projectile()
+			if current_weapon != Weapons.Type.Default:
+				create_projectile()
 			set_state(States.Protagonist.Fall_Shot)
 			is_attacking = true
 			return
+		
 		# Atirando no chão
 		weapon_marker.set_axis(weapon_names[current_weapon], "on_floor")
-		create_projectile()
+		if current_weapon != Weapons.Type.Default:
+			create_projectile()
 		set_state(States.Protagonist.Shot)
-		is_attacking = true
-	if Input.is_action_just_pressed("attack") and is_on_floor() and can_act():
-		set_state(States.Protagonist.Attack)
 		is_attacking = true
 
 func create_projectile() -> void:
@@ -157,7 +173,8 @@ func create_projectile() -> void:
 	projectile_instance.global_position = weapon_marker.global_position
 	projectile_instance.direction = current_direction
 	projectile_instance.target_group = "Enemy"
-	projectile_instance.damage = current_weapon
+	projectile_instance.damage = current_weapon + 1
+	projectile_instance.weapon = current_weapon
 	get_tree().current_scene.get_node("Projectiles").add_child(projectile_instance)
 
 func check_attack_area() -> void:
@@ -185,7 +202,7 @@ func add_damage(damage_recieved: int, direction_recieved: int) -> void:
 	health -= damage_recieved
 	HUD.set_health(health) # Atualiza barra de vida no HUD
 	anim_player.play("hurt")
-	velocity = Vector2(direction_recieved * 750, 0)
+	velocity = Vector2(direction_recieved * 1000, 0)
 	
 	if health <= 0:
 		set_state(States.Protagonist.Dead)
@@ -195,8 +212,6 @@ func add_damage(damage_recieved: int, direction_recieved: int) -> void:
 		player_sfx("hurt")
 
 func can_play_animation() -> bool:
-	if current_weapon == Weapons.Type.Default and current_state == States.Protagonist.Shot:
-		return false
 	if current_state == States.Protagonist.Dead and not is_on_floor():
 		return false
 	return true
@@ -207,6 +222,8 @@ func player_animate() -> void:
 	var anim_name: String
 	if current_state == States.Protagonist.Run and current_weapon != Weapons.Type.Default:
 		anim_name = "weapon_run"
+	elif current_state == States.Protagonist.Attack:
+		anim_name = "default_attack"
 	elif current_state == States.Protagonist.Dead:
 		anim_name = "default_dead"
 	elif current_state == States.Protagonist.Hurt:
@@ -244,11 +261,14 @@ func _on_sprite_animation_finished():
 		check_attack_area()
 	elif anim_name.ends_with("_shot"):
 		is_attacking = false
+		if current_weapon == Weapons.Type.Default:
+			create_projectile()
 		if current_state == States.Protagonist.Fall_Shot and not is_on_floor():
 			set_state(States.Protagonist.Fall)
 	elif anim_name.ends_with("_hurt"):
 		if current_state == States.Protagonist.Hurt:
 			set_state(States.Protagonist.Idle)
 	elif anim_name.ends_with("_dead"):
+		is_dead = true
 		get_tree().paused = true
 		GameManager.go_to_game_over()

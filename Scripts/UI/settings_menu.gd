@@ -1,23 +1,16 @@
 extends CanvasLayer
 
 @onready var window_mode_option_button = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/WindowModeOptionButton
-@onready var resolution_option_button = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionOptionButton
+@onready var brightness_slider = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/BrightContainer/HSlider
+@onready var volume_slider = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VolumeContainer/HSlider
 
 var window_modes: Dictionary = {"Fullscreen": DisplayServer.WINDOW_MODE_FULLSCREEN,
 								"Windowed": DisplayServer.WINDOW_MODE_WINDOWED,
 								"Window Maximized": DisplayServer.WINDOW_MODE_MAXIMIZED}
 
-var resolutions: Dictionary = {"480x270": Vector2i(480, 270),
-								"640x360": Vector2i(640, 360)}
-								#"854x480": Vector2i(854, 480)}
-								#"1280x720": Vector2i(1280, 720)}
-
 func _ready() -> void:
 	for window_mode in window_modes:
 		window_mode_option_button.add_item(window_mode)
-	
-	for resolution in resolutions:
-		resolution_option_button.add_item(resolution)
 	
 	initialise_controls()
 
@@ -25,15 +18,18 @@ func initialise_controls() -> void:
 	SettingsManager.load_settings()
 	var settings_data: SettingsDataResource = SettingsManager.get_settings()
 	window_mode_option_button.selected = settings_data.window_mode_index
-	resolution_option_button.selected = settings_data.resolution_index
+	brightness_slider.value = settings_data.brightness
+	volume_slider.value = settings_data.volume
 
 func _on_window_mode_option_button_item_selected(index):
 	var window_mode = window_modes.get(window_mode_option_button.get_item_text(index)) as int
 	SettingsManager.set_window_mode(window_mode, index)
 
-func _on_resolution_option_button_item_selected(index):
-	var resolution = resolutions.get(resolution_option_button.get_item_text(index)) as Vector2i
-	SettingsManager.set_resolution(resolution, index)
+func _on_brightness_slider_value_changed(value):
+	SettingsManager.set_brightness(value)
+
+func _on_audio_slider_value_changed(value):
+	SettingsManager.set_volume(value)
 
 func _on_back_button_pressed():
 	SettingsManager.save_settings()

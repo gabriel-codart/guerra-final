@@ -13,7 +13,7 @@ const NAMES = {
 }
 
 const LABEL_NAMES = {
-	Type.Default: "SOCO",
+	Type.Default: "FACAS",
 	Type.Pistol: "PISTOLA",
 	Type.SMG: "METRALHADORA",
 	Type.Shotgun: "ESPINGARDA",

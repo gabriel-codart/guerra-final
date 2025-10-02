@@ -1,5 +1,7 @@
 extends Node2D
 
+# Sprite
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 # Impacto
 var projectile_impact: PackedScene = preload("res://Scenes/Projectiles and Effects/projectile_impact.tscn")
 # Constantes
@@ -10,9 +12,12 @@ var direction: Vector2
 var damage: int = 1
 # Alvo
 var target_group: String
+# Tipo
+var weapon: Weapons.Type = Weapons.Type.SMG
+@onready var weapon_names = Weapons.NAMES
 
 func _ready() -> void:
-	player_sfx("shoot")
+	set_type()
 	transform.x.x = 1 if direction == Vector2.RIGHT else -1
 
 func _process(delta: float) -> void:
@@ -34,11 +39,21 @@ func create_projectile_impact() -> void:
 	var projectile_impact_instance: AnimatedSprite2D = projectile_impact.instantiate() as AnimatedSprite2D
 	projectile_impact_instance.global_position = global_position
 	get_parent().add_child(projectile_impact_instance)
-	player_sfx("impact")
+	play_sfx("impact")
 	queue_free()
 
-func player_sfx(sfx_name: String) -> void:
+func set_type() -> void:
+	if weapon == Weapons.Type.Default:
+		sprite.play("knife")
+		play_sfx("knife")
+		return
+	sprite.play(weapon_names[weapon])
+	play_sfx("shoot")
+
+func play_sfx(sfx_name: String) -> void:
 	match sfx_name:
+		"knife":
+			$SFX/Knife.play()
 		"shoot":
 			$SFX/Shoot.play()
 		"impact":

@@ -7,6 +7,7 @@ class_name EnemyBase extends CharacterBody2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var detection_area: Area2D = $DetectionArea2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var attack_area: Area2D = $AttackArea2D
 
 # --- Patrulha ---
 var patrol_points: Node2D = null
@@ -26,12 +27,13 @@ const SCALE: float = 1
 var current_state: int
 var state_names: Dictionary = States.ENEMY_NAMES
 
-# --- Variáveis Exportáveis
+# --- Variáveis Exportáveis ---
 @export var speed: float = 1200.0
 @export var damage: int = 1
 @export var health: int = 2
 @export var distance_to_shoot: int = 300
 @export var distance_to_attack: int = 40
+
 # --- Variáveis Comuns ---
 var direction: Vector2 = Vector2.LEFT
 var can_walk: bool = true
@@ -51,12 +53,12 @@ func _ready():
 	# Conectar detection area
 	if not detection_area.body_entered.is_connected(_on_detection_area_2d_body_entered):
 		detection_area.body_entered.connect(_on_detection_area_2d_body_entered)
-	# Conectar timers se não estiverem conectados
+	# Conectar timers
 	if not timer.timeout.is_connected(_on_timer_timeout):
 		timer.timeout.connect(_on_timer_timeout)
 	if not attack_timer.timeout.is_connected(_on_attack_timer_timeout):
 		attack_timer.timeout.connect(_on_attack_timer_timeout)
-	# Conectar animation_finished do AnimatedSprite2D
+	# Conectar animation_finished
 	if not anim_sprite.animation_finished.is_connected(_on_animated_sprite_finished):
 		anim_sprite.animation_finished.connect(_on_animated_sprite_finished)
 
@@ -74,7 +76,6 @@ func can_act() -> bool:
 func set_state(new_state: States.Enemy) -> void:
 	if current_state != new_state:
 		current_state = new_state
-		
 		if new_state != States.Enemy.Attack and new_state != States.Enemy.Shot:
 			is_attacking = false
 
@@ -126,11 +127,21 @@ func check_detection_area() -> void:
 	else:
 		protagonist_point = Vector2.ZERO
 
+func enemy_attack() -> void:
+	set_state(States.Enemy.Attack)
+	is_attacking = true
+
+func check_attack_area() -> void:
+	if attack_area.has_overlapping_bodies():
+		for body in attack_area.get_overlapping_bodies():
+			if body.is_in_group("Protagonist") and body.has_method("add_damage"):
+				body.add_damage(damage, direction.x)
+
 func add_damage(damage_recieved: int, direction_recieved: int) -> void:
 	if current_state == States.Enemy.Attack:
-		return # bloqueia se estiver atacando
+		return
 	if current_state == States.Enemy.Dead or current_state == States.Enemy.Hurt:
-		return # não acumula hits se já está morto ou tomando dano
+		return
 	
 	health -= damage_recieved
 	anim_player.play("hurt")
@@ -139,7 +150,6 @@ func add_damage(damage_recieved: int, direction_recieved: int) -> void:
 	
 	if health <= 0:
 		set_state(States.Enemy.Dead)
-		#velocity = Vector2.ZERO
 		enemy_sfx("dead")
 	else:
 		set_state(States.Enemy.Hurt)

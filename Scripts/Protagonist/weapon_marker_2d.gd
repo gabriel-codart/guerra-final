@@ -7,6 +7,13 @@ func _process(_delta):
 	pass
 
 func set_axis(weapon: String, state: String) -> void:
+	if weapon == "default":
+		if state == "in_air":
+			position.x = 44
+			position.y = 10
+			return
+		position.x = 42
+		position.y = 18
 	if weapon == "pistol":
 		if state == "in_air":
 			position.x = 38

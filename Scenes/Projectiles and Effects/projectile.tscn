@@ -1,19 +1,91 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpwvamojrivt0"]
+[gd_scene load_steps=17 format=3 uid="uid://dpwvamojrivt0"]
 
 [ext_resource type="Script" path="res://Scripts/Projectiles and Effects/projectile.gd" id="1_14hns"]
+[ext_resource type="Texture2D" uid="uid://bcc24qdqoej21" path="res://Assets/Projectiles/Knife.png" id="2_08iq5"]
 [ext_resource type="AudioStream" uid="uid://djts5aj0nl1si" path="res://Assets/SFX/laserShoot by jsfxr.wav" id="2_320wv"]
+[ext_resource type="Texture2D" uid="uid://dfp4h6wg4xq3t" path="res://Assets/Projectiles/Pistol_Bullet.png" id="3_k2hib"]
 [ext_resource type="AudioStream" uid="uid://b0qpbn2pykq12" path="res://Assets/SFX/impactHit by jsfxr.wav" id="3_lqekk"]
+[ext_resource type="Texture2D" uid="uid://c558thk6t5wgw" path="res://Assets/Projectiles/Rassault_Bullet.png" id="4_m0ngg"]
+[ext_resource type="Texture2D" uid="uid://dvum6hn36hebm" path="res://Assets/Projectiles/Shotgun_Bullet.png" id="5_03dy3"]
+[ext_resource type="Texture2D" uid="uid://c0kdwm7q1l0h5" path="res://Assets/Projectiles/SMG_Bullet.png" id="6_4yymr"]
+[ext_resource type="AudioStream" uid="uid://cq1d4yhwc6ewx" path="res://Assets/SFX/knifeShoot.wav" id="7_ghr3n"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvs4q"]
-size = Vector2(9, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocip0"]
+atlas = ExtResource("2_08iq5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwdag"]
+atlas = ExtResource("3_k2hib")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tck3f"]
+atlas = ExtResource("4_m0ngg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtim7"]
+atlas = ExtResource("5_03dy3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5iqhv"]
+atlas = ExtResource("6_4yymr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_em3f2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocip0")
+}],
+"loop": false,
+"name": &"knife",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwdag")
+}],
+"loop": false,
+"name": &"pistol",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tck3f")
+}],
+"loop": false,
+"name": &"rassault",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtim7")
+}],
+"loop": false,
+"name": &"shotgun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5iqhv")
+}],
+"loop": false,
+"name": &"smg",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dow7i"]
-size = Vector2(6, 3)
+size = Vector2(7, 1)
 
 [node name="Projectile" type="Node2D"]
 script = ExtResource("1_14hns")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -1)
+sprite_frames = SubResource("SpriteFrames_em3f2")
+animation = &"knife"
+
 [node name="Fire" type="ColorRect" parent="."]
+visible = false
 offset_left = -3.0
 offset_top = -2.0
 offset_right = 3.0
@@ -21,27 +93,27 @@ offset_bottom = 1.0
 color = Color(1, 0.705882, 0, 1)
 
 [node name="FireTrail" type="ColorRect" parent="."]
+visible = false
 offset_left = -7.0
 offset_top = -1.0
 offset_right = 2.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, -0.5)
-shape = SubResource("RectangleShape2D_nvs4q")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -0.5)
+position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_dow7i")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-2, -0.5)
-scale = Vector2(0.6, 0.25)
+scale = Vector2(1, 0.55)
 
 [node name="SFX" type="Node" parent="."]
+
+[node name="Knife" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("7_ghr3n")
 
 [node name="Shoot" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("2_320wv")
