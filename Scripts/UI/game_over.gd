@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 func _ready() -> void:
-	print("game over")
 	MusicPlayer.play_music("GameOver")
 
 func _on_restart_level_button_pressed():

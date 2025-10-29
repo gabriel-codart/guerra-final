@@ -17,14 +17,16 @@ const PROTAGONIST_NAMES = {
 }
 
 enum Enemy {
-	Idle, Walk, Attack, Shot, Dead, Hurt
+	Idle, Walk, Fall, Attack, Shot, Dead, Hurt, Special
 }
 
 const ENEMY_NAMES = {
 	Enemy.Idle: "idle",
 	Enemy.Walk: "walk",
+	Enemy.Fall: "fall",
 	Enemy.Attack: "attack",
 	Enemy.Shot: "shot",
 	Enemy.Dead: "dead",
 	Enemy.Hurt: "hurt",
+	Enemy.Special: "special",
 }

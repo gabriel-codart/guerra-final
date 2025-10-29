@@ -119,8 +119,8 @@ func player_collision_shape() -> void:
 			collision_shape.position = Vector2(-14, 56)
 		States.Protagonist.Jump:
 			collision_shape.shape.radius = 10
-			collision_shape.shape.height = 48
-			collision_shape.position = Vector2(-1, 22)
+			collision_shape.shape.height = 45
+			collision_shape.position = Vector2(-2, 20)
 		_:
 			collision_shape.shape.radius = 10
 			collision_shape.shape.height = 62
@@ -203,6 +203,8 @@ func add_damage(damage_recieved: int, direction_recieved: int) -> void:
 	HUD.set_health(health) # Atualiza barra de vida no HUD
 	anim_player.play("hurt")
 	velocity = Vector2(direction_recieved * 1000, 0)
+	# Flipa o Personagem de acordo com a direção
+	transform.x.x = (direction_recieved * -1) * SCALE
 	
 	if health <= 0:
 		set_state(States.Protagonist.Dead)

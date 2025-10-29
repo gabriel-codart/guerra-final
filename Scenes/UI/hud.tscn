@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2dhgpsfx2a8c"]
+[gd_scene load_steps=5 format=3 uid="uid://c2dhgpsfx2a8c"]
 
 [ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="1_3d8ni"]
+[ext_resource type="Texture2D" uid="uid://d3a7d0i7ioopa" path="res://Assets/HUD/Boss Health Hearts.png" id="4_26tqi"]
 [ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="7_aupxn"]
 [ext_resource type="Texture2D" uid="uid://ew1yrj21ixag" path="res://Assets/HUD/Protagonist Health Hearts.png" id="7_oypw7"]
 
@@ -65,6 +66,50 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 6
 text = "SEM CHAVE"
+
+[node name="RightControl" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/RightControl"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/RightControl/MarginContainer"]
+layout_direction = 3
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BossNameControl" type="Control" parent="MarginContainer/RightControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/RightControl/MarginContainer/VBoxContainer/BossNameControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("7_aupxn")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 12
+text = "BOSS"
+horizontal_alignment = 2
+
+[node name="BossHealthControl" type="Control" parent="MarginContainer/RightControl/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/RightControl/MarginContainer/VBoxContainer/BossHealthControl"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 87.0
+offset_bottom = 16.0
+fill_mode = 1
+texture_progress = ExtResource("4_26tqi")
 
 [node name="TextControl" type="Control" parent="MarginContainer"]
 layout_mode = 2

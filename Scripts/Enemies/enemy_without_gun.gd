@@ -1,4 +1,4 @@
-extends EnemyBase
+class_name EnemyWithoutGun extends EnemyBase
 
 func _ready():
 	state_names = States.ENEMY_NAMES
@@ -13,6 +13,9 @@ func go_to_protagonist(delta: float) -> void:
 		velocity.x = direction.x * speed * delta
 		set_state(States.Enemy.Walk)
 	else:
+		# Verifica se está no chão
+		if not is_on_floor():
+			return
 		if not can_attack:
 			velocity.x = move_toward(velocity.x, 0, speed * delta)
 			set_state(States.Enemy.Idle)

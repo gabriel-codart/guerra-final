@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dae1sf20gt580" path="res://Assets/Tiles/Chapter 1/Tiles.png" id="5_mfagw"]
 [ext_resource type="PackedScene" uid="uid://ckd6d0gyvqt0h" path="res://Scenes/Items/health.tscn" id="7_irel6"]
 [ext_resource type="PackedScene" uid="uid://v5eys0hxy1es" path="res://Scenes/Protagonist/protagonist.tscn" id="8_16ko5"]
-[ext_resource type="PackedScene" uid="uid://b4ulxnmu4hab2" path="res://Scenes/Enemies/gangster_with_pistol.tscn" id="8_fo7hg"]
+[ext_resource type="PackedScene" uid="uid://b4ulxnmu4hab2" path="res://Scenes/Enemies/Bosses/boss_gangster_with_pistol.tscn" id="8_fo7hg"]
 [ext_resource type="PackedScene" uid="uid://c2dhgpsfx2a8c" path="res://Scenes/UI/hud.tscn" id="9_0wqtg"]
 [ext_resource type="PackedScene" uid="uid://bul51wa0ie6a8" path="res://Scenes/Enemies/gangster_without_gun.tscn" id="9_jijrh"]
 

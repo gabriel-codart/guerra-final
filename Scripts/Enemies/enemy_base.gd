@@ -4,10 +4,10 @@ class_name EnemyBase extends CharacterBody2D
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var timer: Timer = $Timer
-@onready var attack_timer: Timer = $AttackTimer
+@onready var attack_timer: Timer = get_node_or_null("AttackTimer")
 @onready var detection_area: Area2D = $DetectionArea2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var attack_area: Area2D = $AttackArea2D
+@onready var attack_area: Area2D = get_node_or_null("AttackArea2D")
 
 # --- Patrulha ---
 var patrol_points: Node2D = null
@@ -20,8 +20,8 @@ var current_point_position: int
 var protagonist_point: Vector2
 
 # --- Constantes ---
-const GRAVITY: float = 1000
-const SCALE: float = 1
+var GRAVITY: float = 1000
+var SCALE: float = 1
 
 # --- Estados ---
 var current_state: int
@@ -31,7 +31,7 @@ var state_names: Dictionary = States.ENEMY_NAMES
 @export var speed: float = 1200.0
 @export var damage: int = 1
 @export var health: int = 2
-@export var distance_to_shoot: int = 300
+@export var distance_to_shoot: int = 280
 @export var distance_to_attack: int = 40
 
 # --- Variáveis Comuns ---
@@ -39,6 +39,7 @@ var direction: Vector2 = Vector2.LEFT
 var can_walk: bool = true
 var can_attack: bool = true
 var is_attacking: bool = false
+var last_attack_type: String = "none" # none - melee - range
 
 # --- Métodos Comuns ---
 func _ready():
@@ -56,7 +57,7 @@ func _ready():
 	# Conectar timers
 	if not timer.timeout.is_connected(_on_timer_timeout):
 		timer.timeout.connect(_on_timer_timeout)
-	if not attack_timer.timeout.is_connected(_on_attack_timer_timeout):
+	if attack_timer and not attack_timer.timeout.is_connected(_on_attack_timer_timeout):
 		attack_timer.timeout.connect(_on_attack_timer_timeout)
 	# Conectar animation_finished
 	if not anim_sprite.animation_finished.is_connected(_on_animated_sprite_finished):
@@ -65,8 +66,12 @@ func _ready():
 func _physics_process(delta):
 	check_detection_area()
 	enemy_gravity(delta)
-	enemy_idle(delta)
-	enemy_walk(delta)
+	if is_on_floor():
+		enemy_idle(delta)
+		enemy_walk(delta)
+	else:
+		# Garante que não haja interferência enquanto está no ar
+		velocity.x = move_toward(velocity.x, 0, speed * delta)
 	move_and_slide()
 	enemy_animate()
 
@@ -82,9 +87,17 @@ func set_state(new_state: States.Enemy) -> void:
 func enemy_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
+		var protected_states = [States.Enemy.Fall, States.Enemy.Dead, States.Enemy.Hurt]
+		if current_state not in protected_states:
+			is_attacking = false
+			set_state(States.Enemy.Fall)
+	else:
+		# Quando pousar no chão
+		if current_state == States.Enemy.Fall:
+			set_state(States.Enemy.Idle)
 
 func enemy_idle(delta: float) -> void:
-	if is_attacking:
+	if is_attacking or current_state == States.Enemy.Dead:
 		velocity.x = move_toward(velocity.x, 0, speed * delta)
 		return
 	if not can_walk:
@@ -97,9 +110,9 @@ func enemy_walk(delta: float) -> void:
 	
 	if protagonist_point != Vector2.ZERO:
 		go_to_protagonist(delta)
-	elif number_of_points != 0:
+	elif number_of_points > 0:
 		go_to_patrol(delta)
-
+	
 	if can_walk:
 		transform.x.x = direction.x * SCALE
 
@@ -130,6 +143,7 @@ func check_detection_area() -> void:
 func enemy_attack() -> void:
 	set_state(States.Enemy.Attack)
 	is_attacking = true
+	last_attack_type = "melee"
 
 func check_attack_area() -> void:
 	if attack_area.has_overlapping_bodies():
@@ -147,6 +161,8 @@ func add_damage(damage_recieved: int, direction_recieved: int) -> void:
 	anim_player.play("hurt")
 	enemy_sfx("hurt")
 	velocity = Vector2(direction_recieved * 45, 0)
+	# Flipa o Personagem de acordo com a direção
+	transform.x.x = (direction_recieved * -1) * SCALE
 	
 	if health <= 0:
 		set_state(States.Enemy.Dead)
@@ -155,6 +171,10 @@ func add_damage(damage_recieved: int, direction_recieved: int) -> void:
 		set_state(States.Enemy.Hurt)
 
 func enemy_animate() -> void:
+	if current_state == States.Enemy.Special:
+		return
+	if current_state == States.Enemy.Hurt and not is_on_floor():
+		return
 	var anim_name = state_names[current_state]
 	anim_sprite.play(anim_name)
 
