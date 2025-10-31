@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bn48rgwwwuwc7"]
+[gd_scene load_steps=16 format=3 uid="uid://bn48rgwwwuwc7"]
 
 [ext_resource type="Texture2D" uid="uid://cvqkfubg37it8" path="res://Assets/Items/Weapons/Pistol.png" id="1_06d7u"]
 [ext_resource type="Script" path="res://Scripts/Items/weapon.gd" id="1_gsme4"]
@@ -56,6 +56,9 @@ animations = [{
 "name": &"smg",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nvtt"]
+size = Vector2(26, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hmb14"]
 size = Vector2(32, 32)
@@ -123,12 +126,15 @@ _data = {
 "idle": SubResource("Animation_2rglf")
 }
 
-[node name="Weapon" type="Node2D"]
+[node name="Weapon" type="CharacterBody2D"]
 script = ExtResource("1_gsme4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ranto")
 animation = &"pistol"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4nvtt")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

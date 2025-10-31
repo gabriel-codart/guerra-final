@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1plhx10asgms"]
+[gd_scene load_steps=14 format=3 uid="uid://c1plhx10asgms"]
 
 [ext_resource type="Script" path="res://Scripts/Items/key.gd" id="1_rpeix"]
 [ext_resource type="Texture2D" uid="uid://ca61e2pevkoqe" path="res://Assets/Items/Keys/Key Gold.png" id="2_0wdp0"]
@@ -43,6 +43,9 @@ animations = [{
 "name": &"silver",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dr5tt"]
+size = Vector2(12, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nevm1"]
 size = Vector2(16, 32)
@@ -110,12 +113,15 @@ _data = {
 "idle": SubResource("Animation_syqht")
 }
 
-[node name="Key" type="Node2D"]
+[node name="Key" type="CharacterBody2D"]
 script = ExtResource("1_rpeix")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6p3hg")
 animation = &"silver"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dr5tt")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

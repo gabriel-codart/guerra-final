@@ -205,6 +205,7 @@ func add_damage(damage_recieved: int, direction_recieved: int) -> void:
 	velocity = Vector2(direction_recieved * 1000, 0)
 	# Flipa o Personagem de acordo com a direção
 	transform.x.x = (direction_recieved * -1) * SCALE
+	current_direction = Vector2.RIGHT if (direction_recieved * -1) > 0 else Vector2.LEFT
 	
 	if health <= 0:
 		set_state(States.Protagonist.Dead)

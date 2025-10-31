@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckd6d0gyvqt0h"]
+[gd_scene load_steps=10 format=3 uid="uid://ckd6d0gyvqt0h"]
 
 [ext_resource type="Script" path="res://Scripts/Items/health.gd" id="1_dglt3"]
 [ext_resource type="Texture2D" uid="uid://b7iis8c546b6b" path="res://Assets/Items/Healths/Health Red.png" id="1_xvbpm"]
@@ -17,6 +17,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujc1q"]
+size = Vector2(16, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jdlvc"]
 size = Vector2(20, 32)
@@ -84,13 +87,16 @@ _data = {
 "idle": SubResource("Animation_5l67i")
 }
 
-[node name="Health" type="Node2D"]
+[node name="Health" type="CharacterBody2D"]
 script = ExtResource("1_dglt3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 3)
 sprite_frames = SubResource("SpriteFrames_82kjd")
 autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ujc1q")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
