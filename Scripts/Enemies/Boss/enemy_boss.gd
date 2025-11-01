@@ -16,6 +16,7 @@ func add_damage(damage_recieved: int, direction_recieved: int) -> void:
 		anim_player.play("intangible")
 		return
 	super.add_damage(damage_recieved, direction_recieved)
+	phase += 1
 	HUD.set_boss_health(health) # Atualiza barra de vida no HUD
 
 func reset_shots():

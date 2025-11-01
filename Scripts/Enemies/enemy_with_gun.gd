@@ -42,18 +42,18 @@ func go_to_protagonist(delta: float) -> void:
 		enemy_shoot()
 
 func enemy_shoot() -> void:
-	create_projectile()
+	create_projectile(weapon_marker.global_position)
 	set_state(States.Enemy.Shot)
 	is_attacking = true
 	last_attack_type = "ranged"
 
-func create_projectile() -> void:
+func create_projectile(marker_position: Vector2) -> void:
 	var projectile_instance: Node2D = projectile.instantiate() as Node2D
-	projectile_instance.global_position = weapon_marker.global_position
+	projectile_instance.global_position = marker_position
 	projectile_instance.direction = direction
 	projectile_instance.damage = damage
 	projectile_instance.target_group = "Protagonist"
-	get_tree().current_scene.get_node("Projectiles").add_child(projectile_instance)
+	get_tree().current_scene.get_node("Projectiles").add_child.call_deferred(projectile_instance)
 
 func _on_animated_sprite_finished() -> void:
 	var anim_name: StringName = anim_sprite.animation

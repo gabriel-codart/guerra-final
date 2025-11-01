@@ -21,7 +21,7 @@ func _on_new_game_button_pressed():
 
 func _on_settings_button_pressed():
 	var settings_menu_instance = settings_menu.instantiate()
-	get_tree().get_root().add_child(settings_menu_instance)
+	get_tree().get_root().add_child.call_deferred(settings_menu_instance)
 
 func _on_exit_button_pressed():
 	GameManager.exit_game()

@@ -1,26 +1,25 @@
 extends EnemyBoss
 
-# Marcador de Posição
-@onready var drop_marker: Marker2D = $DropMarker2D
-# SFX
+# Marcadoras de Posição
+@onready var weapon_marker_1: Marker2D = $WeaponMarkers/WeaponMarker1
+@onready var weapon_marker_2: Marker2D = $WeaponMarkers/WeaponMarker2
 @onready var sfx: Node = $SFX
 # Variáveis de patrulha
 var current_point_index: int = 0
 # Controle geral
 var searching_prota: bool = true
 # Drop de inimigos
-@export var zombie_man_scene: PackedScene = preload("res://Scenes/Enemies/zombie_man.tscn")
-@export var zombie_woman_scene: PackedScene = preload("res://Scenes/Enemies/zombie_woman.tscn")
-@export var zombies_to_drop: int = 3
+@export var times_to_shot: int = 3
 # Damage Area
 @onready var damage_area: Area2D = $DamageArea2D
 # Configuração de vulnerabilidade
 @onready var vulnerable_timer: Timer = $VulnerableTimer
 @export var vulnerable_time: float = 30.0
+# Direção Vertical
+var vertical_direction: Vector2 = Vector2.UP
 
 func _ready() -> void:
 	super._ready()
-	SCALE = 1.5
 	# Conectar damage area
 	if not damage_area.body_entered.is_connected(_on_damage_area_2d_body_entered):
 		damage_area.body_entered.connect(_on_damage_area_2d_body_entered)
@@ -34,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	enemy_walk(delta)
 	move_and_slide()
 	enemy_animate()
-	#print(state_names[current_states])
+	#print(state_names[current_state])
 
 func enemy_gravity(_delta: float) -> void:
 	pass # Não possui gravidade
@@ -51,22 +50,22 @@ func enemy_walk(delta: float) -> void:
 		transform.x.x = direction.x * SCALE
 
 func go_to_patrol(delta: float) -> void:
-	check_direction(current_point)
-	if abs(position.x - current_point.x) > 0.5:
-		velocity.x = direction.x * speed * delta
+	check_vertical_direction(current_point)
+	if abs(position.y - current_point.y) > 0.5:
+		velocity.y = vertical_direction.y * speed * delta
 		set_state(States.Enemy.Walk)
 	else:
 		current_point_position = (current_point_position + 1) % number_of_points
 		current_point = point_positions[current_point_position]
-		check_direction(current_point)
+		check_vertical_direction(current_point)
 		can_walk = false
 		timer.start(1.0)
 
-func check_direction(target_point: Vector2) -> void:
-	direction = Vector2.RIGHT if target_point.x > global_position.x else Vector2.LEFT
+func check_vertical_direction(target_point: Vector2) -> void:
+	vertical_direction = Vector2.UP if target_point.y < global_position.y else Vector2.DOWN
 
 # --- Attacking ---
-func perform_drop_zombies() -> void:
+func enemy_shoot() -> void:
 	if is_attacking or not can_act():
 		return
 	set_state(States.Enemy.Special)
@@ -74,11 +73,11 @@ func perform_drop_zombies() -> void:
 	can_walk = false
 	# Inicia o processo de drop com coroutine
 	await get_tree().create_timer(1.0).timeout  # pequena pausa antes de começar a soltar
-	var total_zombies = zombies_to_drop * phase
-	for i in range(total_zombies):
-		anim_sprite.play("drop")
-		drop_random_zombie()
-		await get_tree().create_timer(0.4).timeout  # tempo entre cada drop
+	var total_shots = times_to_shot * phase
+	for i in range(total_shots):
+		create_projectile(weapon_marker_1.global_position)
+		create_projectile(weapon_marker_2.global_position)
+		await get_tree().create_timer(0.4).timeout  # tempo entre cada shot
 	# Após dropar, boss fica vulnerável
 	is_attacking = false
 	can_walk = true
@@ -87,11 +86,13 @@ func perform_drop_zombies() -> void:
 	is_invulnerable = false # Fica vulnerável
 	vulnerable_timer.start(vulnerable_time)
 
-func drop_random_zombie() -> void:
-	var scene_to_spawn: PackedScene =  zombie_man_scene if randf() < 0.5 else zombie_woman_scene
-	var zombie = scene_to_spawn.instantiate() as CharacterBody2D
-	zombie.global_position = drop_marker.global_position
-	get_tree().current_scene.get_node("Enemies").add_child.call_deferred(zombie)
+func create_projectile(marker_position: Vector2) -> void:
+	var projectile_instance: Node2D = projectile.instantiate() as Node2D
+	projectile_instance.global_position = marker_position
+	projectile_instance.direction = direction
+	projectile_instance.damage = damage
+	projectile_instance.target_group = "Protagonist"
+	get_tree().current_scene.get_node("Projectiles").add_child.call_deferred(projectile_instance)
 
 # --- Animate ---
 func enemy_animate() -> void:
@@ -116,7 +117,7 @@ func _on_vulnerable_timer_timeout() -> void:
 # --- Detect Protagonist ---
 func _on_detection_area_2d_body_entered(_body: Node2D) -> void:
 	if is_invulnerable and not is_attacking:
-		perform_drop_zombies()
+		enemy_shoot()
 
 # --- Damage Protagonist ---
 func _on_damage_area_2d_body_entered(body: Node2D) -> void:
@@ -124,8 +125,9 @@ func _on_damage_area_2d_body_entered(body: Node2D) -> void:
 
 # --- Damage Enemy ---
 func add_damage(damage_recieved: int, direction_recieved: int) -> void:
-	super.add_damage(damage_recieved, (direction_recieved * -1))
+	super.add_damage(damage_recieved, (direction_recieved))
+	velocity = Vector2.ZERO
 	if not is_invulnerable:
 		vulnerable_timer.stop()
 		is_invulnerable = true # Fica invulnerável
-	print(state_names[current_state])
+	#print(state_names[current_state])
