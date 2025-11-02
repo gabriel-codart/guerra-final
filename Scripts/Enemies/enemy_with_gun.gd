@@ -57,7 +57,9 @@ func create_projectile(marker_position: Vector2) -> void:
 
 func _on_animated_sprite_finished() -> void:
 	var anim_name: StringName = anim_sprite.animation
-	if anim_name == "attack":
+	if anim_name == "walk":
+		enemy_sfx("walk")
+	elif anim_name == "attack":
 		is_attacking = false
 		can_attack = false
 		check_attack_area()

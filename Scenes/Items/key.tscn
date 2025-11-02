@@ -114,6 +114,8 @@ _data = {
 }
 
 [node name="Key" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 17
 script = ExtResource("1_rpeix")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

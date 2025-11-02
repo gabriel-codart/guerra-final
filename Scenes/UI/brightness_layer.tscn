@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://usa15bs5wtd1"]
 
 [node name="BrightnessLayer" type="CanvasLayer"]
-layer = 128
+layer = 100
 
 [node name="ColorRectWhite" type="ColorRect" parent="."]
 anchors_preset = 15

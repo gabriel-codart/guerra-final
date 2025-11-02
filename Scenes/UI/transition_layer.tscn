@@ -8,7 +8,7 @@ shader = ExtResource("2_vi71w")
 shader_parameter/blur_size = 0.0
 
 [node name="TransitionLayer" type="CanvasLayer"]
-layer = 100
+layer = 5
 script = ExtResource("1_sh3oe")
 
 [node name="BlurRect" type="ColorRect" parent="."]

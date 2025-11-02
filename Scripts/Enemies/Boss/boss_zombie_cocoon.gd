@@ -77,6 +77,7 @@ func perform_drop_zombies() -> void:
 	var total_zombies = zombies_to_drop * phase
 	for i in range(total_zombies):
 		anim_sprite.play("drop")
+		enemy_sfx("drop")
 		drop_random_zombie()
 		await get_tree().create_timer(0.4).timeout  # tempo entre cada drop
 	# Após dropar, boss fica vulnerável
@@ -99,11 +100,6 @@ func enemy_animate() -> void:
 		return
 	var anim_name = state_names[current_state]
 	anim_sprite.play(anim_name)
-
-#func _on_animated_sprite_finished() -> void:
-	#super._on_animated_sprite_finished()
-	#var anim_name: StringName = anim_sprite.animation
-	#print(anim_name)
 
 # --- Timer Callbacks ---
 func _on_timer_timeout() -> void:
@@ -129,3 +125,12 @@ func add_damage(damage_recieved: int, direction_recieved: int) -> void:
 		vulnerable_timer.stop()
 		is_invulnerable = true # Fica invulnerável
 	print(state_names[current_state])
+
+# --- SFX ---
+func enemy_sfx(sfx_name: String) -> void:
+	super.enemy_sfx(sfx_name)
+	match sfx_name:
+		"drop":
+			$SFX/Drop.play()
+		_:
+			pass

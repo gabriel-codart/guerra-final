@@ -1,0 +1,98 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi2y3doo5236u"]
+
+[ext_resource type="Script" path="res://Scripts/UI/progress_menu.gd" id="1_n5w2y"]
+[ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="2_riqr7"]
+
+[node name="ProgressMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_n5w2y")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.26096, 0.103028, 4.81308e-08, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_riqr7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="PanelSaves" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelSaves"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Top" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="GoBackButton" type="Button" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/Top"]
+layout_mode = 2
+text = "Voltar"
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/Top"]
+layout_mode = 2
+text = "Progressos"
+
+[node name="Saves" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Slot1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/Saves"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LoadButton" type="Button" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/Saves/Slot1"]
+layout_mode = 2
+text = "Slot de Progresso
+2021-02-02 10:09:98"
+
+[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/Saves/Slot1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "x"
+
+[node name="PanelNewGame" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelNewGame"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelNewGame/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NewGameName" type="LineEdit" parent="MarginContainer/HBoxContainer/PanelNewGame/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Nome Progresso"
+
+[node name="NewGameButton" type="Button" parent="MarginContainer/HBoxContainer/PanelNewGame/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Iniciar Novo Jogo"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/Top/GoBackButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="text_changed" from="MarginContainer/HBoxContainer/PanelNewGame/MarginContainer/VBoxContainer/NewGameName" to="." method="_on_new_game_name_text_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelNewGame/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

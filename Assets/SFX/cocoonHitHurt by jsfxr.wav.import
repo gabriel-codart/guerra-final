@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cm7h02x3pylvp"
+path="res://.godot/imported/cocoonHitHurt by jsfxr.wav-cbad5c0ad8713066be4cd1f72e6e0bf0.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/cocoonHitHurt by jsfxr.wav"
+dest_files=["res://.godot/imported/cocoonHitHurt by jsfxr.wav-cbad5c0ad8713066be4cd1f72e6e0bf0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqlppttd3vocj"]
+
+[ext_resource type="Script" path="res://Scripts/UI/alert_layer.gd" id="1_ekhyj"]
+[ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="2_p3hgl"]
+
+[node name="AlertLayer" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_ekhyj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme = ExtResource("2_p3hgl")
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]

@@ -1,21 +1,13 @@
 extends CanvasLayer
 
-@onready var continue_game_button: Button = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueGameButton
+@onready var progress_menu: PackedScene = preload("res://Scenes/UI/progress_menu.tscn")
 @onready var settings_menu: PackedScene = preload("res://Scenes/UI/settings_menu.tscn")
 
 func _ready():
 	MusicPlayer.play_music("MainMenu")
-	
-	if PlayerManager.current_progress == 1:
-		continue_game_button.disabled = true
-
-func _on_continue_game_button_pressed():
-	GameManager.continue_game()
-	await get_tree().create_timer(2.5).timeout
-	queue_free()
 
 func _on_new_game_button_pressed():
-	GameManager.new_game()
+	GameManager.go_to_progress_menu()
 	await get_tree().create_timer(2.5).timeout
 	queue_free()
 

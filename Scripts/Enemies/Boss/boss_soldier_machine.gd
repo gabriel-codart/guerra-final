@@ -101,11 +101,6 @@ func enemy_animate() -> void:
 	var anim_name = state_names[current_state]
 	anim_sprite.play(anim_name)
 
-#func _on_animated_sprite_finished() -> void:
-	#super._on_animated_sprite_finished()
-	#var anim_name: StringName = anim_sprite.animation
-	#print(anim_name)
-
 # --- Timer Callbacks ---
 func _on_timer_timeout() -> void:
 	can_walk = true

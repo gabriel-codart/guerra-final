@@ -593,7 +593,7 @@ position = Vector2(225, 171)
 weapon_type = 2
 
 [node name="Health" parent="." instance=ExtResource("9_15dod")]
-position = Vector2(140, 164)
+position = Vector2(81, 85)
 
 [node name="Protagonist" parent="." instance=ExtResource("5_odqvg")]
 position = Vector2(175, 209)

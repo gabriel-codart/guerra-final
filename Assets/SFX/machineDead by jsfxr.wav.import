@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bclmii15627eg"
+path="res://.godot/imported/machineDead by jsfxr.wav-5e9c31f9375b6bfb0a60e1c61967b801.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/machineDead by jsfxr.wav"
+dest_files=["res://.godot/imported/machineDead by jsfxr.wav-5e9c31f9375b6bfb0a60e1c61967b801.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

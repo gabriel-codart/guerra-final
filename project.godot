@@ -18,9 +18,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://Scripts/Global/game_manager.gd"
-PlayerManager="*res://Scripts/Global/player_manager.gd"
-MusicPlayer="*res://Scenes/Global/music_player.tscn"
 SettingsManager="*res://Scripts/Global/settings_manager.gd"
+ProgressManager="*res://Scripts/Global/progress_manager.gd"
+AlertManager="*res://Scenes/UI/alert_layer.tscn"
+MusicPlayer="*res://Scenes/Global/music_player.tscn"
 
 [display]
 

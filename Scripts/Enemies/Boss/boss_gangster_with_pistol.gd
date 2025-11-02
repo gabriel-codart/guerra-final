@@ -36,6 +36,7 @@ func enemy_hook() -> void:
 	is_invulnerable = false
 	set_state(States.Enemy.Special)
 	anim_sprite.play("hook")
+	enemy_sfx("hook")
 
 func _on_animated_sprite_finished():
 	var anim_name = anim_sprite.animation
@@ -75,3 +76,14 @@ func _on_hook_return():
 	hook_active = false
 	is_invulnerable = true
 	set_state(States.Enemy.Idle)
+
+# --- SFX ---
+func enemy_sfx(sfx_name: String) -> void:
+	super.enemy_sfx(sfx_name)
+	match sfx_name:
+		"hook":
+			$SFX/Hook.play()
+		"hook_inverse":
+			$SFX/HookDown.play()
+		_:
+			pass

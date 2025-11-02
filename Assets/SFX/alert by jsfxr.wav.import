@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://jiviylxi5yj5"
+path="res://.godot/imported/alert by jsfxr.wav-ec99f866404d4cb733837cddedcc5ab1.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/alert by jsfxr.wav"
+dest_files=["res://.godot/imported/alert by jsfxr.wav-ec99f866404d4cb733837cddedcc5ab1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

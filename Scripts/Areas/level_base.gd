@@ -28,20 +28,25 @@ func set_HUD_text(text: String) -> void:
 	HUD.set_text(text)
 
 func can_go_to_next_scene() -> bool:
-	if protagonist.current_key == key_to_next_level or key_to_next_level == Keys.Type.Empty:
-		return true
-	else:
-		return false
+	return protagonist.current_key == key_to_next_level or key_to_next_level == Keys.Type.Empty
 
 func go_to_next_scene() -> void:
-	if can_go_to_next_scene():
-		PlayerManager.health = protagonist.health
-		PlayerManager.current_weapon = protagonist.current_weapon
-		PlayerManager.current_key = Keys.Type.Empty
-		PlayerManager.current_progress += 1
-		GameManager.go_to_next_scene()
-	else:
+	if not can_go_to_next_scene():
 		set_HUD_text("Preciso de uma chave " + key_names[key_to_next_level].to_upper() + " para seguir em frente.")
+		return
+	# --- Atualiza dados do progresso atual ---
+	var save_data = ProgressManager.get_current_save()
+	if save_data:
+		save_data.player_health = protagonist.health
+		save_data.player_weapon = protagonist.current_weapon
+		save_data.player_progress += 1
+		ProgressManager.save_current_progress() # grava no arquivo
+		# Alerta opcional de feedback visual
+		AlertManager.show_alert("Level salvo!", AlertManager.AlertType.SUCCESS)
+	else:
+		push_error("Nenhum progresso ativo no ProgressManager!")
+	# --- Troca de cena ---
+	GameManager.load_current_progress_scene()
 
 func _on_next_level_area_body_entered(body):
 	if body.is_in_group("Protagonist"):

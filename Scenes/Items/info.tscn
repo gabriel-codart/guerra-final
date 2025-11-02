@@ -61,6 +61,8 @@ _data = {
 }
 
 [node name="Info" type="Node2D"]
+light_mask = 0
+visibility_layer = 33
 script = ExtResource("1_i74md")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
