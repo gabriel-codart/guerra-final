@@ -164,7 +164,7 @@ theme = ExtResource("1_4w1r1")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "[center]NÃO! ELISE! Mortos... todos...
-todos mortos. Não restou nada.[/center]"
+todos mortos. Não restou nada. A não ser...[/center]"
 fit_content = true
 autowrap_mode = 0
 
@@ -182,8 +182,9 @@ layout_mode = 2
 theme = ExtResource("1_4w1r1")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "[center]Não tenho mais nada... O que me resta
-é apenas isso, apenas minha VINGANÇA![/center]"
+text = "[center]A última esperança. Eles a levaram.
+É isso o que me resta, esta será
+minha GUERRA FINAL![/center]"
 fit_content = true
 autowrap_mode = 0
 
@@ -203,21 +204,11 @@ theme = ExtResource("1_4w1r1")
 layout_mode = 2
 theme = ExtResource("1_4w1r1")
 
-[node name="ColorRect" type="ColorRect" parent="JumpCutContainer/PanelContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("1_4w1r1")
-color = Color(0.25, 0.25, 0.25, 0.25)
-
 [node name="MarginContainer" type="MarginContainer" parent="JumpCutContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="JumpCutContainer/PanelContainer/MarginContainer"]
+[node name="SkipButton" type="Button" parent="JumpCutContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme = ExtResource("1_4w1r1")
-theme_override_font_sizes/font_size = 12
-text = "ENTER para pular"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "Pular"

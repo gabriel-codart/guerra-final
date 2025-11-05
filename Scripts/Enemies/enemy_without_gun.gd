@@ -35,4 +35,4 @@ func _on_animated_sprite_finished() -> void:
 		if current_state == States.Enemy.Hurt:
 			set_state(States.Enemy.Idle)
 	elif anim_name == "dead":
-		queue_free()
+		enemy_dead()

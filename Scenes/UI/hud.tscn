@@ -121,14 +121,16 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -30.0
+offset_left = 96.0
+offset_top = -64.0
+offset_right = -96.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("7_aupxn")
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/TextControl/MarginContainer"]
 layout_mode = 2
-color = Color(0, 0, 0, 0.5)
+color = Color(0.137092, 0.195399, 0.371073, 0.5)
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TextControl/MarginContainer"]
 layout_mode = 2

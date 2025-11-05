@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="2_p3hgl"]
 
 [node name="AlertLayer" type="CanvasLayer"]
-layer = 10
+layer = 20
 script = ExtResource("1_ekhyj")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

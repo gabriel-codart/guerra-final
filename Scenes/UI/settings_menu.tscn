@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="2_xh7y6"]
 
 [node name="SettingsMenu" type="CanvasLayer"]
+layer = 15
 script = ExtResource("1_6e385")
 metadata/_edit_vertical_guides_ = [-114.0]
 

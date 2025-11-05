@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://ubhxj5hdpq5f"]
+[gd_scene load_steps=56 format=3 uid="uid://ubhxj5hdpq5f"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Boss/boss_soldier_machine.gd" id="1_siwfj"]
 [ext_resource type="Texture2D" uid="uid://cnhi1malrhlul" path="res://Assets/Enemies/Soldier Machine/dead.png" id="2_gmtcq"]
@@ -8,8 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://bc8f5jcovrdiy" path="res://Assets/SFX/machineWalk by jsfxr.wav" id="6_xorxe"]
 [ext_resource type="AudioStream" uid="uid://dimi8nw0htbnj" path="res://Assets/SFX/machineHitHurt by jsfxr.wav" id="7_iff3x"]
 [ext_resource type="AudioStream" uid="uid://bclmii15627eg" path="res://Assets/SFX/machineDead by jsfxr.wav" id="8_ataus"]
-[ext_resource type="AudioStream" uid="uid://bs5grxjf4cfam" path="res://Assets/SFX/hook by jsfxr.wav" id="9_cmoys"]
-[ext_resource type="AudioStream" uid="uid://bvenuxx400djm" path="res://Assets/SFX/hookDown by jsfxr.wav" id="10_g0qic"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_813s5"]
 atlas = ExtResource("2_gmtcq")
@@ -447,9 +445,3 @@ stream = ExtResource("7_iff3x")
 [node name="Dead" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("8_ataus")
 volume_db = 5.0
-
-[node name="Hook" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("9_cmoys")
-
-[node name="HookDown" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("10_g0qic")

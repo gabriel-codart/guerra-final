@@ -175,6 +175,8 @@ func enemy_animate() -> void:
 		return
 	if current_state == States.Enemy.Hurt and not is_on_floor():
 		return
+	if current_state == States.Enemy.Dead and not is_on_floor():
+		return
 	var anim_name = state_names[current_state]
 	anim_sprite.play(anim_name)
 
@@ -188,6 +190,9 @@ func enemy_sfx(sfx_name: String) -> void:
 			$SFX/Dead.play()
 		_:
 			pass
+
+func enemy_dead() -> void:
+	queue_free()
 
 # --- Detect Protagonist ---
 func _on_detection_area_2d_body_entered(body: Node2D) -> void:

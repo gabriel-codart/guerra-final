@@ -10,6 +10,8 @@ extends EnemyBoss
 var hook_active: bool = false
 var hook_direction: int = 1 # 1 = direita, -1 = esquerda
 
+var active_tweens: Array[Tween] = []
+
 func _ready():
 	super._ready()
 	hook_line.visible = false
@@ -30,6 +32,8 @@ func enemy_shoot() -> void:
 		enemy_hook()
 
 func enemy_hook() -> void:
+	if current_state == States.Enemy.Dead:
+		return
 	if hook_active:
 		return
 	hook_active = true
@@ -43,19 +47,20 @@ func _on_animated_sprite_finished():
 	if anim_name == "hook":
 		# inicia movimento para cima
 		move_up_and_relocate()
-	elif anim_name == "dead":
-		queue_free()
 	else:
 		super._on_animated_sprite_finished()
 
 func move_up_and_relocate() -> void:
 	hook_line.visible = true
 	var tween = get_tree().create_tween()
+	active_tweens.append(tween)
 	var target_y = global_position.y - hook_height
 	tween.tween_property(self, "position:y", target_y, 1.5)
 	tween.tween_callback(Callable(self, "_on_hook_exit"))
 
 func _on_hook_exit():
+	if current_state == States.Enemy.Dead or not is_inside_tree():
+		return
 	check_direction(current_point)
 	if hook_swap_sides:
 		# alterna de lado
@@ -63,6 +68,7 @@ func _on_hook_exit():
 		global_position.x += 450 * hook_direction
 	# desce de volta
 	var tween = get_tree().create_tween()
+	active_tweens.append(tween)
 	var target_y = global_position.y + hook_height
 	tween.tween_property(self, "position:y", target_y, 1.5)
 	tween.tween_callback(Callable(self, "_on_hook_return"))
@@ -75,7 +81,21 @@ func _on_hook_return():
 	# Volta ao normal
 	hook_active = false
 	is_invulnerable = true
+	if current_state == States.Enemy.Dead:
+		return
 	set_state(States.Enemy.Idle)
+
+func add_damage(damage_recieved: int, direction_recieved: int) -> void:
+	super.add_damage(damage_recieved, direction_recieved)
+	if health <= 0:
+		# Cancela tweens pendentes
+		for tween in active_tweens:
+			if is_instance_valid(tween):
+				tween.kill()
+		active_tweens.clear()
+		# Cancela o Hook
+		hook_line.visible = false
+		hook_active = false
 
 # --- SFX ---
 func enemy_sfx(sfx_name: String) -> void:

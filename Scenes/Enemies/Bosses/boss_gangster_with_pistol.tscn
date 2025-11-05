@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://b4ulxnmu4hab2"]
+[gd_scene load_steps=63 format=3 uid="uid://b4ulxnmu4hab2"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Boss/boss_gangster_with_pistol.gd" id="1_xmrdr"]
 [ext_resource type="Texture2D" uid="uid://bwhoj0ca7m2xd" path="res://Assets/Enemies/Gangster With Pistol/Attack.png" id="2_o50o4"]
@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://c4tl0ww1uu82o" path="res://Assets/SFX/normalWalk by jsfxr.wav" id="10_ehees"]
 [ext_resource type="AudioStream" uid="uid://cgiabmvm2yty4" path="res://Assets/SFX/hitHurt_enemy by jsfxr.wav" id="11_ivq1x"]
 [ext_resource type="AudioStream" uid="uid://ifv2ax4xi6nn" path="res://Assets/SFX/dead_enemy by jsfxr.wav" id="12_dseys"]
+[ext_resource type="AudioStream" uid="uid://bs5grxjf4cfam" path="res://Assets/SFX/hook by jsfxr.wav" id="13_7s4bh"]
+[ext_resource type="AudioStream" uid="uid://bvenuxx400djm" path="res://Assets/SFX/hookDown by jsfxr.wav" id="14_6ar2g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxb40"]
 atlas = ExtResource("2_o50o4")
@@ -411,12 +413,15 @@ _data = {
 collision_layer = 4
 collision_mask = 27
 script = ExtResource("1_xmrdr")
+hook_height = 300.0
 boss_name = &"GANGSTER"
+speed = 2000.0
+damage = 2
 health = 8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2fd1t")
-animation = &"shot"
+animation = &"dead"
 autoplay = "idle"
 
 [node name="HookLine" type="ColorRect" parent="."]
@@ -472,3 +477,9 @@ stream = ExtResource("11_ivq1x")
 [node name="Dead" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("12_dseys")
 volume_db = 5.0
+
+[node name="Hook" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("13_7s4bh")
+
+[node name="HookDown" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("14_6ar2g")
