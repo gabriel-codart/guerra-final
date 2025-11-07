@@ -72,5 +72,4 @@ func _on_animated_sprite_finished() -> void:
 		if current_state == States.Enemy.Hurt:
 			set_state(States.Enemy.Idle)
 	elif anim_name == "dead":
-		print("boss is dead animation finish")
 		enemy_dead()

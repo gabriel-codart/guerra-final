@@ -61,7 +61,6 @@ func set_boss_name(boss_name: StringName) -> void:
 func set_boss_health(health: int) -> void:
 	@warning_ignore("integer_division")
 	boss_health_bar.value = health * 100 / boss_max_health
-	print("boss: ",boss_health_bar.value)
 
 # ====================
 # Controlador de Texto

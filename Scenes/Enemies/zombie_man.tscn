@@ -294,7 +294,7 @@ collision_layer = 4
 collision_mask = 27
 script = ExtResource("1_1yhes")
 speed = 2200.0
-health = 4
+health = 6
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8lv0a")
@@ -327,6 +327,14 @@ collision_mask = 2
 position = Vector2(26.1724, 5)
 shape = SubResource("RectangleShape2D_xry4c")
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
+
+[node name="PatrolPoints" type="Node2D" parent="."]
+
+[node name="MarkerLeft" type="Marker2D" parent="PatrolPoints"]
+position = Vector2(-125, 0)
+
+[node name="MarkerRight" type="Marker2D" parent="PatrolPoints"]
+position = Vector2(125, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

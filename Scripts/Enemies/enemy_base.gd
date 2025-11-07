@@ -43,14 +43,9 @@ var last_attack_type: String = "none" # none - melee - range
 
 # --- Métodos Comuns ---
 func _ready():
+	# Configura os Pontos de Patrulha
 	if has_node("PatrolPoints"):
-		patrol_points = $PatrolPoints
-		if patrol_points != null:
-			number_of_points = patrol_points.get_children().size()
-			for point in patrol_points.get_children():
-				point_positions.append(point.global_position)
-			current_point = point_positions[current_point_position]
-	
+		call_deferred("_setup_patrol_points")
 	# Conectar detection area
 	if not detection_area.body_entered.is_connected(_on_detection_area_2d_body_entered):
 		detection_area.body_entered.connect(_on_detection_area_2d_body_entered)
@@ -62,6 +57,14 @@ func _ready():
 	# Conectar animation_finished
 	if not anim_sprite.animation_finished.is_connected(_on_animated_sprite_finished):
 		anim_sprite.animation_finished.connect(_on_animated_sprite_finished)
+
+func _setup_patrol_points() -> void:
+	patrol_points = $PatrolPoints
+	if patrol_points != null:
+		number_of_points = patrol_points.get_children().size()
+		for point in patrol_points.get_children():
+			point_positions.append(point.global_position)
+		current_point = point_positions[current_point_position]
 
 func _physics_process(delta):
 	check_detection_area()

@@ -274,7 +274,7 @@ collision_mask = 27
 script = ExtResource("1_snp0n")
 speed = 5000.0
 damage = 2
-health = 4
+health = 6
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8lv0a")
@@ -312,6 +312,14 @@ debug_color = Color(1, 0.6, 0.701961, 0.419608)
 libraries = {
 "": SubResource("AnimationLibrary_co14d")
 }
+
+[node name="PatrolPoints" type="Node2D" parent="."]
+
+[node name="MarkerLeft" type="Marker2D" parent="PatrolPoints"]
+position = Vector2(-125, 0)
+
+[node name="MarkerRight" type="Marker2D" parent="PatrolPoints"]
+position = Vector2(125, 0)
 
 [node name="SFX" type="Node" parent="."]
 

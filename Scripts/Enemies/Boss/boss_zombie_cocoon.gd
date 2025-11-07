@@ -29,12 +29,13 @@ func _ready() -> void:
 		vulnerable_timer.timeout.connect(_on_vulnerable_timer_timeout)
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
 	enemy_gravity(delta)
 	enemy_idle(delta)
 	enemy_walk(delta)
 	move_and_slide()
 	enemy_animate()
-	#print(state_names[current_states])
 
 func enemy_gravity(_delta: float) -> void:
 	pass # Não possui gravidade
@@ -124,7 +125,6 @@ func add_damage(damage_recieved: int, direction_recieved: int) -> void:
 	if not is_invulnerable:
 		vulnerable_timer.stop()
 		is_invulnerable = true # Fica invulnerável
-	print(state_names[current_state])
 
 # --- SFX ---
 func enemy_sfx(sfx_name: String) -> void:

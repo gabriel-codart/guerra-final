@@ -314,7 +314,7 @@ animations = [{
 radius = 42.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68i78"]
-size = Vector2(544, 96)
+size = Vector2(928, 96)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8bw7u"]
 radius = 50.0
@@ -377,11 +377,40 @@ _data = {
 
 [node name="Boss Soldier Machine" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
-collision_mask = 27
+collision_mask = 10
 script = ExtResource("1_siwfj")
+times_to_shot = null
+vulnerable_time = 15.0
 boss_name = &"MÁQUINA DE MORTE"
-speed = 1800.0
-health = 6
+maxHealth = null
+speed = 2800.0
+damage = 2
+health = 12
+distance_to_shoot = 320
+distance_to_attack = null
+
+[node name="Column" type="Node2D" parent="."]
+
+[node name="Border" type="ColorRect" parent="Column"]
+offset_left = -48.0
+offset_top = -448.0
+offset_right = -35.0
+offset_bottom = 448.0
+color = Color(0, 0, 0, 1)
+
+[node name="FillShadow" type="ColorRect" parent="Column"]
+offset_left = -47.0
+offset_top = -448.0
+offset_right = -43.0
+offset_bottom = 448.0
+color = Color(0.19, 0.19, 0.19, 1)
+
+[node name="FillLight" type="ColorRect" parent="Column"]
+offset_left = -43.0
+offset_top = -448.0
+offset_right = -36.0
+offset_bottom = 448.0
+color = Color(0.36, 0.36, 0.36, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2fd1t")
@@ -400,7 +429,7 @@ wait_time = 10.0
 [node name="PatrolPoints" type="Node2D" parent="."]
 
 [node name="UpMarker2D" type="Marker2D" parent="PatrolPoints"]
-position = Vector2(0, -72)
+position = Vector2(0, -88)
 
 [node name="DownMarker2D" type="Marker2D" parent="PatrolPoints"]
 position = Vector2(0, 72)
@@ -418,7 +447,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
-position = Vector2(240, 0)
+position = Vector2(432, 0)
 shape = SubResource("RectangleShape2D_68i78")
 
 [node name="DamageArea2D" type="Area2D" parent="."]

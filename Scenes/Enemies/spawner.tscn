@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://088phwycq3br"]
+[gd_scene load_steps=3 format=3 uid="uid://088phwycq3br"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/spawner.gd" id="1_xl3tg"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ka8a"]
+size = Vector2(1136, 592)
+
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_xl3tg")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4ka8a")
+
+[node name="BatchCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="BatchCooldown" to="." method="_on_cooldown_timer_timeout"]
