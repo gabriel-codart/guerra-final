@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 # Container de listagem de progressos
-@onready var saves_list: VBoxContainer = $MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/Saves
+@onready var saves_list: VBoxContainer = $MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/ScrollContainer/Saves
 # Nome de Novo Progresso
 @onready var new_game_name: LineEdit = $MarginContainer/HBoxContainer/PanelNewGame/MarginContainer/VBoxContainer/NewGameName
 # Botão de Novo Progresso

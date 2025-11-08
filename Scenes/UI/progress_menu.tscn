@@ -56,19 +56,23 @@ text = "Voltar"
 layout_mode = 2
 text = "Progressos"
 
-[node name="Saves" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 
-[node name="Slot1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/Saves"]
+[node name="Saves" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Slot1" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/ScrollContainer/Saves"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="LoadButton" type="Button" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/Saves/Slot1"]
+[node name="LoadButton" type="Button" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/ScrollContainer/Saves/Slot1"]
 layout_mode = 2
 text = "Slot de Progresso
 2021-02-02 10:09:98"
 
-[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/Saves/Slot1"]
+[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer/PanelSaves/MarginContainer/VBoxContainer/ScrollContainer/Saves/Slot1"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "x"
@@ -88,6 +92,7 @@ theme_override_constants/separation = 12
 [node name="NewGameName" type="LineEdit" parent="MarginContainer/HBoxContainer/PanelNewGame/MarginContainer/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Nome Progresso"
+max_length = 20
 
 [node name="NewGameButton" type="Button" parent="MarginContainer/HBoxContainer/PanelNewGame/MarginContainer/VBoxContainer"]
 layout_mode = 2

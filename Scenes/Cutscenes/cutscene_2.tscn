@@ -130,6 +130,7 @@ _data = {
 
 [node name="Cutscene 2" type="CanvasLayer"]
 script = ExtResource("1_nl0mt")
+save_next = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
