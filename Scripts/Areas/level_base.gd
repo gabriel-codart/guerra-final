@@ -5,7 +5,8 @@ class_name LevelBase
 @export_multiline var initial_text: String
 @export var key_to_next_level: Keys.Type
 @export var level_type: Scenes.Type
-#@export var save_init: bool = true
+
+@export var save_next: bool = true
 
 @onready var next_level_area: Area2D = $NextLevelArea if has_node("NextLevelArea") else null
 @onready var HUD: CanvasLayer = $HUD
@@ -38,14 +39,25 @@ func set_HUD_text(text: String) -> void:
 func can_go_to_next_scene() -> bool:
 	return protagonist.current_key == key_to_next_level or key_to_next_level == Keys.Type.Empty
 
-#func save_progress() -> void:
-	#if ProgressManager.current_save == null:
-		#AlertManager.show_alert("Nenhum progresso ativo!", AlertManager.AlertType.ERROR)
-		#push_error("Nenhum progresso ativo no ProgressManager!")
-		#return
-	#
-	#ProgressManager.save_current_progress()
-	#AlertManager.show_alert("Level salvo!", AlertManager.AlertType.SUCCESS)
+func save_progress() -> void:
+	# Verifica se há progresso ativo
+	if ProgressManager.current_save == null:
+		AlertManager.show_alert("Nenhum progresso ativo!", AlertManager.AlertType.ERROR)
+		push_error("Nenhum progresso ativo no ProgressManager!")
+		return
+	# Pergunta se quer salvar
+	var confirmed = await DialogManager.show_dialog(
+		"Level Concluído!",
+		"Deseja salvar seu progresso?",
+		"Sim, salvar",
+		"Não, continuar sem salvar"
+	)
+	if not confirmed:
+		print("O jogador cancelou o salvamento.")
+		return
+	# Salva no arquivo
+	ProgressManager.save_current_progress()
+	AlertManager.show_alert("Level salvo!", AlertManager.AlertType.SUCCESS)
 
 func go_to_next_scene() -> void:
 	if level_type == Scenes.Type.LevelCommon and not can_go_to_next_scene():
@@ -61,6 +73,10 @@ func go_to_next_scene() -> void:
 	ProgressManager.current_save.player_health = protagonist.health
 	ProgressManager.current_save.player_weapon = protagonist.current_weapon
 	ProgressManager.current_save.player_progress += 1
+	
+	# Salvar o progresso
+	if save_next:
+		await save_progress()
 	
 	GameManager.load_current_progress_scene()
 

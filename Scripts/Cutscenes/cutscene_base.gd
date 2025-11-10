@@ -15,12 +15,23 @@ func _process(_delta: float) -> void:
 		go_to_next_scene()
 
 func save_progress() -> void:
-	# --- Atualiza dados do progresso atual ---
+	# --- Verifica se há um progresso atual ---
 	if ProgressManager.current_save == null:
 		AlertManager.show_alert("Nenhum progresso ativo!", AlertManager.AlertType.ERROR)
 		push_error("Nenhum progresso ativo no ProgressManager!")
 		return
-	ProgressManager.save_current_progress() # grava no arquivo
+	# --- Pergunta se quer salvar ---
+	var confirmed = await DialogManager.show_dialog(
+		"Level Concluído!",
+		"Deseja salvar seu progresso?",
+		"Sim, salvar",
+		"Não, continuar sem salvar"
+	)
+	if not confirmed:
+		print("O jogador cancelou o salvamento.")
+		return
+	# Salva o progresso no arquivo
+	ProgressManager.save_current_progress()
 	# Alerta opcional de feedback visual
 	AlertManager.show_alert("Level salvo!", AlertManager.AlertType.SUCCESS)
 
@@ -34,7 +45,7 @@ func go_to_next_scene() -> void:
 	AlertManager.show_alert("Carregando...")
 	# Salva progresso
 	if save_next:
-		save_progress()
+		await save_progress()
 	# --- Troca de cena ---
 	GameManager.load_current_progress_scene()
 

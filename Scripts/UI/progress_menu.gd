@@ -66,6 +66,17 @@ func _on_load_button_pressed(file_name: String) -> void:
 	queue_free()
 
 func _on_delete_button_pressed(file_name: String) -> void:
+	# Pergunta se quer realmente deletar
+	var confirmed = await DialogManager.show_dialog(
+		"Deletar Progresso",
+		"Deseja realmente deletar seu progresso?",
+		"Sim, deletar",
+		"Não, voltar"
+	)
+	if not confirmed:
+		print("O jogador cancelou a deleção.")
+		return
+	# Deleta o progresso
 	ProgressManager.delete_save(file_name)
 	render_saves_list() # atualiza lista após exclusão
 	AlertManager.show_alert("Progresso deletado!")

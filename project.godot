@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Guerra Final"
-run/main_scene="res://Scenes/UI/main_menu.tscn"
+run/main_scene="res://Scenes/Cutscenes/main_opening.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,7 @@ GameManager="*res://Scripts/Global/game_manager.gd"
 SettingsManager="*res://Scripts/Global/settings_manager.gd"
 ProgressManager="*res://Scripts/Global/progress_manager.gd"
 AlertManager="*res://Scenes/UI/alert_layer.tscn"
+DialogManager="*res://Scenes/UI/dialog_layer.tscn"
 MusicPlayer="*res://Scenes/Global/music_player.tscn"
 
 [display]
