@@ -40,13 +40,13 @@ static var PROGRESS_SCENE_MAP := {
 	3: SceneID.LEVEL_1_AREA_2,
 	4: SceneID.LEVEL_1_BOSS,
 	5: SceneID.CUTSCENE_2,
-	6: SceneID.LEVEL_2_AREA_1,
-	7: SceneID.LEVEL_2_AREA_2,
-	8: SceneID.LEVEL_2_BOSS,
-	9: SceneID.LEVEL_3_AREA_1,
-	10: SceneID.LEVEL_3_AREA_2,
-	11: SceneID.LEVEL_3_BOSS,
-	12: SceneID.CREDITS,
+	#6: SceneID.LEVEL_2_AREA_1,
+	#7: SceneID.LEVEL_2_AREA_2,
+	#8: SceneID.LEVEL_2_BOSS,
+	#9: SceneID.LEVEL_3_AREA_1,
+	#10: SceneID.LEVEL_3_AREA_2,
+	#11: SceneID.LEVEL_3_BOSS,
+	6: SceneID.CREDITS,
 }
 
 static func get_scene(scene_id: SceneID) -> PackedScene:

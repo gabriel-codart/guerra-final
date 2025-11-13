@@ -1183,6 +1183,7 @@ size = Vector2(54, 687)
 script = ExtResource("1_3jy5k")
 initial_text = "Deve ser ele o líder, vou eliminá-lo até a última gota de sangue!"
 level_type = 1
+save_next = false
 
 [node name="TileBackground" type="TileMapLayer" parent="."]
 modulate = Color(0.8, 0.8, 0.8, 1)

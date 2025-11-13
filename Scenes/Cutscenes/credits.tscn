@@ -55,7 +55,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 20),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-258, 180), Vector2(-258, -900)]
+"values": [Vector2(-445.5, 200), Vector2(-445.5, -900)]
 }
 
 [sub_resource type="Animation" id="Animation_82htg"]
@@ -103,7 +103,7 @@ _data = {
 "RESET": SubResource("Animation_82htg")
 }
 
-[node name="Main Opening" type="CanvasLayer"]
+[node name="Credits" type="CanvasLayer"]
 script = ExtResource("1_rat22")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -156,12 +156,17 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -258.0
 offset_top = 180.0
-offset_right = 258.0
+offset_right = 633.0
 offset_bottom = 899.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 12
-text = "Direção: Gabriel Oliveira
+text = "Muito obrigado por jogar, e não esqueça
+de avaliar o jogo no formulário disponível no site itch.io.
+Esta é apenas uma versão de testes,
+na versão final haverá mais fases...
+
+Direção: Gabriel Oliveira
 Roteiro: Gabriel Oliveira
 Código: Gabriel Oliveira
 Documentação: Gabriel Oliveira
@@ -171,17 +176,9 @@ Protagonist por Craftpix
 Gangster Without Gun por Craftpix
 Gangster With SMG por Craftpix
 Boss Gangster With Pistol por Craftpix
-Zombie Man por Craftpix
-Zombie Woman por Craftpix
-Zombie Cocoon por Mim
-Soldier 1 por Craftpix
-Soldier 2 por Craftpix
-Soldier Machine por Mim
 
 -- Tiles --
 Hero's Journey - Castle Hall by Anokolisa
-Laboratory Tileset Revamped LITE by ExceptRea
-As demais foram feitas por mim mesmo
 
 -- SFX --
 Todos os SFX feitos em Jsfxr
@@ -196,7 +193,7 @@ Power Hub OST por Diego Nasc from Pixabay
 Signal Fade por Pixelmaniax from Pixabay
 Thinking Overture por DSTechnician from Pixabay
 
-Guerra Final
+Guerra Final - Versão de Teste
 de
 Gabriel Oliveira"
 horizontal_alignment = 1
