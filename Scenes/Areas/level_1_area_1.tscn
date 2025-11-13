@@ -744,7 +744,8 @@ size = Vector2(31.5, 687)
 
 [node name="Level 1 Area 1" type="Node2D"]
 script = ExtResource("1_er6j7")
-initial_text = "Ouço prantos de horror! Seja quem for chegou no vilarejo, e não veio em paz."
+initial_text = "Para se mover use as setas [◀] [▲] [▼] [▶].
+Para atacar use [X]."
 key_to_next_level = 1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -920,7 +921,7 @@ Status: Povoada"
 [node name="InfoMovements" parent="Items" instance=ExtResource("13_k1uff")]
 position = Vector2(152, 193)
 text_info = "Para se mover use as setas [◀] [▲] [▼] [▶].
-Para atacar use [z]."
+Para atacar use [X]."
 
 [node name="InfoWeapons" parent="Items" instance=ExtResource("13_k1uff")]
 position = Vector2(752, 191)
