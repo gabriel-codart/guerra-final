@@ -5,7 +5,6 @@ signal dead
 
 @onready var HUD: CanvasLayer = $"../HUD"
 @export var boss_name: StringName = "BOSS"
-@export var maxHealth: int = 10
 var phase: int = 1
 var shots_before_special: int = 3
 var current_shots: int = 0

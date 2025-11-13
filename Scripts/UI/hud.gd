@@ -28,7 +28,7 @@ func _ready():
 		set_key(protagonist.current_key)
 	var boss: CharacterBody2D = get_parent().get_node_or_null("Boss") as CharacterBody2D
 	if boss:
-		boss_max_health = boss.maxHealth
+		boss_max_health = boss.health
 		set_boss_name(boss.boss_name)
 		set_boss_health(boss.health)
 	else:

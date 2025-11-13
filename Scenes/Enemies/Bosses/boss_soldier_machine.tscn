@@ -382,7 +382,6 @@ script = ExtResource("1_siwfj")
 times_to_shot = null
 vulnerable_time = 15.0
 boss_name = &"MÁQUINA DE MORTE"
-maxHealth = null
 speed = 2800.0
 damage = 2
 health = 12

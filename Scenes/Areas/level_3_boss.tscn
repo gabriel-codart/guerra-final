@@ -3125,7 +3125,6 @@ autoplay = "default"
 [node name="Boss" parent="." instance=ExtResource("7_chm6j")]
 position = Vector2(1576, -328)
 times_to_shot = 3
-maxHealth = 10
 distance_to_attack = 40
 
 [node name="TileGround" type="TileMapLayer" parent="."]
