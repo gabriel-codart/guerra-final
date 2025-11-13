@@ -76,8 +76,13 @@ func go_to_next_scene() -> void:
 	
 	# Salvar o progresso
 	if save_next:
+		# Pausa o jogo
+		get_tree().paused = true
+		# Pergunta se quer salvar
 		await save_progress()
 	
+	# Despausa o jogo e avança de fase
+	get_tree().paused = false
 	GameManager.load_current_progress_scene()
 
 # ======== HANDLERS ========

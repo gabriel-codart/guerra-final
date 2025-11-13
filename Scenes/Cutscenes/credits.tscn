@@ -103,7 +103,7 @@ _data = {
 "RESET": SubResource("Animation_82htg")
 }
 
-[node name="Main Opening" type="CanvasLayer"]
+[node name="Credits" type="CanvasLayer"]
 script = ExtResource("1_rat22")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
