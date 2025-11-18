@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://scmk4pa23wey"
-path="res://.godot/imported/Moon_Night_Sky.jpg-7249e537dd96564b78013ecd833a016b.ctex"
+uid="uid://ds4x51wybm6c6"
+path="res://.godot/imported/detection_view.png-0548daf4a41392f0a37046b3b42e4541.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Chapter 1/Moon_Night_Sky.jpg"
-dest_files=["res://.godot/imported/Moon_Night_Sky.jpg-7249e537dd96564b78013ecd833a016b.ctex"]
+source_file="res://Assets/Enemies/Global/detection_view.png"
+dest_files=["res://.godot/imported/detection_view.png-0548daf4a41392f0a37046b3b42e4541.ctex"]
 
 [params]
 

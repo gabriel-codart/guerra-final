@@ -157,7 +157,7 @@ anchor_bottom = 0.5
 offset_left = -258.0
 offset_top = 180.0
 offset_right = 258.0
-offset_bottom = 899.0
+offset_bottom = 918.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 12
@@ -167,6 +167,7 @@ Código: Gabriel Oliveira
 Documentação: Gabriel Oliveira
 
 -- Sprites --
+Background Skies por Craftpix
 Protagonist por Craftpix
 Gangster Without Gun por Craftpix
 Gangster With SMG por Craftpix

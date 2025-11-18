@@ -8,6 +8,8 @@ class_name EnemyBase extends CharacterBody2D
 @onready var detection_area: Area2D = $DetectionArea2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var attack_area: Area2D = get_node_or_null("AttackArea2D")
+@onready var detection_exclamation: PackedScene = preload("res://Scenes/Enemies/Global/detection_exclamation.tscn")
+@onready var detection_view: Node2D = get_node_or_null("DetectionView")
 
 # --- Patrulha ---
 var patrol_points: Node2D = null
@@ -49,6 +51,8 @@ func _ready():
 	# Conectar detection area
 	if not detection_area.body_entered.is_connected(_on_detection_area_2d_body_entered):
 		detection_area.body_entered.connect(_on_detection_area_2d_body_entered)
+	if not detection_area.body_exited.is_connected(_on_detection_area_2d_body_exited):
+		detection_area.body_exited.connect(_on_detection_area_2d_body_exited)
 	# Conectar timers
 	if not timer.timeout.is_connected(_on_timer_timeout):
 		timer.timeout.connect(_on_timer_timeout)
@@ -197,9 +201,38 @@ func enemy_sfx(sfx_name: String) -> void:
 func enemy_dead() -> void:
 	queue_free()
 
+# --- Fade Detection View ---
+func fade_detection(to_alpha: float, duration: float = 0.25) -> void:
+	if detection_view == null:
+		return
+	# Cria uma transição suave
+	var tween := create_tween()
+	tween.tween_property(
+		detection_view,
+		"modulate:a",
+		to_alpha,
+		duration
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+# --- Detection Exclamation ---
+func show_detection_exclamation() -> void:
+	if detection_exclamation == null or current_state == States.Enemy.Hurt or current_state == States.Enemy.Dead:
+		return
+	# Instancia a animação
+	var ex = detection_exclamation.instantiate()
+	# Adiciona ao inimigo
+	add_child(ex)
+	# Posiciona acima da cabeça do inimigo
+	ex.position = Vector2(0, -16)
+
 # --- Detect Protagonist ---
 func _on_detection_area_2d_body_entered(body: Node2D) -> void:
 	protagonist_point = body.global_position
+	fade_detection(0.0) # desaparece suavemente
+	show_detection_exclamation()
+
+func _on_detection_area_2d_body_exited(_body: Node2D) -> void:
+	fade_detection(0.3) # aparece suavemente
 
 # --- Timer Callbacks ---
 func _on_timer_timeout() -> void:

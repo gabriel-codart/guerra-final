@@ -1,7 +1,8 @@
-[gd_scene load_steps=43 format=3 uid="uid://c5llpipybrs6g"]
+[gd_scene load_steps=44 format=3 uid="uid://c5llpipybrs6g"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_without_gun.gd" id="1_snp0n"]
 [ext_resource type="Texture2D" uid="uid://ca0487s5rkdta" path="res://Assets/Enemies/Zombie Woman/Attack.png" id="2_f53up"]
+[ext_resource type="Texture2D" uid="uid://ds4x51wybm6c6" path="res://Assets/Enemies/Global/detection_view.png" id="2_nrcug"]
 [ext_resource type="Texture2D" uid="uid://dejg61rsx8voi" path="res://Assets/Enemies/Zombie Woman/Dead.png" id="3_vonmn"]
 [ext_resource type="Texture2D" uid="uid://c6x1owjg0swa1" path="res://Assets/Enemies/Zombie Woman/Fall.png" id="4_nrwfv"]
 [ext_resource type="Texture2D" uid="uid://ch11ef2bsq2li" path="res://Assets/Enemies/Zombie Woman/Hurt.png" id="5_680el"]
@@ -224,7 +225,7 @@ radius = 9.0
 height = 64.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pfge7"]
-size = Vector2(1216, 75)
+size = Vector2(614, 75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xry4c"]
 size = Vector2(31.6552, 42)
@@ -276,9 +277,16 @@ speed = 5000.0
 damage = 2
 health = 6
 
+[node name="DetectionView" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(61, -6)
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_nrcug")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8lv0a")
-animation = &"attack"
+animation = &"walk"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -296,7 +304,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
-position = Vector2(-3, 10.5)
+position = Vector2(298, 10.5)
 shape = SubResource("RectangleShape2D_pfge7")
 
 [node name="AttackArea2D" type="Area2D" parent="."]

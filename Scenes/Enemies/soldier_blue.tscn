@@ -1,6 +1,7 @@
-[gd_scene load_steps=49 format=3 uid="uid://budtfgx3eclmq"]
+[gd_scene load_steps=50 format=3 uid="uid://budtfgx3eclmq"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_with_gun.gd" id="1_guete"]
+[ext_resource type="Texture2D" uid="uid://ds4x51wybm6c6" path="res://Assets/Enemies/Global/detection_view.png" id="2_2g1q0"]
 [ext_resource type="Texture2D" uid="uid://0fvsmra27vll" path="res://Assets/Enemies/Soldier Blue/Attack.png" id="2_ywpos"]
 [ext_resource type="Texture2D" uid="uid://hwlo53c7l8s7" path="res://Assets/Enemies/Soldier Blue/Dead.png" id="3_pyyn2"]
 [ext_resource type="Texture2D" uid="uid://rh8ac4uw4sp7" path="res://Assets/Enemies/Soldier Blue/Fall.png" id="4_bvvkq"]
@@ -264,7 +265,7 @@ animations = [{
 height = 62.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktofw"]
-size = Vector2(1152, 114)
+size = Vector2(589, 114)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sa2rf"]
 size = Vector2(35, 19)
@@ -316,13 +317,19 @@ speed = 3100.0
 health = 12
 distance_to_shoot = 220
 
+[node name="DetectionView" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(58, 10)
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_2g1q0")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5gk1u")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-2, 33)
 shape = SubResource("CapsuleShape2D_ris8u")
 
@@ -336,16 +343,14 @@ wait_time = 1.5
 position = Vector2(24.8276, 25.5172)
 
 [node name="DetectionArea2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
-position = Vector2(0, 7)
+position = Vector2(281.5, 7)
 shape = SubResource("RectangleShape2D_ktofw")
 
 [node name="AttackArea2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 

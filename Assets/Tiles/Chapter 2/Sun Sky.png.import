@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf10by2mefktv"
-valid=false
+uid="uid://jhiqiayqmgnx"
+path="res://.godot/imported/Sun Sky.png-071bae06625af72c3f8c763017b97db4.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Tiles/Chapter 2/Sun Sky.jpg"
+source_file="res://Assets/Tiles/Chapter 2/Sun Sky.png"
+dest_files=["res://.godot/imported/Sun Sky.png-071bae06625af72c3f8c763017b97db4.ctex"]
 
 [params]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=46 format=3 uid="uid://w4o4ow5p3dk3"]
+[gd_scene load_steps=47 format=3 uid="uid://w4o4ow5p3dk3"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_without_gun.gd" id="1_1yhes"]
 [ext_resource type="Texture2D" uid="uid://cciw5s760popo" path="res://Assets/Enemies/Zombie Man/Attack.png" id="2_053rc"]
+[ext_resource type="Texture2D" uid="uid://ds4x51wybm6c6" path="res://Assets/Enemies/Global/detection_view.png" id="2_njjvs"]
 [ext_resource type="Texture2D" uid="uid://crcsf8syili8c" path="res://Assets/Enemies/Zombie Man/Dead.png" id="3_swccu"]
 [ext_resource type="Texture2D" uid="uid://b6qxvttc8ng0k" path="res://Assets/Enemies/Zombie Man/Fall.png" id="4_oiac8"]
 [ext_resource type="Texture2D" uid="uid://cq2dk0fs6gbxg" path="res://Assets/Enemies/Zombie Man/Hurt.png" id="5_r2736"]
@@ -245,7 +246,7 @@ radius = 9.0
 height = 64.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pfge7"]
-size = Vector2(1216, 75)
+size = Vector2(597, 101)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xry4c"]
 size = Vector2(31.6552, 42)
@@ -296,9 +297,16 @@ script = ExtResource("1_1yhes")
 speed = 2200.0
 health = 6
 
+[node name="DetectionView" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(61, -9)
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_njjvs")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8lv0a")
-animation = &"attack"
+animation = &"walk"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -316,7 +324,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
-position = Vector2(-3, 10.5)
+position = Vector2(289.5, -2.5)
 shape = SubResource("RectangleShape2D_pfge7")
 
 [node name="AttackArea2D" type="Area2D" parent="."]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=37 format=4 uid="uid://bs0tncy8hj4d4"]
 
 [ext_resource type="Script" path="res://Scripts/Areas/level_base.gd" id="1_s7hau"]
-[ext_resource type="Texture2D" uid="uid://oymdkwl2be71" path="res://Assets/Tiles/Chapter 2/Sun Sky.jpg" id="2_dpxyw"]
+[ext_resource type="Texture2D" uid="uid://jhiqiayqmgnx" path="res://Assets/Tiles/Chapter 2/Sun Sky.png" id="2_dpxyw"]
 [ext_resource type="Texture2D" uid="uid://nnjjjdb0hb1t" path="res://Assets/Tiles/Chapter 1/Pines.png" id="3_el5a4"]
 [ext_resource type="Texture2D" uid="uid://bam61bsxlxl5" path="res://Assets/Tiles/Chapter 2/Parallax Industrial.png" id="4_cgeio"]
 [ext_resource type="Texture2D" uid="uid://84y1k1bk6nqi" path="res://Assets/Tiles/Chapter 1/Brush.png" id="6_ipulh"]
@@ -1261,9 +1261,9 @@ motion_scale = Vector2(0, 0)
 motion_mirroring = Vector2(670, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/SunsetBackground"]
-modulate = Color(0.784314, 0.784314, 0.784314, 1)
+modulate = Color(0.9, 0.5337, 0.306, 1)
 position = Vector2(320, 168)
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_dpxyw")
 
 [node name="Pines" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -1484,7 +1484,7 @@ enemy_scene = ExtResource("16_6elwu")
 position = Vector2(1555, -367)
 
 [node name="Zombie Man" parent="Enemies" instance=ExtResource("15_0wciv")]
-position = Vector2(2008, -199)
+position = Vector2(2430, -310)
 
 [node name="Projectiles" type="Node2D" parent="."]
 

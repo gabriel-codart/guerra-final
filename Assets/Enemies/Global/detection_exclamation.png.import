@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf10by2mefktv"
-valid=false
+uid="uid://c6ol8s2gcxukc"
+path="res://.godot/imported/detection_exclamation.png-a07bcbd80944fa59dd1deed3d626695d.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Tiles/Chapter 2/Sun Sky.jpg"
+source_file="res://Assets/Enemies/Global/detection_exclamation.png"
+dest_files=["res://.godot/imported/detection_exclamation.png-a07bcbd80944fa59dd1deed3d626695d.ctex"]
 
 [params]
 

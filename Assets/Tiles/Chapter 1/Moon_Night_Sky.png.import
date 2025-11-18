@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf10by2mefktv"
-valid=false
+uid="uid://dmgin34roh0wa"
+path="res://.godot/imported/Moon_Night_Sky.png-e4d8e84ec7b8ec9494cd35cabad20bd3.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Tiles/Chapter 2/Sun Sky.jpg"
+source_file="res://Assets/Tiles/Chapter 1/Moon_Night_Sky.png"
+dest_files=["res://.godot/imported/Moon_Night_Sky.png-e4d8e84ec7b8ec9494cd35cabad20bd3.ctex"]
 
 [params]
 

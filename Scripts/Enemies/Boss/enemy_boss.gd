@@ -40,3 +40,10 @@ func _on_animated_sprite_finished():
 		enemy_dead()
 	else:
 		super._on_animated_sprite_finished()
+
+# --- Detect Protagonist ---
+func _on_detection_area_2d_body_entered(body: Node2D) -> void:
+	protagonist_point = body.global_position
+
+func _on_detection_area_2d_body_exited(_body: Node2D) -> void:
+	pass
