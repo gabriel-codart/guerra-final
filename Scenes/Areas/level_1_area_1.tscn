@@ -980,7 +980,7 @@ text_info = "\"ACABOU, ESTÁ CONSUMADO!\"
 "
 
 [node name="Protagonist" parent="." instance=ExtResource("5_0sjv2")]
-position = Vector2(106, 174)
+position = Vector2(109, 171)
 
 [node name="Camera2D" type="Camera2D" parent="Protagonist"]
 limit_left = 0
