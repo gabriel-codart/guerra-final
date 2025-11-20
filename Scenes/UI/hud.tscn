@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2dhgpsfx2a8c"]
+[gd_scene load_steps=15 format=3 uid="uid://c2dhgpsfx2a8c"]
 
 [ext_resource type="Script" path="res://Scripts/UI/hud.gd" id="1_3d8ni"]
 [ext_resource type="Texture2D" uid="uid://d3a7d0i7ioopa" path="res://Assets/HUD/Boss Health Hearts.png" id="4_26tqi"]
+[ext_resource type="Texture2D" uid="uid://cc88we8klnxvb" path="res://Assets/Controls/btn_left.png" id="5_p0we3"]
+[ext_resource type="Texture2D" uid="uid://cpmmgcfni0put" path="res://Assets/Controls/btn_left_pressed.png" id="6_tcjab"]
+[ext_resource type="Texture2D" uid="uid://cpg2ctl026tvd" path="res://Assets/Controls/btn_right.png" id="7_1ubfr"]
 [ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="7_aupxn"]
 [ext_resource type="Texture2D" uid="uid://ew1yrj21ixag" path="res://Assets/HUD/Protagonist Health Hearts.png" id="7_oypw7"]
+[ext_resource type="Texture2D" uid="uid://ckhwoh2hy4g8t" path="res://Assets/Controls/btn_right_pressed.png" id="8_xro27"]
+[ext_resource type="Texture2D" uid="uid://dhfbpg5c0wxen" path="res://Assets/Controls/btn_up.png" id="9_ds1rb"]
+[ext_resource type="Texture2D" uid="uid://deognejobe38" path="res://Assets/Controls/btn_up_pressed.png" id="10_nk412"]
+[ext_resource type="Texture2D" uid="uid://dah2s1swmbago" path="res://Assets/Controls/btn_fire.png" id="11_6si0u"]
+[ext_resource type="Texture2D" uid="uid://ckgy7u62jp7e" path="res://Assets/Controls/btn_fire_pressed.png" id="12_jwix5"]
+[ext_resource type="Texture2D" uid="uid://criytuc5d58j8" path="res://Assets/Controls/btn_pause.png" id="13_us78q"]
+[ext_resource type="Texture2D" uid="uid://bu8am8461mvgd" path="res://Assets/Controls/btn_pause_pressed.png" id="14_v8g74"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_3d8ni")
@@ -121,9 +131,9 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 96.0
-offset_top = -64.0
-offset_right = -96.0
+offset_left = 128.0
+offset_top = -88.0
+offset_right = -128.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("7_aupxn")
@@ -149,3 +159,53 @@ theme = ExtResource("7_aupxn")
 theme_override_font_sizes/normal_font_size = 8
 text = "sadssd"
 fit_content = true
+
+[node name="ButtonsControl" type="Control" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="LeftButton" type="TouchScreenButton" parent="MarginContainer/ButtonsControl"]
+modulate = Color(1, 1, 1, 0.686275)
+z_index = 10
+position = Vector2(8, -64)
+scale = Vector2(0.12, 0.12)
+texture_normal = ExtResource("5_p0we3")
+texture_pressed = ExtResource("6_tcjab")
+action = "move_left"
+
+[node name="RightButton" type="TouchScreenButton" parent="MarginContainer/ButtonsControl"]
+modulate = Color(1, 1, 1, 0.686275)
+z_index = 10
+position = Vector2(64, -64)
+scale = Vector2(0.12, 0.12)
+texture_normal = ExtResource("7_1ubfr")
+texture_pressed = ExtResource("8_xro27")
+action = "move_right"
+
+[node name="UpButton" type="TouchScreenButton" parent="MarginContainer/ButtonsControl"]
+modulate = Color(1, 1, 1, 0.686275)
+z_index = 10
+position = Vector2(512, -64)
+scale = Vector2(0.12, 0.12)
+texture_normal = ExtResource("9_ds1rb")
+texture_pressed = ExtResource("10_nk412")
+action = "jump"
+
+[node name="FireButton" type="TouchScreenButton" parent="MarginContainer/ButtonsControl"]
+modulate = Color(1, 1, 1, 0.686275)
+z_index = 10
+position = Vector2(568, -64)
+scale = Vector2(0.12, 0.12)
+texture_normal = ExtResource("11_6si0u")
+texture_pressed = ExtResource("12_jwix5")
+action = "attack"
+
+[node name="PauseButton" type="TouchScreenButton" parent="MarginContainer/ButtonsControl"]
+modulate = Color(1, 1, 1, 0.686275)
+z_index = 10
+position = Vector2(288, -352)
+scale = Vector2(0.125, 0.125)
+texture_normal = ExtResource("13_us78q")
+texture_pressed = ExtResource("14_v8g74")
+action = "esc"
