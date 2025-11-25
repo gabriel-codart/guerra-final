@@ -136,6 +136,7 @@ save_next = true
 libraries = {
 "": SubResource("AnimationLibrary_74q0i")
 }
+autoplay = "Default"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
