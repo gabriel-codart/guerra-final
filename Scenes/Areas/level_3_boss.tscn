@@ -3125,6 +3125,9 @@ autoplay = "default"
 [node name="Boss" parent="." instance=ExtResource("7_chm6j")]
 position = Vector2(1576, -328)
 times_to_shot = 3
+vulnerable_time = 10.0
+speed = 3200.0
+health = 10
 distance_to_attack = 40
 
 [node name="TileGround" type="TileMapLayer" parent="."]
@@ -3156,7 +3159,7 @@ editor_draw_limits = true
 position = Vector2(1696, -224)
 
 [node name="Spawner" parent="Enemies" instance=ExtResource("14_kbi4e")]
-position = Vector2(-264, 0)
+position = Vector2(-744, -232)
 enemy_scene = ExtResource("16_cmbw1")
 
 [node name="Projectiles" type="Node2D" parent="."]

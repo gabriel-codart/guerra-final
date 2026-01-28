@@ -37,8 +37,8 @@ var maxHealth: int = 5
 var health: int
 
 func _ready() -> void:
-	health = ProgressManager.current_save.player_health
-	current_weapon = ProgressManager.current_save.player_weapon as Weapons.Type
+	health = 5 # ProgressManager.current_save.player_health
+	current_weapon = Weapons.Type.Rassault # ProgressManager.current_save.player_weapon as Weapons.Type
 	current_key = Keys.Type.Empty
 	current_state = States.Protagonist.Idle
 	current_direction = Vector2.RIGHT
