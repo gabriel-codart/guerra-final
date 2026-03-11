@@ -12,6 +12,8 @@ enum SceneID {
 	LEVEL_3_AREA_1,
 	LEVEL_3_AREA_2,
 	LEVEL_3_BOSS,
+	LEVEL_4_AREA_1,
+	LEVEL_4_AREA_2,
 	CREDITS,
 }
 
@@ -27,6 +29,8 @@ const SCENE_PATHS := {
 	SceneID.LEVEL_3_AREA_1: preload("res://Scenes/Areas/level_3_area_1.tscn"),
 	SceneID.LEVEL_3_AREA_2: preload("res://Scenes/Areas/level_3_area_2.tscn"),
 	SceneID.LEVEL_3_BOSS: preload("res://Scenes/Areas/level_3_boss.tscn"),
+	SceneID.LEVEL_4_AREA_1: preload("res://Scenes/Areas/level_4_area_1.tscn"),
+	SceneID.LEVEL_4_AREA_2: preload("res://Scenes/Areas/level_4_area_2.tscn"),
 	SceneID.CREDITS: preload("res://Scenes/Cutscenes/credits.tscn"),
 }
 
@@ -46,7 +50,9 @@ static var PROGRESS_SCENE_MAP := {
 	9: SceneID.LEVEL_3_AREA_1,
 	10: SceneID.LEVEL_3_AREA_2,
 	11: SceneID.LEVEL_3_BOSS,
-	12: SceneID.CREDITS,
+	12: SceneID.LEVEL_4_AREA_1,
+	13: SceneID.LEVEL_4_AREA_2,
+	14: SceneID.CREDITS,
 }
 
 static func get_scene(scene_id: SceneID) -> PackedScene:

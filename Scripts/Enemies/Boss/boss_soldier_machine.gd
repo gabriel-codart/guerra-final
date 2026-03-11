@@ -74,7 +74,7 @@ func enemy_shoot() -> void:
 	can_walk = false
 	# Inicia o processo de drop com coroutine
 	await get_tree().create_timer(1.0).timeout  # pequena pausa antes de começar a soltar
-	var total_shots = times_to_shot * phase
+	var total_shots = times_to_shot
 	for i in range(total_shots):
 		create_projectile(weapon_marker_1.global_position)
 		create_projectile(weapon_marker_2.global_position)
