@@ -1,6 +1,6 @@
-[gd_scene load_steps=44 format=3 uid="uid://c5llpipybrs6g"]
+[gd_scene format=3 uid="uid://c5llpipybrs6g"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/enemy_without_gun.gd" id="1_snp0n"]
+[ext_resource type="Script" uid="uid://bdbw7dokw66ye" path="res://Scripts/Enemies/enemy_without_gun.gd" id="1_snp0n"]
 [ext_resource type="Texture2D" uid="uid://ca0487s5rkdta" path="res://Assets/Enemies/Zombie Woman/Attack.png" id="2_f53up"]
 [ext_resource type="Texture2D" uid="uid://ds4x51wybm6c6" path="res://Assets/Enemies/Global/detection_view.png" id="2_nrcug"]
 [ext_resource type="Texture2D" uid="uid://dejg61rsx8voi" path="res://Assets/Enemies/Zombie Woman/Dead.png" id="3_vonmn"]
@@ -265,79 +265,77 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_co14d"]
 _data = {
-"RESET": SubResource("Animation_fem6f"),
-"hurt": SubResource("Animation_fc78j")
+&"RESET": SubResource("Animation_fem6f"),
+&"hurt": SubResource("Animation_fc78j")
 }
 
-[node name="Zombie Woman" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Zombie Woman" type="CharacterBody2D" unique_id=1953562591 groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 27
 script = ExtResource("1_snp0n")
 speed = 5000.0
 damage = 2
-health = 6
+health = 4
 
-[node name="DetectionView" type="Sprite2D" parent="."]
+[node name="DetectionView" type="Sprite2D" parent="." unique_id=1633645068]
 modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(61, -6)
 rotation = -1.5708
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_nrcug")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2024201198]
 sprite_frames = SubResource("SpriteFrames_8lv0a")
 animation = &"walk"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1703266887]
 position = Vector2(1, 16)
 shape = SubResource("CapsuleShape2D_56fp5")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1096952549]
 wait_time = 2.0
 
-[node name="AttackTimer" type="Timer" parent="."]
+[node name="AttackTimer" type="Timer" parent="." unique_id=383012192]
 wait_time = 0.1
 
-[node name="DetectionArea2D" type="Area2D" parent="."]
+[node name="DetectionArea2D" type="Area2D" parent="." unique_id=482899823]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D" unique_id=713342243]
 position = Vector2(298, 10.5)
 shape = SubResource("RectangleShape2D_pfge7")
 
-[node name="AttackArea2D" type="Area2D" parent="."]
+[node name="AttackArea2D" type="Area2D" parent="." unique_id=2118325044]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D" unique_id=1972810643]
 position = Vector2(26.1724, 5)
 shape = SubResource("RectangleShape2D_xry4c")
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_co14d")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=298949013]
+libraries/ = SubResource("AnimationLibrary_co14d")
 
-[node name="PatrolPoints" type="Node2D" parent="."]
+[node name="PatrolPoints" type="Node2D" parent="." unique_id=1864053351]
 
-[node name="MarkerLeft" type="Marker2D" parent="PatrolPoints"]
+[node name="MarkerLeft" type="Marker2D" parent="PatrolPoints" unique_id=423903798]
 position = Vector2(-125, 0)
 
-[node name="MarkerRight" type="Marker2D" parent="PatrolPoints"]
+[node name="MarkerRight" type="Marker2D" parent="PatrolPoints" unique_id=1964711186]
 position = Vector2(125, 0)
 
-[node name="SFX" type="Node" parent="."]
+[node name="SFX" type="Node" parent="." unique_id=623914519]
 
-[node name="Walk" type="AudioStreamPlayer" parent="SFX"]
+[node name="Walk" type="AudioStreamPlayer" parent="SFX" unique_id=648722242]
 stream = ExtResource("8_ldmgq")
 
-[node name="Hurt" type="AudioStreamPlayer" parent="SFX"]
+[node name="Hurt" type="AudioStreamPlayer" parent="SFX" unique_id=84120341]
 stream = ExtResource("9_1dtkr")
 
-[node name="Dead" type="AudioStreamPlayer" parent="SFX"]
+[node name="Dead" type="AudioStreamPlayer" parent="SFX" unique_id=856254821]
 stream = ExtResource("10_5yoqj")
 volume_db = 8.0
 pitch_scale = 2.0

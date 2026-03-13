@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dotpru00kwsfu"]
+[gd_scene format=3 uid="uid://dotpru00kwsfu"]
 
 [ext_resource type="Theme" uid="uid://b31dg5p0p2jkb" path="res://Assets/Theme/game_theme.tres" id="1_4w1r1"]
-[ext_resource type="Script" path="res://Scripts/Cutscenes/cutscene_base.gd" id="1_nl0mt"]
-[ext_resource type="Texture2D" uid="uid://drdcko31sircq" path="res://Assets/Cutscenes/Cutscene 2.png" id="2_fte66"]
+[ext_resource type="Script" uid="uid://bgjdy8acm0ikp" path="res://Scripts/Cutscenes/cutscene_base.gd" id="1_nl0mt"]
+[ext_resource type="Texture2D" uid="uid://bs03ko8k7i3pp" path="res://Assets/Cutscenes/Cena 2/Cena 2.1.jpg" id="2_06wed"]
+[ext_resource type="Texture2D" uid="uid://7vy2o2nwwsem" path="res://Assets/Cutscenes/Cena 2/Cena 2.2.jpg" id="3_duoo3"]
 
 [sub_resource type="Animation" id="Animation_62b8x"]
 resource_name = "Default"
@@ -11,46 +12,22 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/RichText 1:modulate")
+tracks/0/path = NodePath("MarginContainer/CenterContainer/SpriteControl/Cena2_1:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.5, 17.5, 20),
+"times": PackedFloat32Array(0, 2, 10, 12),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/SpriteControl/Sprite2D:modulate")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(4, 6.5, 17.5, 20),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/RichText 2:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(8, 10.5, 17.5, 20),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(20),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -58,17 +35,29 @@ tracks/3/keys = {
 "method": &"go_to_next_scene"
 }]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("JumpCutContainer:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.5),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("JumpCutContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/CenterContainer/SpriteControl/Cena2_2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(12, 14, 18, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_82htg"]
@@ -76,7 +65,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/RichText 1:modulate")
+tracks/0/path = NodePath("MarginContainer/CenterContainer/SpriteControl/Cena2_1:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -88,7 +77,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/SpriteControl/Sprite2D:modulate")
+tracks/1/path = NodePath("JumpCutContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -100,45 +89,31 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/RichText 2:modulate")
+tracks/2/path = NodePath("MarginContainer/CenterContainer/SpriteControl/Cena2_2:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("JumpCutContainer:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_74q0i"]
 _data = {
-"Default": SubResource("Animation_62b8x"),
-"RESET": SubResource("Animation_82htg")
+&"Default": SubResource("Animation_62b8x"),
+&"RESET": SubResource("Animation_82htg")
 }
 
-[node name="Cutscene 2" type="CanvasLayer"]
+[node name="Cutscene 2" type="CanvasLayer" unique_id=356483104]
 script = ExtResource("1_nl0mt")
 save_next = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_74q0i")
-}
-autoplay = "Default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=71323058]
+libraries/ = SubResource("AnimationLibrary_74q0i")
+autoplay = &"Default"
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1834745616]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -146,51 +121,31 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=611064185]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer" unique_id=1444115314]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 100
-
-[node name="RichText 1" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_4w1r1")
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
-text = "[center]NÃO! ELISE! Mortos... todos...
-todos mortos. Não restou nada. A não ser...[/center]"
-fit_content = true
-autowrap_mode = 0
-
-[node name="SpriteControl" type="Control" parent="MarginContainer/CenterContainer/VBoxContainer"]
+[node name="SpriteControl" type="Control" parent="MarginContainer/CenterContainer" unique_id=1743072138]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/CenterContainer/VBoxContainer/SpriteControl"]
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("2_fte66")
+[node name="Cena2_1" type="Sprite2D" parent="MarginContainer/CenterContainer/SpriteControl" unique_id=1437635123]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_06wed")
 
-[node name="RichText 2" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_4w1r1")
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
-text = "[center]A última esperança. Eles a levaram.
-É isso o que me resta, esta será
-minha GUERRA FINAL![/center]"
-fit_content = true
-autowrap_mode = 0
+[node name="Cena2_2" type="Sprite2D" parent="MarginContainer/CenterContainer/SpriteControl" unique_id=756914263]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_duoo3")
 
-[node name="JumpCutContainer" type="MarginContainer" parent="."]
+[node name="JumpCutContainer" type="MarginContainer" parent="." unique_id=2137730365]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -202,15 +157,15 @@ grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("1_4w1r1")
 
-[node name="PanelContainer" type="PanelContainer" parent="JumpCutContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="JumpCutContainer" unique_id=1544451308]
 layout_mode = 2
 theme = ExtResource("1_4w1r1")
 
-[node name="MarginContainer" type="MarginContainer" parent="JumpCutContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="JumpCutContainer/PanelContainer" unique_id=243190201]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="SkipButton" type="Button" parent="JumpCutContainer/PanelContainer/MarginContainer"]
+[node name="SkipButton" type="Button" parent="JumpCutContainer/PanelContainer/MarginContainer" unique_id=79582791]
 layout_mode = 2
 text = "Pular"

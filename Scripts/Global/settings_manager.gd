@@ -46,10 +46,10 @@ func set_brightness(value: int) -> void:
 		
 		if value < 50:
 			var strength = 50 - value
-			black_rect.color.a = strength * 0.2 / 50
+			black_rect.color.a = strength * 0.5 / 50
 		elif value > 50:
 			var strength = value - 50
-			white_rect.color.a = strength * 0.2 / 50
+			white_rect.color.a = strength * 0.025 / 50
 	
 	settings_data.brightness = value
 
@@ -61,7 +61,7 @@ func set_volume(value: int) -> void:
 	else:
 		AudioServer.set_bus_mute(bus_index, false) # Desmuta
 		var min_db = -40.0
-		var max_db = 5.0
+		var max_db = -2.0
 		var t = clamp(value / 100.0, 0.0, 1.0)
 		var db_value = lerp(min_db, max_db, t)
 		AudioServer.set_bus_volume_db(bus_index, db_value)

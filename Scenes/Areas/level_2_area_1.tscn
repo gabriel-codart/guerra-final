@@ -1486,6 +1486,12 @@ position = Vector2(1555, -367)
 [node name="Zombie Man" parent="Enemies" unique_id=1456031664 instance=ExtResource("15_0wciv")]
 position = Vector2(2430, -310)
 
+[node name="MarkerLeft" parent="Enemies/Zombie Man/PatrolPoints" index="0"]
+position = Vector2(-82, 0)
+
+[node name="MarkerRight" parent="Enemies/Zombie Man/PatrolPoints" index="1"]
+position = Vector2(81, 0)
+
 [node name="Projectiles" type="Node2D" parent="." unique_id=123378892]
 
 [node name="NextLevelArea" type="Area2D" parent="." unique_id=756351891]
@@ -1512,3 +1518,5 @@ shape = SubResource("RectangleShape2D_0eili")
 [node name="CollisionRight" type="CollisionShape2D" parent="LevelLimits" unique_id=919839397]
 position = Vector2(3807.75, -128.75)
 shape = SubResource("RectangleShape2D_m0vc0")
+
+[editable path="Enemies/Zombie Man"]

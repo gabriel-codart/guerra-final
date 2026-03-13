@@ -1836,7 +1836,8 @@ size = Vector2(83, 126)
 
 [node name="Level 3 Area 1" type="Node2D" unique_id=2017606818]
 script = ExtResource("1_twpcw")
-initial_text = "Eles construíram instalações subterrâneas!"
+initial_text = "Tenho que sair logo, estão chegando mais reforços!"
+save_next = false
 
 [node name="TileBackground" type="TileMapLayer" parent="." unique_id=69331228]
 modulate = Color(0.313726, 0.313726, 0.392157, 1)
@@ -1943,7 +1944,9 @@ position = Vector2(2186, -228)
 [node name="Spawner" parent="Enemies" unique_id=981483567 instance=ExtResource("14_a2xm1")]
 position = Vector2(1520, 191)
 enemy_scene = ExtResource("13_l2hxj")
-max_enemies = 3
+spawn_interval = 10.0
+batch_cooldown = 10.0
+max_enemies = 1
 
 [node name="Projectiles" type="Node2D" parent="." unique_id=1971836863]
 
